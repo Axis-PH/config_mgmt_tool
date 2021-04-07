@@ -13,11 +13,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+// Route::get('/index', function () {
+//     return view('index');
 // });
 
+// Route::get('/about', function () {
+//     return view('about');
+// });
 
-Route::get('/', 'PageController@index');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', function () {
+//     return view('pages/main/landing');
+// });
+
+// Route::get('/portal', function () {
+//     return view('pages/portal/landing');
+// });
+
+// Route::get('/management', function () {
+//     return view('pages/management/landing');
+// });
+
 Auth::routes();
+
+Route::get('/', [App\Http\Controllers\PagesController::class, 'index'])->name('home');
+
+
+Route::get('/portal', [App\Http\Controllers\PortalPageController::class, 'index'])->name('portal');
+Route::get('/customerList', [App\Http\Controllers\PortalPageController::class, 'customerList'])->name('customerList');
+Route::get('/itemList', [App\Http\Controllers\PortalPageController::class, 'itemList'])->name('itemList');
+
+Route::get('/admin', [App\Http\Controllers\AdminPageController::class, 'index'])->name('admin');
