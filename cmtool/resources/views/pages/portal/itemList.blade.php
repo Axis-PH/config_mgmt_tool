@@ -2,8 +2,47 @@
 
 @section('content')
 {{-- @include('includes.messages') --}}
-    <div style="display: inline-block; width: 600px; border:1px solid black;">
-        <h1 style="margin-top:20px; ">ITEM LIST</h1>
+    <div style="display: inline-block; width: 900px; border:1px solid black;">
+        {{-- <h1 style="margin-top:20px; ">Item List</h1> --}}
+        <h1 style="margin-top:20px; ">機器一覧</h1>
+        <div style="float:left; padding:5px">
+            <a href="{{ url("contactList/create") }}" class="btn btn-success" 
+                style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
+        </div>
+        <table class="table table-bordered table-striped table-responsive">
+            <thead class="thead-dark">
+            <tr>
+                <th class="nameHeader">{{ __('name') }}</th>
+                <th class="dateTimeHeader">{{ __('equipmentClassId') }}</th>
+                <th class="dateTimeHeader">{{ __('customerId') }}</th>
+                <th class="dateTimeHeader">{{ __('makerId') }}</th>
+                <th class="dateTimeHeader">{{ __('info') }}</th>
+                <th class="dateTimeHeader"></th>
+                <th class="dateTimeHeader"></th>
+            </tr>
+            </thead>
+                @foreach ($equipments as $equipment)
+                <tr>
+                    <td>{{ $equipment->name }}</td>
+                    <td>{{ $equipment->equipmentClassificationId }}</td>
+                    <td>{{ $equipment->customerId }}</td>
+                    <td>{{ $equipment->makerId }}</td>
+                    <td>{{ 'info' }}</td>
+                    <td>
+                        <a href="{{ url('/itemList' . '/' . $equipment->id) }}" class="btn btn-success" 
+                            style="font-size:15px; width:100%; height: 100%"> {{ __('edit') }} </a>
+                    </td>
+                    <td>
+                        <a href="{{ url('/itemList' . '/' . $equipment->id) }}" class="btn btn-primary" 
+                            style="font-size:15px; width:100%; height: 100%"> {{ __('delete') }} </a>
+                    </td>
+                </tr> 
+                @endforeach
+        </table>
+        <div style="margin-top:-10px; margin-bottom:10px">
+            <a href={{ '/customerList' }} class="btn btn-link" 
+                style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">{{ __('バック') }}</a>
+        </div>
     </div>
 
 <style>

@@ -9,4 +9,8 @@ class Customer extends Model
 {
     use HasFactory;
 
+    public function equipments()
+    {
+        return $this->hasMany(Equipment::class, 'customerId');
+    }
 }

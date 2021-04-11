@@ -35,11 +35,15 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\PagesController::class, 'index'])->name('home');
+// Route::get('/', [App\Http\Controllers\PagesController::class, 'index'])->name('home');
 
 
-Route::get('/portal', [App\Http\Controllers\PortalPageController::class, 'index'])->name('portal');
+Route::get('/', [App\Http\Controllers\PortalPageController::class, 'index'])->name('home');
+
 Route::get('/customerList', [App\Http\Controllers\PortalPageController::class, 'customerList'])->name('customerList');
 Route::get('/itemList', [App\Http\Controllers\PortalPageController::class, 'itemList'])->name('itemList');
+Route::get('/itemList/{customerId}', [App\Http\Controllers\PortalPageController::class, 'itemListByCustomerId'])->name('itemListByCustomerId');
+
+Route::get('/contactList', [App\Http\Controllers\PortalPageController::class, 'contactList'])->name('contactList');
 
 Route::get('/admin', [App\Http\Controllers\AdminPageController::class, 'index'])->name('admin');

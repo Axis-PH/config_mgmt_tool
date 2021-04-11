@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Customer;
 use App\Models\Base;
+use App\Models\Equipment;
 
 class PortalPageController extends Controller
 {
@@ -35,9 +36,29 @@ class PortalPageController extends Controller
         return view('pages/portal/customerList')->with('bases', $bases);
     }
 
+    public function item(int $itemId)
+    {
+        $equipment = Equipment::find($itemId);
+        return view('pages/portal/item')->with('equipment', $equipment);
+    }
+
+    public function itemListByCustomerId(int $customerId)
+    {
+        // dd('customid:' . $customerId);
+        $customer = Customer::find($customerId);
+        return view('pages/portal/itemList')->with('equipments', $customer->equipments);
+    }
+
     public function itemList()
     {
         // $bases = Base::all();
         return view('pages/portal/itemList');
+    }
+
+    public function contactList()
+    {
+        $customers = Customer::all();
+        // dd($customers);
+        return view('pages/portal/contactList')->with('customers', $customers);
     }
 }
