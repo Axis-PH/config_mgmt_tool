@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Base;
 use App\Models\Equipment;
-
+use App\Http\Controllers\ResourceHandler\DeviceManager;
+use DB;
 class PortalPageController extends Controller
 {
     /**
@@ -44,9 +45,27 @@ class PortalPageController extends Controller
 
     public function itemListByCustomerId(int $customerId)
     {
-        // dd('customid:' . $customerId);
         $customer = Customer::find($customerId);
         return view('pages/portal/itemList')->with('equipments', $customer->equipments);
+    }
+
+    public function deleteDevice(int $itemId)
+    {
+        //line 55 to 58 is temporary, will move to customerManager after Edit Device implementation
+        $equipmentId = DB::table('equipment')
+        ->select('customerId')
+        ->where('id', '=', $itemId)
+        ->first();
+
+        $url = $equipmentId->customerId;
+        $deviceManager = new DeviceManager;
+        $status = $deviceManager->DeleteItemById($itemId);
+        $equipment = Equipment::find($itemId);
+
+        if($status)
+        {
+            return redirect('itemList/'.$url)->with('success');
+        }
     }
 
     public function itemList()

@@ -33,7 +33,7 @@
                             style="font-size:15px; width:100%; height: 100%"> {{ __('edit') }} </a>
                     </td>
                     <td>
-                        <a href="{{ url('/itemList' . '/' . $equipment->id) }}" class="btn btn-primary" 
+                        <a href="{{ url('/deleteDevice' . '/' . $equipment->id) }}" class="btn btn-primary" 
                             style="font-size:15px; width:100%; height: 100%"> {{ __('delete') }} </a>
                     </td>
                 </tr> 

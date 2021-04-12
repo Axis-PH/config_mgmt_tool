@@ -47,3 +47,5 @@ Route::get('/itemList/{customerId}', [App\Http\Controllers\PortalPageController:
 Route::get('/contactList', [App\Http\Controllers\PortalPageController::class, 'contactList'])->name('contactList');
 
 Route::get('/admin', [App\Http\Controllers\AdminPageController::class, 'index'])->name('admin');
+
+Route::get('/deleteDevice/{id}', [App\Http\Controllers\PortalPageController::class, 'deleteDevice'])->name('deleteDevice');
