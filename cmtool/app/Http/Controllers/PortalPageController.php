@@ -52,8 +52,10 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $site = $dataManager->getSiteById($siteId);
         $customers = $dataManager->getCustomerDropdownList();
+        $selectedCustomerId = $site->customer->id;
 
-        return view('pages/portal/updateSite')->with('site', $site)->with('customers', $customers);
+        return view('pages/portal/updateSite')->with('site', $site)->with('customers', $customers)
+            ->with('selectedCustomerId', $selectedCustomerId);
     }
 
     public function addSite(Request $request)
@@ -66,6 +68,18 @@ class PortalPageController extends Controller
 
         else 
             return redirect('/site')->with('error', 'Site Add ERROR' );
+    }
+
+    public function editSite(Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->editSite($request);
+
+        if ($status)
+            return redirect('/site')->with('success', 'Site Updated' );
+
+        else 
+            return redirect('/site')->with('error', 'Site Update ERROR' );
     }
 
     public function deleteSite(int $id)

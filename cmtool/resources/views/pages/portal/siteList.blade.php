@@ -18,7 +18,6 @@
                 <th class="dateTimeHeader">{{ __('Customer') }}</th>
                 <th class="deviceHeader"></th>
                 <th class="otherHeader"></th>
-                <th class="otherHeader"></th>
             </tr>
             </thead>
                 @foreach ($sites as $site)
@@ -34,20 +33,13 @@
                         <td>{{ $siteName }}</td>
                         
                     <td>
-                        <a href="{{ url('/itemList' . '/' . $site->customerId) }}" class="btn btn-secondary" 
+                        <a href="{{ url('/itemList' . '/' . $site->customerId) }}" class="btn btn-dark" 
                             style="font-size:15px; width:100%; height: 100%"> {{ __('機器一覧') }} </a>
                     </td>
                     <td>
                         <a href="{{ url("site/update/" . $site->id) }}" 
-                            class="btn btn-success" style="font-size:15px; width:100%; height: 100%">{{ __('edit') }}</a>
+                            class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('edit') }}</a>
                     </td>
-                    <td>
-                        {{ Form::open(['action' => ['PortalPageController@deleteSite', $site->id], 'method' => 'POST']) }}
-                            <button type="submit" class="btn btn-primary" 
-                                onclick="return confirm('Are you sure you want to delete this site?')">{{ 'delete' }}</button>
-                        {{ Form::hidden('_method', 'PUT')}}
-                        {{ Form::close() }} 
-                    </td> 
                 </tr> 
                 @endforeach
         </table>

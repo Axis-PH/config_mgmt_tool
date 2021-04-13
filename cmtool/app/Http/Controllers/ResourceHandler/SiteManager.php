@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Models\Site;
+use Facades\App\Helper\FieldChecker;
 
 class SiteManager extends Controller
 {
@@ -17,14 +18,40 @@ class SiteManager extends Controller
 
     public function addSite(Request $request)
     {
+        $valid = FieldChecker::isValidSiteName($request->name);
+        
+        if (!$valid)
+            return false;
+            
         try {
             $site = new Site;
-            // dd($request->customerId);
             $site->name = $request->name;
             $site->customerId = $request->customerId;
             $site->save();
-            // $user->employeeId = $request->username;
-            // $status = true;
+            return true;
+        }
+
+        catch (\Exception $exception)
+        {
+            return false;
+        }
+    }
+
+    public function editSite(Request $request)
+    {
+        $valid = FieldChecker::isValidSiteName($request->name);
+        
+        if (!$valid)
+            return false;
+
+        try {
+
+
+            $site = Site::find($request->siteId);
+            $site->name = $request->name;
+            $site->customerId = $request->customerId;
+            $site->save();
+
             return true;
         }
 

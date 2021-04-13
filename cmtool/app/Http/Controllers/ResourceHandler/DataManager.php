@@ -24,7 +24,15 @@ class DataManager extends Controller
         $siteManager = new SiteManager;
         $status = $siteManager->addSite($request);
 
-        return true;
+        return $status;
+    }
+
+    public function editSite(Request $request)
+    {
+        $siteManager = new SiteManager;
+        $status = $siteManager->editSite($request);
+
+        return $status;
     }
 
     public function getCustomerDropdownList()
