@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Base;
 use App\Models\Equipment;
-use App\Http\Controllers\ResourceHandler\DeviceManager;
-use DB;
+use App\Http\Controllers\ResourceHandler\DataManager;
 class PortalPageController extends Controller
 {
     /**
@@ -51,21 +50,49 @@ class PortalPageController extends Controller
 
     public function deleteDevice(int $itemId)
     {
-        //line 55 to 58 is temporary, will move to customerManager after Edit Device implementation
-        $equipmentId = DB::table('equipment')
-        ->select('customerId')
-        ->where('id', '=', $itemId)
-        ->first();
-
-        $url = $equipmentId->customerId;
-        $deviceManager = new DeviceManager;
-        $status = $deviceManager->DeleteItemById($itemId);
-        $equipment = Equipment::find($itemId);
-
+        $dataManager = new DataManager;
+        $url = $dataManager->getCustomerIdByItemId($itemId);
+        $status = $dataManager->DeleteDevice($itemId);
+        
         if($status)
         {
             return redirect('itemList/'.$url)->with('success');
         }
+    }
+
+    public function createDevice()
+    {
+        return view('pages/portal/deviceCreation');
+    }
+
+    public function addDevice(Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->addDevice($request);
+
+        if ($status)
+            return redirect('itemList/'.$request->customerId)->with('success');
+        else
+            return redirect('itemList/'.$request->customerId)->with('error');
+    }
+
+    public function editDevice(int $id)
+    {
+        $dataManager = new DataManager;
+        $equipment = $dataManager->getDeviceDetailsForUpdate($id);
+
+        return view('pages/portal/deviceUpdate')->with('id', $id)->with('equipment', $equipment);
+    }
+
+    public function updateDevice(Request $request, int $id)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->editDeviceDetails($request, $id);
+
+        if ($status)
+            return redirect('itemList/'.$request->customerId)->with('success');
+        else
+            return redirect('itemList/'.$request->customerId)->with('error');        
     }
 
     public function itemList()

@@ -6,7 +6,7 @@
         {{-- <h1 style="margin-top:20px; ">Item List</h1> --}}
         <h1 style="margin-top:20px; ">機器一覧</h1>
         <div style="float:left; padding:5px">
-            <a href="{{ url("contactList/create") }}" class="btn btn-success" 
+            <a href="{{ url("/createDevice") }}" class="btn btn-success" 
                 style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
         </div>
         <table class="table table-bordered table-striped table-responsive">
@@ -29,7 +29,7 @@
                     <td>{{ $equipment->makerId }}</td>
                     <td>{{ 'info' }}</td>
                     <td>
-                        <a href="{{ url('/itemList' . '/' . $equipment->id) }}" class="btn btn-success" 
+                        <a href="{{ url('/editDevice' . '/' . $equipment->id) }}" class="btn btn-success" 
                             style="font-size:15px; width:100%; height: 100%"> {{ __('edit') }} </a>
                     </td>
                     <td>
