@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\ResourceHandler;
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ResourceHandler\SiteManager;
 
 use App\Models\Site;
 
@@ -17,6 +19,30 @@ class DataManager extends Controller
         return $sites;
     }
 
+    public function addSite(Request $request)
+    {
+        $siteManager = new SiteManager;
+        $status = $siteManager->addSite($request);
+
+        return true;
+    }
+
+    public function getCustomerDropdownList()
+    {
+        $customerManager = new CustomerManager;
+        $customerDropdownList = $customerManager->getCustomerDropdownList();
+
+        return $customerDropdownList;
+    }
+
+    public function getSiteById($id)
+    {
+        $siteManager = new SiteManager;
+        $site = $siteManager->getSiteById($id);
+        
+        return $site;
+    }
+
     public function deleteSite(int $id)
     {
         $siteManager = new SiteManager;
@@ -24,5 +50,6 @@ class DataManager extends Controller
         
         return $status;
     }
+
 }
 

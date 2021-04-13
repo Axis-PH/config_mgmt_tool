@@ -6,7 +6,7 @@
         <h1 style="margin-top:20px; ">Customer List</h1>
         {{-- <h1 style="margin-top:20px; ">保守先一覧</h1> --}}
         <div style="float:left; padding:5px">
-            <a href="{{ url("contactList/create") }}" class="btn btn-success" 
+            <a href="{{ url("site/create") }}" class="btn btn-success" 
                 style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
         </div>
         <table class="table table-bordered table-striped table-responsive">
@@ -38,18 +38,15 @@
                             style="font-size:15px; width:100%; height: 100%"> {{ __('機器一覧') }} </a>
                     </td>
                     <td>
-                        <a href="{{ url("maintenance/project/user_setu") }}" 
+                        <a href="{{ url("site/update/" . $site->id) }}" 
                             class="btn btn-success" style="font-size:15px; width:100%; height: 100%">{{ __('edit') }}</a>
                     </td>
                     <td>
-                        
                         {{ Form::open(['action' => ['PortalPageController@deleteSite', $site->id], 'method' => 'POST']) }}
                             <button type="submit" class="btn btn-primary" 
                                 onclick="return confirm('Are you sure you want to delete this site?')">{{ 'delete' }}</button>
                         {{ Form::hidden('_method', 'PUT')}}
                         {{ Form::close() }} 
-                        {{-- <a href="{{ url("customerList/delete/" . $site->id) }}" 
-                            class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('delete') }}</a> --}}
                     </td> 
                 </tr> 
                 @endforeach

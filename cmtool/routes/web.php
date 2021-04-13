@@ -40,11 +40,12 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\PortalPageController::class, 'index'])->name('home');
 
-Route::get('/customerList', [App\Http\Controllers\PortalPageController::class, 'customerListPage'])->name('customerListPage');
+Route::get('/site', [App\Http\Controllers\PortalPageController::class, 'viewSiteListPage'])->name('viewSiteListPage');
 
-Route::put('/customerList/delete/{siteId}', [App\Http\Controllers\PortalPageController::class, 'deleteSite'])->name('deleteSite');
-
-
+Route::put('/site/delete/{siteId}', [App\Http\Controllers\PortalPageController::class, 'deleteSite'])->name('deleteSite');
+Route::get('/site/create', [App\Http\Controllers\PortalPageController::class, 'viewSiteCreatePage'])->name('viewSiteCreatePage');
+Route::put('/site/add', [App\Http\Controllers\PortalPageController::class, 'addSite'])->name('addSite');
+Route::get('/site/update/{siteId}', [App\Http\Controllers\PortalPageController::class, 'viewSiteUpdatePage'])->name('viewSiteUpdatePage');
 
 
 Route::get('/itemList', [App\Http\Controllers\PortalPageController::class, 'itemList'])->name('itemList');

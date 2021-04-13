@@ -31,12 +31,41 @@ class PortalPageController extends Controller
         return view('pages/portal/landing');
     }
 
-    public function customerListPage()
+    public function viewSiteListPage()
     {
         $dataManager = new DataManager;
         $sites = $dataManager->getAllSites();
 
-        return view('pages/portal/customerList')->with('sites', $sites);
+        return view('pages/portal/siteList')->with('sites', $sites);
+    }
+
+    public function viewSiteCreatePage()
+    {
+        $dataManager = new DataManager;
+        $customers = $dataManager->getCustomerDropdownList();
+
+        return view('pages/portal/createSite')->with('customers', $customers);
+    }
+
+    public function viewSiteUpdatePage(int $siteId)
+    {
+        $dataManager = new DataManager;
+        $site = $dataManager->getSiteById($siteId);
+        $customers = $dataManager->getCustomerDropdownList();
+
+        return view('pages/portal/updateSite')->with('site', $site)->with('customers', $customers);
+    }
+
+    public function addSite(Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->addSite($request);
+
+        if ($status)
+            return redirect('/site')->with('success', 'Site Added' );
+
+        else 
+            return redirect('/site')->with('error', 'Site Add ERROR' );
     }
 
     public function deleteSite(int $id)
@@ -45,10 +74,10 @@ class PortalPageController extends Controller
         $status = $dataManager->deleteSite($id);
 
         if ($status)
-            return redirect('/customerList')->with('success', 'Site Deleted' );
+            return redirect('/site')->with('success', 'Site Deleted' );
 
         else 
-            return redirect('/customerList')->with('error', 'Delete ERROR' );
+            return redirect('/site')->with('error', 'Delete ERROR' );
     }
 
     public function item(int $itemId)
