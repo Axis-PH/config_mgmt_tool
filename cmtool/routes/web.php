@@ -40,7 +40,13 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\PortalPageController::class, 'index'])->name('home');
 
-Route::get('/customerList', [App\Http\Controllers\PortalPageController::class, 'customerList'])->name('customerList');
+Route::get('/customerList', [App\Http\Controllers\PortalPageController::class, 'customerListPage'])->name('customerListPage');
+
+Route::put('/customerList/delete/{siteId}', [App\Http\Controllers\PortalPageController::class, 'deleteSite'])->name('deleteSite');
+
+
+
+
 Route::get('/itemList', [App\Http\Controllers\PortalPageController::class, 'itemList'])->name('itemList');
 Route::get('/itemList/{customerId}', [App\Http\Controllers\PortalPageController::class, 'itemListByCustomerId'])->name('itemListByCustomerId');
 

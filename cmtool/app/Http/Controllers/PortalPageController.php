@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Customer;
-use App\Models\Base;
 use App\Models\Equipment;
+
+use App\Http\Controllers\ResourceHandler\DataManager;
 
 class PortalPageController extends Controller
 {
@@ -30,10 +31,24 @@ class PortalPageController extends Controller
         return view('pages/portal/landing');
     }
 
-    public function customerList()
+    public function customerListPage()
     {
-        $bases = Base::all();
-        return view('pages/portal/customerList')->with('bases', $bases);
+        $dataManager = new DataManager;
+        $sites = $dataManager->getAllSites();
+
+        return view('pages/portal/customerList')->with('sites', $sites);
+    }
+
+    public function deleteSite(int $id)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->deleteSite($id);
+
+        if ($status)
+            return redirect('/customerList')->with('success', 'Site Deleted' );
+
+        else 
+            return redirect('/customerList')->with('error', 'Delete ERROR' );
     }
 
     public function item(int $itemId)
@@ -44,21 +59,18 @@ class PortalPageController extends Controller
 
     public function itemListByCustomerId(int $customerId)
     {
-        // dd('customid:' . $customerId);
         $customer = Customer::find($customerId);
         return view('pages/portal/itemList')->with('equipments', $customer->equipments);
     }
 
     public function itemList()
     {
-        // $bases = Base::all();
         return view('pages/portal/itemList');
     }
 
     public function contactList()
     {
         $customers = Customer::all();
-        // dd($customers);
         return view('pages/portal/contactList')->with('customers', $customers);
     }
 }

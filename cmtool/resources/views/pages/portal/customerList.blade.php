@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- @include('includes.messages') --}}
+    @include('includes.messages')
     <div style="display: inline-block; width: 800px; border:1px solid black;">
-        {{-- <h1 style="margin-top:20px; ">Customer List</h1> --}}
-        <h1 style="margin-top:20px; ">保守先一覧</h1>
+        <h1 style="margin-top:20px; ">Customer List</h1>
+        {{-- <h1 style="margin-top:20px; ">保守先一覧</h1> --}}
         <div style="float:left; padding:5px">
             <a href="{{ url("contactList/create") }}" class="btn btn-success" 
                 style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
@@ -12,19 +12,29 @@
         <table class="table table-bordered table-striped table-responsive">
             <thead class="thead-dark">
             <tr>
-                <th class="nameHeader">{{ __('拠点名') }}</th>
-                <th class="dateTimeHeader">{{ __('顧客名') }}</th>
+                {{-- <th class="nameHeader">{{ __('拠点名') }}</th> --}}
+                <th class="nameHeader">{{ __('Site') }}</th>
+                {{-- <th class="dateTimeHeader">{{ __('顧客名') }}</th> --}}
+                <th class="dateTimeHeader">{{ __('Customer') }}</th>
                 <th class="deviceHeader"></th>
                 <th class="otherHeader"></th>
                 <th class="otherHeader"></th>
             </tr>
             </thead>
-                @foreach ($bases as $base)
+                @foreach ($sites as $site)
                 <tr>
-                    <td>{{$base->name}}</td>
-                    <td>{{ $base->customer->name }}</td>
+                    <td>{{$site->name}}</td>
+
+                    <?php 
+                        if (!empty($site->customer->name)) 
+                            $siteName = $site->customer->name;
+                        else 
+                            $siteName = '';
+                    ?>
+                        <td>{{ $siteName }}</td>
+                        
                     <td>
-                        <a href="{{ url('/itemList' . '/' . $base->customerId) }}" class="btn btn-secondary" 
+                        <a href="{{ url('/itemList' . '/' . $site->customerId) }}" class="btn btn-secondary" 
                             style="font-size:15px; width:100%; height: 100%"> {{ __('機器一覧') }} </a>
                     </td>
                     <td>
@@ -32,8 +42,14 @@
                             class="btn btn-success" style="font-size:15px; width:100%; height: 100%">{{ __('edit') }}</a>
                     </td>
                     <td>
-                        <a href="{{ url("maintenance/project/user_setu") }}" 
-                            class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('delete') }}</a>
+                        
+                        {{ Form::open(['action' => ['PortalPageController@deleteSite', $site->id], 'method' => 'POST']) }}
+                            <button type="submit" class="btn btn-primary" 
+                                onclick="return confirm('Are you sure you want to delete this site?')">{{ 'delete' }}</button>
+                        {{ Form::hidden('_method', 'PUT')}}
+                        {{ Form::close() }} 
+                        {{-- <a href="{{ url("customerList/delete/" . $site->id) }}" 
+                            class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('delete') }}</a> --}}
                     </td> 
                 </tr> 
                 @endforeach
