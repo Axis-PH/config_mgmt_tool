@@ -139,6 +139,62 @@ class PortalPageController extends Controller
         return view('pages/portal/itemList')->with('equipments', $customer->equipments);
     }
 
+    public function deleteDevice(int $itemId)
+    {
+        $dataManager = new DataManager;
+        $url = $dataManager->getCustomerIdByItemId($itemId);
+        $status = $dataManager->DeleteDevice($itemId);
+        
+        if ($status)
+        {
+            return redirect('itemList/'.$url)->with('success');
+        }
+    }
+
+    public function createDevice()
+    {
+        return view('pages/portal/deviceCreation');
+    }
+
+    public function addDevice(Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->addDevice($request);
+
+        if ($status)
+            return redirect('itemList/'.$request->customerId)->with('success');
+        else
+            return redirect('itemList/'.$request->customerId)->with('error');
+    }
+
+    public function editDevice(int $id)
+    {
+        $dataManager = new DataManager;
+        $equipment = $dataManager->getDeviceDetailsForUpdate($id);
+
+        return view('pages/portal/deviceUpdate')->with('id', $id)->with('equipment', $equipment);
+    }
+
+    public function updateDevice(Request $request, int $id)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->editDeviceDetails($request, $id);
+
+        if ($status)
+            return redirect('itemList/'.$request->customerId)->with('success');
+        else
+            return redirect('itemList/'.$request->customerId)->with('error');        
+    }
+
+    public function displayDevice(int $id)
+    {
+        $dataManager = new DataManager;
+        $equipment = $dataManager->getDeviceDetailsForUpdate($id);
+
+      //  $equipment = Equipment::find($id);
+        return view('pages/portal/displayDevice')->with('equipment', $equipment);
+    }
+
     public function itemList()
     {
         return view('pages/portal/itemList');
