@@ -5,7 +5,7 @@
     <div style="display: inline-block; width: 800px; border:1px solid black;">
         <h1 style="margin-top:20px; ">Create Site</h1>
         {{-- <h1 style="margin-top:20px; ">保守先一覧</h1> --}}
-        {{ Form::open(['action' => ['PortalPageController@editSite', $site->id], 'method' => 'POST']) }}
+        {{ Form::open(['action' => ['PortalPageController@updateSite', $site->id], 'method' => 'POST']) }}
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Site: ') }}</label>
                 {{Form::text('name', $site->name, ['style' => 'float:right; width:500px; margin-right: 120px', 
@@ -37,35 +37,6 @@
     </div>
 
 <style>
-
-    .nameHeader {
-        text-align:center; 
-        width:11%; 
-        border: 1px solid black
-    }
-
-    .dateTimeHeader {
-        text-align:center; 
-        width:11%; 
-        border: 1px solid black
-    }
-
-    .deviceHeader {
-        text-align:center; 
-        width:6%; 
-        border: 1px solid black
-    }
-
-    .otherHeader {
-        text-align:center; 
-        width:2%; 
-        border: 1px solid black
-    }
-
-    td {
-        text-align: center; 
-    }
-
 </style>
 
 @endsection

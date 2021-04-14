@@ -3,21 +3,21 @@
 @section('content')
     @include('includes.messages')
     <div style="display: inline-block; width: 800px; border:1px solid black;">
-        <h1 style="margin-top:20px; ">Customer List</h1>
+        <h1 style="margin-top:20px; ">Site List</h1>
         {{-- <h1 style="margin-top:20px; ">保守先一覧</h1> --}}
         <div style="float:left; padding:5px">
             <a href="{{ url("site/create") }}" class="btn btn-success" 
                 style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
         </div>
-        <table class="table table-bordered table-striped table-responsive">
-            <thead class="thead-dark">
+        <table style="width:800px" class="table table-bordered table-striped table-responsive">
+            <thead style="width:800px"class="thead-dark">
             <tr>
                 {{-- <th class="nameHeader">{{ __('拠点名') }}</th> --}}
                 <th class="nameHeader">{{ __('Site') }}</th>
                 {{-- <th class="dateTimeHeader">{{ __('顧客名') }}</th> --}}
-                <th class="dateTimeHeader">{{ __('Customer') }}</th>
-                <th class="deviceHeader"></th>
-                <th class="otherHeader"></th>
+                <th class="nameHeader">{{ __('Customer') }}</th>
+                <th class="buttonHeader"></th>
+                <th class="buttonHeader"></th>
             </tr>
             </thead>
                 @foreach ($sites as $site)
@@ -53,25 +53,13 @@
 
     .nameHeader {
         text-align:center; 
-        width:11%; 
+        width:20%; 
         border: 1px solid black
     }
 
-    .dateTimeHeader {
+    .buttonHeader {
         text-align:center; 
-        width:11%; 
-        border: 1px solid black
-    }
-
-    .deviceHeader {
-        text-align:center; 
-        width:6%; 
-        border: 1px solid black
-    }
-
-    .otherHeader {
-        text-align:center; 
-        width:2%; 
+        width:10%; 
         border: 1px solid black
     }
 

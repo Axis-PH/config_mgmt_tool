@@ -6,7 +6,6 @@
         <h1 style="margin-top:20px; ">Create Site</h1>
         {{-- <h1 style="margin-top:20px; ">保守先一覧</h1> --}}
         {{ Form::open(['action' => ['PortalPageController@addSite', 1], 'method' => 'POST']) }}
-            {{-- <div class="form-group"> --}}
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Site: ') }}</label>
                 {{Form::text('name', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
@@ -14,7 +13,6 @@
             </div>
             <br><br>
             <div>
-            {{-- <div class="form-group"> --}}
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Customer: ') }}</label>
                 {{Form::select('customerId', $customers, '', ['style' => 'float:right; width:500px; margin-right: 120px',
                     'class' => 'form-control'])}}
@@ -29,35 +27,6 @@
     </div>
 
 <style>
-
-    .nameHeader {
-        text-align:center; 
-        width:11%; 
-        border: 1px solid black
-    }
-
-    .dateTimeHeader {
-        text-align:center; 
-        width:11%; 
-        border: 1px solid black
-    }
-
-    .deviceHeader {
-        text-align:center; 
-        width:6%; 
-        border: 1px solid black
-    }
-
-    .otherHeader {
-        text-align:center; 
-        width:2%; 
-        border: 1px solid black
-    }
-
-    td {
-        text-align: center; 
-    }
-
 </style>
 
 @endsection
