@@ -58,7 +58,9 @@
             Remarks:
             {{Form::text('remarks', $equipment->remarks, ['class' => 'form-control', 'placeholder' => 'Remarks'])}}
         </div>
+        <a href="{{ url('/deleteDevice' . '/' . $equipment->id) }}" class="btn btn-danger">Delete</a>
         {{Form::submit('Update Device', ['class' => 'btn btn-primary'])}}
+        
         <a href={{ redirect()->getUrlGenerator()->previous() }} class="btn btn-link">Cancel</a>
         {{ Form::hidden('_method', 'PUT')}}
         {{ Form::close() }} 

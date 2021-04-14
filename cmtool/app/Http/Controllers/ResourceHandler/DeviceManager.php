@@ -14,23 +14,29 @@ class DeviceManager
         return true;
     }
 
-    public function createDevice($request)
+    public function addDevice($request)
     {
-        $equipment = new Equipment;
-        $equipment->name = $request->deviceName;
-        $equipment->equipmentClassificationId = $request->deviceClassificationNumber;
-        $equipment->model = $request->model;
-        $equipment->serialNumber = $request->serialNumber;
-        $equipment->ipAddress = $request->ipAddress;
-        $equipment->netmask = $request->netmask;
-        $equipment->gateway = $request->gateway;
-        $equipment->customerId = $request->customerId;
-        $equipment->baseId = $request->siteId;
-        $equipment->installationLocation = $request->installationLocation;
-        $equipment->makerId = $request->makerId;
-        $equipment->remarks = $request->remarks;
-        $equipment->save();
-        return true;
+        try {        
+            $equipment = new Equipment;
+            $equipment->name = $request->deviceName;
+            $equipment->equipmentClassificationId = $request->deviceClassificationNumber;
+            $equipment->model = $request->model;
+            $equipment->serialNumber = $request->serialNumber;
+            $equipment->ipAddress = $request->ipAddress;
+            $equipment->netmask = $request->netmask;
+            $equipment->gateway = $request->gateway;
+            $equipment->customerId = $request->customerId;
+            $equipment->baseId = $request->siteId;
+            $equipment->installationLocation = $request->installationLocation;
+            $equipment->makerId = $request->makerId;
+            $equipment->remarks = $request->remarks;
+            $equipment->save();
+            return true;
+        }
+        catch (\Exception $e)
+        {
+            return false;
+        }        
     }
 
     public function getDeviceDetails($id)
@@ -47,21 +53,26 @@ class DeviceManager
         $equipment = Equipment::all()
             ->where('id', '=', $id)
             ->last();
-        
-        $equipment->name = $request->deviceName;
-        $equipment->equipmentClassificationId = $request->deviceClassificationNumber;
-        $equipment->model = $request->model;
-        $equipment->serialNumber = $request->serialNumber;
-        $equipment->ipAddress = $request->ipAddress;
-        $equipment->netmask = $request->netmask;
-        $equipment->gateway = $request->gateway;
-        $equipment->customerId = $request->customerId;
-        $equipment->baseId = $request->siteId;
-        $equipment->installationLocation = $request->installationLocation;
-        $equipment->makerId = $request->makerId;
-        $equipment->remarks = $request->remarks;
-        $equipment->save();
+        try {        
+            $equipment->name = $request->deviceName;
+            $equipment->equipmentClassificationId = $request->deviceClassificationNumber;
+            $equipment->model = $request->model;
+            $equipment->serialNumber = $request->serialNumber;
+            $equipment->ipAddress = $request->ipAddress;
+            $equipment->netmask = $request->netmask;
+            $equipment->gateway = $request->gateway;
+            $equipment->customerId = $request->customerId;
+            $equipment->baseId = $request->siteId;
+            $equipment->installationLocation = $request->installationLocation;
+            $equipment->makerId = $request->makerId;
+            $equipment->remarks = $request->remarks;
+            $equipment->save();
 
-        return true;
+            return true;
+        }
+        catch (\Exception $e)
+        {
+            return false;
+        }     
     }    
 }

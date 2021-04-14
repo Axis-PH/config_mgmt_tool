@@ -12,7 +12,7 @@ class DataManager
         $deviceManager = new DeviceManager;
         $status = $deviceManager->DeleteItemById($itemId);
 
-        if($status)
+        if ($status)
         {
             return $status;
         }
@@ -27,7 +27,7 @@ class DataManager
         $customerManager = new CustomerManager;
         $url = $customerManager->getCustomerId($itemId);
 
-        if($url)
+        if ($url)
         {
             return $url;
         }
@@ -40,9 +40,9 @@ class DataManager
     public function addDevice($request)
     {
         $deviceManager = new DeviceManager;
-        $status = $deviceManager->createDevice($request);
+        $status = $deviceManager->addDevice($request);
 
-        if($status)
+        if ($status)
         {
             return $status;
         }
@@ -57,7 +57,7 @@ class DataManager
         $deviceManager = new DeviceManager;
         $status = $deviceManager->getDeviceDetails($id);
 
-        if($status)
+        if ($status)
         {
             return $status;
         }
@@ -72,7 +72,7 @@ class DataManager
         $deviceManager = new DeviceManager;
         $status = $deviceManager->updateDeviceDetails($request, $id);
 
-        if($status)
+        if ($status)
         {
             return $status;
         }

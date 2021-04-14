@@ -51,6 +51,7 @@ Route::get('/admin', [App\Http\Controllers\AdminPageController::class, 'index'])
 Route::get('/deleteDevice/{id}', [App\Http\Controllers\PortalPageController::class, 'deleteDevice'])->name('deleteDevice');
 Route::get('/createDevice', [App\Http\Controllers\PortalPageController::class, 'createDevice'])->name('createDevice');
 Route::get('/editDevice/{id}', [App\Http\Controllers\PortalPageController::class, 'editDevice'])->name('editDevice');
+Route::get('/displayDevice/{id}', [App\Http\Controllers\PortalPageController::class, 'displayDevice'])->name('displayDevice');
 
 Route::put('/addDevice', 'PortalPageController@addDevice');
 Route::put('/updateDevice/{id}', 'PortalPageController@updateDevice');

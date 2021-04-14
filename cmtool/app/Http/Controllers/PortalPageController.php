@@ -54,7 +54,7 @@ class PortalPageController extends Controller
         $url = $dataManager->getCustomerIdByItemId($itemId);
         $status = $dataManager->DeleteDevice($itemId);
         
-        if($status)
+        if ($status)
         {
             return redirect('itemList/'.$url)->with('success');
         }
@@ -93,6 +93,15 @@ class PortalPageController extends Controller
             return redirect('itemList/'.$request->customerId)->with('success');
         else
             return redirect('itemList/'.$request->customerId)->with('error');        
+    }
+
+    public function displayDevice(int $id)
+    {
+        $dataManager = new DataManager;
+        $equipment = $dataManager->getDeviceDetailsForUpdate($id);
+
+      //  $equipment = Equipment::find($id);
+        return view('pages/portal/displayDevice')->with('equipment', $equipment);
     }
 
     public function itemList()
