@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResourceHandler\SiteManager;
 use App\Http\Controllers\ResourceHandler\MakerManager;
 
+use App\Http\Controllers\ResourceHandler\DeviceManager;
+use App\Http\Controllers\ResourceHandler\CustomerManager;
+
 use App\Models\Site;
 
 
@@ -83,6 +86,80 @@ class DataManager extends Controller
         
         return $status;
     }
+    
+    public function DeleteDevice($itemId)
+    {
+        $deviceManager = new DeviceManager;
+        $status = $deviceManager->DeleteItemById($itemId);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function getCustomerIdByItemId($itemId)
+    {
+        $customerManager = new CustomerManager;
+        $url = $customerManager->getCustomerId($itemId);
+
+        if ($url)
+        {
+            return $url;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function addDevice($request)
+    {
+        $deviceManager = new DeviceManager;
+        $status = $deviceManager->addDevice($request);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function getDeviceDetailsForUpdate($id)
+    {
+        $deviceManager = new DeviceManager;
+        $status = $deviceManager->getDeviceDetails($id);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function editDeviceDetails($request, int $id)
+    {
+        $deviceManager = new DeviceManager;
+        $status = $deviceManager->updateDeviceDetails($request, $id);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return null;
+        }
+    }
 
 }
-

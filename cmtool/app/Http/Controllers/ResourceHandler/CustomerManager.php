@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 
+use DB;
+
 class CustomerManager extends Controller
 {
     public function getCustomerDropdownList()
@@ -15,5 +17,15 @@ class CustomerManager extends Controller
         
         return $customerDropdownList;
     }
-}
 
+    public function getCustomerId($itemId)
+    {
+        $equipmentId = DB::table('equipment')
+            ->select('customerId')
+            ->where('id', '=', $itemId)
+            ->first();
+        $url = $equipmentId->customerId;
+
+        return $url;
+    }
+}
