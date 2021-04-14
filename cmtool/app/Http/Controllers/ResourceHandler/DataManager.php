@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResourceHandler\SiteManager;
+use App\Http\Controllers\ResourceHandler\MakerManager;
 
 use App\Models\Site;
 
@@ -19,6 +20,14 @@ class DataManager extends Controller
         return $sites;
     }
 
+    public function getAllMakers()
+    {
+        $makerManager = new MakerManager;
+        $makers = $makerManager->getAllMakers();
+
+        return $makers;
+    }
+
     public function addSite(Request $request)
     {
         $siteManager = new SiteManager;
@@ -27,10 +36,10 @@ class DataManager extends Controller
         return $status;
     }
 
-    public function editSite(Request $request)
+    public function updateSite(Request $request)
     {
         $siteManager = new SiteManager;
-        $status = $siteManager->editSite($request);
+        $status = $siteManager->updateSite($request);
 
         return $status;
     }
@@ -51,10 +60,26 @@ class DataManager extends Controller
         return $site;
     }
 
+    public function getMakerByMakerId($id)
+    {
+        $makerManager = new MakerManager;
+        $maker = $makerManager->getMakerById($id);
+
+        return $maker;
+    }
+
     public function deleteSite(int $id)
     {
         $siteManager = new SiteManager;
         $status = $siteManager->deleteSite($id);
+        
+        return $status;
+    }
+
+    public function deleteMaker(int $id)
+    {
+        $makerManager = new MakerManager;
+        $status = $makerManager->deleteMaker($id);
         
         return $status;
     }

@@ -58,6 +58,19 @@ class PortalPageController extends Controller
             ->with('selectedCustomerId', $selectedCustomerId);
     }
 
+    public function viewMakerUpdatePage(int $makerId)
+    {
+        $dataManager = new DataManager;
+        $maker = $dataManager->getMakerByMakerId($makerId);
+
+        return view('pages/portal/updateMaker')->with('maker', $maker);
+    }
+
+    public function viewContactLandingPage()
+    {
+        return view('pages/portal/contactLanding');
+    }
+
     public function addSite(Request $request)
     {
         $dataManager = new DataManager;
@@ -70,10 +83,10 @@ class PortalPageController extends Controller
             return redirect('/site')->with('error', 'Site Add ERROR' );
     }
 
-    public function editSite(Request $request)
+    public function updateSite(Request $request)
     {
         $dataManager = new DataManager;
-        $status = $dataManager->editSite($request);
+        $status = $dataManager->updateSite($request);
 
         if ($status)
             return redirect('/site')->with('success', 'Site Updated' );
@@ -92,6 +105,26 @@ class PortalPageController extends Controller
 
         else 
             return redirect('/site')->with('error', 'Delete ERROR' );
+    }
+
+    public function deleteMaker(int $id)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->deleteMaker($id);
+
+        if ($status)
+            return redirect('/maker')->with('success', 'Maker Deleted' );
+
+        else 
+            return redirect('/maker')->with('error', 'Delete ERROR' );
+    }
+
+    public function viewMakerListPage()
+    {
+        $dataManager = new DataManager;
+        $makers = $dataManager->getAllMakers();
+
+        return view('pages/portal/makerList')->with('makers', $makers);
     }
 
     public function item(int $itemId)

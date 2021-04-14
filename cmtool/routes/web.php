@@ -42,13 +42,18 @@ Route::get('/home', [App\Http\Controllers\PortalPageController::class, 'index'])
 Route::get('/', [App\Http\Controllers\PortalPageController::class, 'index'])->name('home');
 
 Route::get('/site', [App\Http\Controllers\PortalPageController::class, 'viewSiteListPage'])->name('viewSiteListPage');
-
+Route::get('/site/update/{siteId}', [App\Http\Controllers\PortalPageController::class, 'viewSiteUpdatePage'])->name('viewSiteUpdatePage');
 Route::put('/site/delete/{siteId}', [App\Http\Controllers\PortalPageController::class, 'deleteSite'])->name('deleteSite');
 Route::get('/site/create', [App\Http\Controllers\PortalPageController::class, 'viewSiteCreatePage'])->name('viewSiteCreatePage');
 Route::put('/site/add', [App\Http\Controllers\PortalPageController::class, 'addSite'])->name('addSite');
-Route::get('/site/update/{siteId}', [App\Http\Controllers\PortalPageController::class, 'viewSiteUpdatePage'])->name('viewSiteUpdatePage');
-Route::put('/site/update', [App\Http\Controllers\PortalPageController::class, 'editSite'])->name('editSite');
+Route::put('/site/update', [App\Http\Controllers\PortalPageController::class, 'updateSite'])->name('updateSite');
 
+Route::get('/contactLanding', [App\Http\Controllers\PortalPageController::class, 'viewContactLandingPage'])->name('viewContactLandingPage');
+
+Route::get('/maker', [App\Http\Controllers\PortalPageController::class, 'viewMakerListPage'])->name('viewMakerListPage');
+Route::get('/maker/update/{makerId}', [App\Http\Controllers\PortalPageController::class, 'viewMakerUpdatePage'])->name('viewMakerUpdatePage');
+Route::put('/maker/delete/{makerId}', [App\Http\Controllers\PortalPageController::class, 'deleteMaker'])->name('deleteMaker');
+Route::put('/maker/update', [App\Http\Controllers\PortalPageController::class, 'updateMaker'])->name('updateMaker');
 
 Route::get('/itemList', [App\Http\Controllers\PortalPageController::class, 'itemList'])->name('itemList');
 Route::get('/itemList/{customerId}', [App\Http\Controllers\PortalPageController::class, 'itemListByCustomerId'])->name('itemListByCustomerId');
