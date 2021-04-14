@@ -37,7 +37,7 @@ class SiteManager extends Controller
         }
     }
 
-    public function editSite(Request $request)
+    public function updateSite(Request $request)
     {
         $valid = FieldChecker::isValidSiteName($request->name);
         
