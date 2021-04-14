@@ -8,7 +8,6 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-8 col-sm-8 pull-left">
                 <div class="card-body row justify-content-center" >
-                    {{-- @auth --}}
                     <div class="form-group row justify-content-center" style="width:100%;padding-top:15px">
                         <div class="col-md-7" style="padding:5px">
                             <a href="{{ url("/maker") }}" class="btn btn-primary" 
@@ -20,13 +19,7 @@
                                 style="font-size:20px; width:100%; height: 100%"> {{ __('Contact List') }} </a>
                                 {{-- style="font-size:20px; width:100%; height: 100%"> {{ __('連絡先一覧') }} </a> --}}
                         </div>
-                        {{-- <div class="col-md-7" style="padding:5px">
-                            <a href="{{ url('/') }}" class="btn btn-primary" 
-                                style="font-size:20px; width:100%; height: 100%"> {{ __('Main Menu') }} </a> --}}
-                                {{-- style="font-size:20px; width:100%; height: 100%"> {{ __('総合メニュー') }} </a> --}}
-                        {{-- </div> --}}
                     </div>
-                    {{-- @endauth --}}
                 </div>
             </div>
         </div>
