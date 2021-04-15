@@ -20,11 +20,11 @@ class CustomerManager extends Controller
 
     public function getCustomerId($itemId)
     {
-        $equipmentId = DB::table('equipment')
+        $item = DB::table('equipment')
             ->select('customerId')
             ->where('id', '=', $itemId)
             ->first();
-        $url = $equipmentId->customerId;
+        $url = $item->customerId;
 
         return $url;
     }

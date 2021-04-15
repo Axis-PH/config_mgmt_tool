@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResourceHandler\SiteManager;
 use App\Http\Controllers\ResourceHandler\MakerManager;
 
-use App\Http\Controllers\ResourceHandler\DeviceManager;
+use App\Http\Controllers\ResourceHandler\ItemManager;
 use App\Http\Controllers\ResourceHandler\CustomerManager;
 
 use App\Models\Site;
@@ -87,10 +87,10 @@ class DataManager extends Controller
         return $status;
     }
     
-    public function DeleteDevice($itemId)
+    public function DeleteItem($itemId)
     {
-        $deviceManager = new DeviceManager;
-        $status = $deviceManager->DeleteItemById($itemId);
+        $itemManager = new itemManager;
+        $status = $itemManager->DeleteItemById($itemId);
 
         if ($status)
         {
@@ -117,10 +117,10 @@ class DataManager extends Controller
         }
     }
 
-    public function addDevice($request)
+    public function addItem($request, int $siteId, int $customerId)
     {
-        $deviceManager = new DeviceManager;
-        $status = $deviceManager->addDevice($request);
+        $itemManager = new itemManager;
+        $status = $itemManager->addItem($request, $siteId, $customerId);
 
         if ($status)
         {
@@ -132,10 +132,10 @@ class DataManager extends Controller
         }
     }
 
-    public function getDeviceDetailsForUpdate($id)
+    public function getItemDetailsForUpdate($id)
     {
-        $deviceManager = new DeviceManager;
-        $status = $deviceManager->getDeviceDetails($id);
+        $itemManager = new ItemManager;
+        $status = $itemManager->getItemDetails($id);
 
         if ($status)
         {
@@ -147,10 +147,10 @@ class DataManager extends Controller
         }
     }
 
-    public function editDeviceDetails($request, int $id)
+    public function editItemDetails($request, int $id, int $siteId, int $customerId)
     {
-        $deviceManager = new DeviceManager;
-        $status = $deviceManager->updateDeviceDetails($request, $id);
+        $itemManager = new ItemManager;
+        $status = $itemManager->updateItemDetails($request, $id, $siteId, $customerId);
 
         if ($status)
         {
