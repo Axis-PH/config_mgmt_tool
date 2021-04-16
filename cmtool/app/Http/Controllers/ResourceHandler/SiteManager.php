@@ -41,8 +41,9 @@ class SiteManager extends Controller
     {
         $valid = FieldChecker::isValidSiteName($request->name);
         
-        if (!$valid)
+        if (!$valid){
             return false;
+        }
 
         try {
 
@@ -57,6 +58,7 @@ class SiteManager extends Controller
 
         catch (\Exception $exception)
         {
+            dd(2);
             return false;
         }
     }
