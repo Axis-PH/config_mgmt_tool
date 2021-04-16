@@ -10,7 +10,7 @@
                 <div class="card-body row justify-content-center" >
                     <div class="form-group row justify-content-center" style="width:100%;padding-top:15px">
                         <div class="col-md-7" style="padding:5px">
-                            <a href="{{ url("/maker") }}" class="btn btn-primary" 
+                            <a href="{{ url("/makers") }}" class="btn btn-primary" 
                                 style="font-size:20px; width:100%; height: 100%"> {{ __('Maker List') }} </a>
                                 {{-- style="font-size:20px; width:100%; height: 100%"> {{ __('保守先一覧') }} </a> --}}
                         </div>

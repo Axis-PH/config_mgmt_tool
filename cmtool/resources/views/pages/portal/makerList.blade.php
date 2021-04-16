@@ -6,7 +6,7 @@
         <h1 style="margin-top:20px; ">Maker List</h1>
         {{-- <h1 style="margin-top:20px; ">保守先一覧</h1> --}}
         <div style="float:left; padding:5px">
-            <a href="{{ url("maker/create") }}" class="btn btn-success" 
+            <a href="{{ url("makers/create") }}" class="btn btn-success" 
                 style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
         </div>
         <table class="table table-bordered table-striped table-responsive">
@@ -54,7 +54,7 @@
                         <td>{{ $email }}</td>
 
                     <td>
-                        <a href="{{ url("maker/update/" . $maker->id) }}" 
+                        <a href="{{ url("makers/update/" . $maker->id) }}" 
                             class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('edit') }}</a>
                     </td>
                 </tr> 

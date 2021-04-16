@@ -66,6 +66,11 @@ class PortalPageController extends Controller
         return view('pages/portal/updateMaker')->with('maker', $maker);
     }
 
+    public function viewMakerCreatePage()
+    {
+        return view('pages/portal/createMaker');
+    }
+
     public function viewContactLandingPage()
     {
         return view('pages/portal/contactLanding');
@@ -81,6 +86,18 @@ class PortalPageController extends Controller
 
         else 
             return redirect('/site')->with('error', 'Site Add ERROR' );
+    }
+
+    public function addMaker(Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->addMaker($request);
+
+        if ($status)
+            return redirect('/makers')->with('success', 'Maker Added' );
+
+        else 
+            return redirect('/makers')->with('error', 'Maker Add ERROR' );
     }
 
     public function updateSite(Request $request)
@@ -113,10 +130,10 @@ class PortalPageController extends Controller
         $status = $dataManager->deleteMaker($id);
 
         if ($status)
-            return redirect('/maker')->with('success', 'Maker Deleted' );
+            return redirect('/makers')->with('success', 'Maker Deleted' );
 
         else 
-            return redirect('/maker')->with('error', 'Delete ERROR' );
+            return redirect('/makers')->with('error', 'Delete ERROR' );
     }
 
     public function viewMakerListPage()

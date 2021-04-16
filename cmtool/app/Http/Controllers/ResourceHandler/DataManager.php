@@ -36,6 +36,14 @@ class DataManager extends Controller
         return $status;
     }
 
+    public function addMaker(Request $request)
+    {
+        $makerManager = new MakerManager;
+        $status = $makerManager->addMaker($request);
+
+        return $status;
+    }
+
     public function updateSite(Request $request)
     {
         $siteManager = new SiteManager;
