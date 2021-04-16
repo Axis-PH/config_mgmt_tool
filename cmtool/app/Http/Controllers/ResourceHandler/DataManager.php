@@ -8,7 +8,7 @@ use App\Http\Controllers\ResourceHandler\SiteManager;
 use App\Http\Controllers\ResourceHandler\MakerManager;
 
 use App\Http\Controllers\ResourceHandler\DeviceManager;
-use App\Http\Controllers\ResourceHandler\CustomerManager;
+use App\Http\Controllers\ResourceHandler\CustomersManager;
 
 use App\Models\Site;
 
@@ -160,6 +160,40 @@ class DataManager extends Controller
         {
             return null;
         }
+    }
+
+    public function getAllCustomers() {
+
+        $customersManager = new CustomersManager;
+        $customers = $customersManager->getCustomerList();
+
+        return $customers;
+    }
+
+    public function getCustomerByCustomerId($id) {
+
+        $customersManager = new CustomersManager;
+        $customers = $customersManager->getCustomerById($id);
+
+        return $customers;
+    }
+
+    public function deleteCustomer($customerId) {
+
+        $customersManager = new CustomersManager;
+        $status = $customersManager->deleteCustomer($customerId);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return null;
+        }
+
+        return $status;
+       
     }
 
 }

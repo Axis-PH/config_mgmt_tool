@@ -12,30 +12,32 @@
         <table class="table table-bordered table-striped table-responsive">
             <thead class="thead-dark">
             <tr>
+                <th class="nameHeader">{{ __('Id') }}</th>
                 <th class="nameHeader">{{ __('Name') }}</th>
                 <th class="nameHeader">{{ __('NamePIC') }}</th>
                 <th class="otherHeader">{{ __('Tel #') }}</th>
                 <th class="otherHeader">{{ __('Email') }}</th>
                 <th class="otherHeader">{{ __('Remarks') }}</th>
                 <th class="otherHeader"></th>
-                <th class="otherHeader"></th>
+                <!-- <th class="otherHeader"></th> -->
             </tr>
             </thead>
                 @foreach ($customers as $customer)
                 <tr>
+                    <td>{{$customer->id}}</td>
                     <td>{{$customer->name}}</td>
                     <td>{{ $customer->namePIC }}</td>
                     <td>{{ $customer->telephoneNumber }}</td>
                     <td>{{ $customer->email }}</td>
-                    <td>{{ 'remarks here' }}</td>
+                    <td>{{ $customer->remarks }}</td>
                     <td>
-                        <a href="{{ url("maintenance/project/user_setu") }}" 
+                        <a href="{{ url("customerList/update/" .$customer->id) }}" 
                             class="btn btn-success" style="font-size:15px; width:70px; height: 100%">{{ __('edit') }}</a>
                     </td>
-                    <td>
+                    <!-- <td>
                         <a href="{{ url("maintenance/project/user_setu") }}" 
                             class="btn btn-primary" style="font-size:15px; width:70px; height: 100%">{{ __('delete') }}</a>
-                    </td> 
+                    </td>  -->
                 </tr> 
                 @endforeach
         </table>

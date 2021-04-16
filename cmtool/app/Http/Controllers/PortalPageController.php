@@ -191,7 +191,7 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $equipment = $dataManager->getDeviceDetailsForUpdate($id);
 
-      //  $equipment = Equipment::find($id);
+        $equipment = Equipment::find($id);
         return view('pages/portal/displayDevice')->with('equipment', $equipment);
     }
 
@@ -200,9 +200,31 @@ class PortalPageController extends Controller
         return view('pages/portal/itemList');
     }
 
-    public function contactList()
-    {
-        $customers = Customer::all();
-        return view('pages/portal/contactList')->with('customers', $customers);
+    public function viewCustomerListPage() {
+
+        $dataManager = new DataManager;
+        $customers = $dataManager->getAllCustomers();
+
+        return view('pages/portal/customerList')->with('customers', $customers);
+    }
+
+    public function viewUpdateCustomerListPage(int $customerId) {
+
+        $dataManager = new DataManager;
+        $customers = $dataManager->getCustomerByCustomerId($customerId);
+
+        return view('pages/portal/updateCustomerList')->with('customers', $customers);
+    }
+
+    public function deleteCustomer(int $customerId) {
+
+        $dataManager = new DataManager;
+        $status = $dataManager->deleteCustomer($customerId);
+        
+        if ($status)
+        {
+            return redirect('/customerList')->with('success');
+        }
+
     }
 }

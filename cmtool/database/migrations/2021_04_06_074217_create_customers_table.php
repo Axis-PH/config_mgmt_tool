@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('namePIC');
             $table->string('telephoneNumber');
             $table->string('email');
+            $table->string('remarks');
             $table->timestamps();
         });
     }
