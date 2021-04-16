@@ -6,8 +6,8 @@
         {{-- <h1 style="margin-top:20px; ">Item List</h1> --}}
         <h1 style="margin-top:20px; ">機器一覧</h1>
         <div style="float:left; padding:5px">
-            <a href="{{ url("/createItem") . '/' . $siteId . '/' . $customerId }}" class="btn btn-success" 
-                style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
+            <a href="{{ url("/item/create") . '/' . $siteId . '/' . $customerId }}" class="btn btn-success" 
+                style="font-size:15px; width:100px; height: 100%">{{ __('Add Item') }}</a>
         </div>
         <table class="table table-bordered table-striped table-responsive">
             <thead class="thead-dark">
@@ -28,14 +28,14 @@
             </thead>
                 @foreach ($items as $item)
                 <tr>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->equipmentClassificationId }}</td>
-                    <td>{{ $item->customerId }}</td>
-                    <td>{{ $item->makerId }}</td>
-                    <td><a href="{{ url('/displayItem' . '/' . $item->id) }}" class="btn btn-primary" 
+                    <td>{{ $item->item_name }}</td>
+                    <td>{{ $item->category }}</td>
+                    <td>{{ $item->customer_id }}</td>
+                    <td>{{ $item->maker_id }}</td>
+                    <td><a href="{{ url('/item/display' . '/' . $item->item_id) }}" class="btn btn-primary" 
                         style="font-size:15px; width:100%; height: 100%">Display</a></td>
                     <td>
-                        <a href="{{ url('/editItem' . '/' . $siteId . '/' . $customerId  . '/' . $item->id) }}" class="btn btn-success" 
+                        <a href="{{ url('/item/edit' . '/' . $siteId . '/' . $customerId  . '/' . $item->item_id) }}" class="btn btn-success" 
                             style="font-size:15px; width:100%; height: 100%">Edit</a>
                     </td>
                 </tr> 

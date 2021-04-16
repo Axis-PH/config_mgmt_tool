@@ -55,17 +55,15 @@ Route::get('/maker/update/{makerId}', [App\Http\Controllers\PortalPageController
 Route::put('/maker/delete/{makerId}', [App\Http\Controllers\PortalPageController::class, 'deleteMaker'])->name('deleteMaker');
 Route::put('/maker/update', [App\Http\Controllers\PortalPageController::class, 'updateMaker'])->name('updateMaker');
 
-Route::get('/itemList', [App\Http\Controllers\PortalPageController::class, 'itemList'])->name('itemList');
-Route::get('/itemList/{siteId}/{customerId}', [App\Http\Controllers\PortalPageController::class, 'itemListByCustomerId'])->name('itemListByCustomerId');
-
 Route::get('/contactList', [App\Http\Controllers\PortalPageController::class, 'contactList'])->name('contactList');
 
 Route::get('/admin', [App\Http\Controllers\AdminPageController::class, 'index'])->name('admin');
 
-Route::get('/deleteItem/{siteId}/{customerId}/{id}', [App\Http\Controllers\PortalPageController::class, 'deleteItem'])->name('deleteItem');
-Route::get('/createItem/{siteId}/{customerId}', [App\Http\Controllers\PortalPageController::class, 'createItem'])->name('createItem');
-Route::get('/editItem/{siteId}/{customerId}/{id}', [App\Http\Controllers\PortalPageController::class, 'editItem'])->name('editItem');
-Route::get('/displayItem/{id}', [App\Http\Controllers\PortalPageController::class, 'displayItem'])->name('displayItem');
-
+Route::get('/items', [App\Http\Controllers\PortalPageController::class, 'itemList'])->name('itemList');
+Route::get('/items/{siteId}/{customerId}', [App\Http\Controllers\PortalPageController::class, 'itemListByCustomerId'])->name('itemListByCustomerId');
+Route::get('/item/delete/{itemId}', [App\Http\Controllers\PortalPageController::class, 'deleteItem'])->name('deleteItem');
+Route::get('/item/create/{siteId}/{customerId}', [App\Http\Controllers\PortalPageController::class, 'createItem'])->name('createItem');
+Route::get('/item/edit/{siteId}/{customerId}/{id}', [App\Http\Controllers\PortalPageController::class, 'editItem'])->name('editItem');
+Route::get('/item/display/{id}', [App\Http\Controllers\PortalPageController::class, 'displayItem'])->name('displayItem');
 Route::put('/addItem/{siteId}/{customerId}', 'PortalPageController@addItem');
 Route::put('/updateItem/{siteId}/{customerId}/{id}', 'PortalPageController@updateItem');

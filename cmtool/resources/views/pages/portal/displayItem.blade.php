@@ -10,19 +10,19 @@
             </h2>
         </div>
             <div class="form-group">
-                Item Name: {{$item->name}}
+                Item Name: {{$item->item_name}}
             </div>
             <div class="form-group">
-                Item Category: {{$item->equipmentClassificationId}}
+                Item Category: {{$item->category}}
             </div>
             <div class="form-group">
                 Model: {{$item->model}}
             </div>
             <div class="form-group">
-                S/N: {{$item->serialNumber}}
+                S/N: {{$item->serial}}
             </div>
             <div class="form-group">
-                IP Address: {{$item->ipAddress}}
+                IP Address: {{$item->ip}}
             </div>
             <div class="form-group">
                 Netmask: {{$item->netmask}}
@@ -31,19 +31,19 @@
                 Gateway: {{$item->gateway}}
             </div>
             <div class="form-group">
-                Customer ID: {{$item->customerId}}
+                Customer ID: {{$item->customer_id}}
             </div>
             <div class="form-group">
-                Site ID: {{$item->baseId}}
+                Site ID: {{$item->site_id}}
             </div>
             <div class="form-group">
-                Installation Location: {{$item->installationLocation}}
+                Installation Location: {{$item->place}}
             </div>
             <div class="form-group">
-                Maker ID: {{$item->makerId}}
+                Maker ID: {{$item->maker_id}}
             </div>
             <div class="form-group">
-                Remarks: {{$item->remarks}}
+                Remarks: {{$item->memo}}
             </div>
         <a href={{ redirect()->getUrlGenerator()->previous() }} class="btn btn-primary">Return</a>
         {{ Form::hidden('_method', 'PUT')}}

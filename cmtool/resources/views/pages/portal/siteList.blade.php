@@ -33,7 +33,7 @@
                         <td>{{ $siteName }}</td>
                         
                     <td>
-                        <a href="{{ url('/itemList' . '/' . $site->id . '/' . $site->customerId) }}" class="btn btn-dark" 
+                        <a href="{{ url('/items' . '/' . $site->id . '/' . $site->customerId) }}" class="btn btn-dark" 
                             style="font-size:15px; width:100%; height: 100%"> {{ __('機器一覧') }} </a>
                     </td>
                     <td>

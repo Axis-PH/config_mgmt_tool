@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResourceHandler\SiteManager;
 use App\Http\Controllers\ResourceHandler\MakerManager;
 
-use App\Http\Controllers\ResourceHandler\ItemManager;
+use App\Http\Controllers\ResourceHandler\ItemsManager;
 use App\Http\Controllers\ResourceHandler\CustomerManager;
 
 use App\Models\Site;
@@ -87,10 +87,10 @@ class DataManager extends Controller
         return $status;
     }
     
-    public function DeleteItem($itemId)
+    public function DeleteItem(int $itemId)
     {
-        $itemManager = new itemManager;
-        $status = $itemManager->DeleteItemById($itemId);
+        $itemsManager = new ItemsManager;
+        $status = $itemsManager->DeleteItemById($itemId);
 
         if ($status)
         {
@@ -98,7 +98,7 @@ class DataManager extends Controller
         }
         else
         {
-            return null;
+            return false;
         }
     }
 
@@ -113,14 +113,14 @@ class DataManager extends Controller
         }
         else
         {
-            return null;
+            return false;
         }
     }
 
     public function addItem($request, int $siteId, int $customerId)
     {
-        $itemManager = new itemManager;
-        $status = $itemManager->addItem($request, $siteId, $customerId);
+        $itemsManager = new ItemsManager;
+        $status = $itemsManager->addItem($request, $siteId, $customerId);
 
         if ($status)
         {
@@ -128,14 +128,14 @@ class DataManager extends Controller
         }
         else
         {
-            return null;
+            return false;
         }
     }
 
     public function getItemDetailsForUpdate($id)
     {
-        $itemManager = new ItemManager;
-        $status = $itemManager->getItemDetails($id);
+        $itemsManager = new ItemsManager;
+        $status = $itemsManager->getItemDetails($id);
 
         if ($status)
         {
@@ -143,14 +143,14 @@ class DataManager extends Controller
         }
         else
         {
-            return null;
+            return false;
         }
     }
 
     public function editItemDetails($request, int $id, int $siteId, int $customerId)
     {
-        $itemManager = new ItemManager;
-        $status = $itemManager->updateItemDetails($request, $id, $siteId, $customerId);
+        $itemsManager = new ItemsManager;
+        $status = $itemsManager->updateItemDetails($request, $id, $siteId, $customerId);
 
         if ($status)
         {
@@ -158,8 +158,26 @@ class DataManager extends Controller
         }
         else
         {
-            return null;
+            return false;
         }
     }
+
+    public function getItemsByCustomerId(int $customerId)
+    {
+
+        $itemManager = new ItemsManager;
+        $items = $itemManager->getItemsByCustomerId($customerId);
+
+        return $items;
+    }  
+
+    public function GetSiteIdByItemId(int $itemId)
+    {
+
+        $siteManager = new SiteManager;
+        $site = $siteManager->GetSiteIdByItemId($itemId);
+
+        return $site;
+    }  
 
 }
