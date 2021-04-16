@@ -52,6 +52,14 @@ class DataManager extends Controller
         return $status;
     }
 
+    public function updateMaker(Request $request)
+    {
+        $makerManager = new MakerManager;
+        $status = $makerManager->updateMaker($request);
+
+        return $status;
+    }
+
     public function getCustomerDropdownList()
     {
         $customerManager = new CustomerManager;

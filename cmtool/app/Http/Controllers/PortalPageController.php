@@ -112,6 +112,18 @@ class PortalPageController extends Controller
             return redirect('/site')->with('error', 'Site Update ERROR' );
     }
 
+    public function updateMaker(Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->updateMaker($request);
+
+        if ($status)
+            return redirect('/makers')->with('success', 'Maker Updated' );
+
+        else 
+            return redirect('/makers')->with('error', 'Maker Update ERROR' );
+    }
+
     public function deleteSite(int $id)
     {
         $dataManager = new DataManager;
@@ -144,26 +156,26 @@ class PortalPageController extends Controller
         return view('pages/portal/makerList')->with('makers', $makers);
     }
 
-    public function item(int $itemId)
-    {
-        $equipment = Equipment::find($itemId);
-        return view('pages/portal/item')->with('equipment', $equipment);
-    }
+    // public function item(int $itemId)
+    // {
+    //     $equipment = Equipment::find($itemId);
+    //     return view('pages/portal/item')->with('equipment', $equipment);
+    // }
 
-    public function itemListByCustomerId(int $customerId)
-    {
-        $customer = Customer::find($customerId);
-        return view('pages/portal/itemList')->with('equipments', $customer->equipments);
-    }
+    // public function itemListByCustomerId(int $customerId)
+    // {
+    //     $customer = Customer::find($customerId);
+    //     return view('pages/portal/itemList')->with('equipments', $customer->equipments);
+    // }
 
     public function itemList()
     {
         return view('pages/portal/itemList');
     }
 
-    public function contactList()
-    {
-        $customers = Customer::all();
-        return view('pages/portal/contactList')->with('customers', $customers);
-    }
+    // public function contactList()
+    // {
+    //     $customers = Customer::all();
+    //     return view('pages/portal/contactList')->with('customers', $customers);
+    // }
 }

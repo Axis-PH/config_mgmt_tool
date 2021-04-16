@@ -14,19 +14,19 @@
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('PIC: ') }}</label>
-                {{Form::text('name', $maker->namePIC, ['style' => 'float:right; width:500px; margin-right: 120px', 
+                {{Form::text('namePIC', $maker->namePIC, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Person In Charge')])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Tel: ') }}</label>
-                {{Form::text('name', $maker->telephoneNumber, ['style' => 'float:right; width:500px; margin-right: 120px', 
+                {{Form::text('telephoneNumber', $maker->telephoneNumber, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Telephone')])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Email: ') }}</label>
-                {{Form::text('name', $maker->email, ['style' => 'float:right; width:500px; margin-right: 120px', 
+                {{Form::text('email', $maker->email, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Email')])}}
             </div>
             {{Form::hidden('makerId', $maker->id)}}

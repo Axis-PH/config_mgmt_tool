@@ -58,5 +58,30 @@ class MakerManager extends Controller
             return false;
         }
     }
+
+    public function updateMaker(Request $request)
+    {
+        $valid = FieldChecker::isValidSiteName($request->name);
+        
+        if (!$valid){
+            return false;
+        }
+
+        try {
+            $maker = Maker::find($request->makerId);
+            $maker->name = $request->name;
+            $maker->namePIC = $request->namePIC;
+            $maker->telephoneNumber = $request->telephoneNumber;
+            $maker->email = $request->email;
+            $maker->save();
+
+            return true;
+        }
+
+        catch (\Exception $exception)
+        {
+            return false;
+        }
+    }
 }
 

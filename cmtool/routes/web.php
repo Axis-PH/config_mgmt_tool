@@ -13,29 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/index', function () {
-//     return view('index');
-// });
-
-// Route::get('/about', function () {
-//     return view('about');
-// });
-
-// Route::get('/', function () {
-//     return view('pages/main/landing');
-// });
-
-// Route::get('/portal', function () {
-//     return view('pages/portal/landing');
-// });
-
-// Route::get('/management', function () {
-//     return view('pages/management/landing');
-// });
-
 Auth::routes();
-
-// Route::get('/', [App\Http\Controllers\PagesController::class, 'index'])->name('home');
 
 
 Route::get('/home', [App\Http\Controllers\PortalPageController::class, 'index']);

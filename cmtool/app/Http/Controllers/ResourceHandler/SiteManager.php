@@ -58,7 +58,6 @@ class SiteManager extends Controller
 
         catch (\Exception $exception)
         {
-            dd(2);
             return false;
         }
     }
