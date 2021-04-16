@@ -170,10 +170,10 @@ class DataManager extends Controller
         return $customers;
     }
 
-    public function getCustomerByCustomerId($id) {
+    public function getCustomerByCustomerId($customer_id) {
 
         $customersManager = new CustomersManager;
-        $customers = $customersManager->getCustomerById($id);
+        $customers = $customersManager->getCustomerById($customer_id);
 
         return $customers;
     }

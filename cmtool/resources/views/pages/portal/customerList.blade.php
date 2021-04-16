@@ -24,14 +24,14 @@
             </thead>
                 @foreach ($customers as $customer)
                 <tr>
-                    <td>{{$customer->id}}</td>
-                    <td>{{$customer->name}}</td>
-                    <td>{{ $customer->namePIC }}</td>
-                    <td>{{ $customer->telephoneNumber }}</td>
-                    <td>{{ $customer->email }}</td>
-                    <td>{{ $customer->remarks }}</td>
+                    <td>{{$customer->customer_id}}</td>
+                    <td>{{$customer->customer_name}}</td>
+                    <td>{{ $customer->customer_staff }}</td>
+                    <td>{{ $customer->customer_tel }}</td>
+                    <td>{{ $customer->customer_mail }}</td>
+                    <td>{{ $customer->customer_memo }}</td>
                     <td>
-                        <a href="{{ url("customerList/update/" .$customer->id) }}" 
+                        <a href="{{ url("customers/update/" .$customer->customer_id) }}" 
                             class="btn btn-success" style="font-size:15px; width:70px; height: 100%">{{ __('edit') }}</a>
                     </td>
                     <!-- <td>

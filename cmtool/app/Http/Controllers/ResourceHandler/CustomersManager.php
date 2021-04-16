@@ -13,7 +13,7 @@ class CustomersManager extends Controller
     public function getCustomerDropdownList()
     {
         $customerDropdownList = Customer::all()
-            ->pluck('name', 'id');
+            ->pluck('customer_name', 'customer_id');
         
         return $customerDropdownList;
     }
@@ -38,7 +38,11 @@ class CustomersManager extends Controller
 
     public function getCustomerById(int $id) {
 
-        $customer = Customer::find($id);
+        $customer = DB::table('customers')
+                ->select('*')
+                ->where('customer_id', '=', $id)
+                ->first();
+
         return $customer;
     }
 
@@ -48,9 +52,21 @@ class CustomersManager extends Controller
 
     public function deleteCustomer(int $id) {
 
-        $customer = Customer::all()->find($id);
-        $customer->delete();
+        $customer = DB::table('customers')
+                ->select('*')
+                ->where('customer_id', '=', $id)
+                ->first();
+        
+        if ($customer) {
+            $customer = DB::table('customers')
+                ->select('*')
+                ->where('customer_id', '=', $id)
+                ->delete();
 
-        return true;
+                return true;
+        }
+        else {
+            dd("no data.");
+        } 
     }
 }
