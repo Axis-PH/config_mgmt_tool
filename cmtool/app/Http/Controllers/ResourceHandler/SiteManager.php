@@ -89,7 +89,7 @@ class SiteManager extends Controller
         }
     }
 
-    public function GetSiteIdByItemId(int $itemId)
+    public function getSiteIdByItemId(int $itemId)
     {
         $siteDataHolder = Item::find($itemId);
         $site = $siteDataHolder->site_id;

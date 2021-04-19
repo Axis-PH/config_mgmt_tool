@@ -143,10 +143,9 @@ class PortalPageController extends Controller
     public function deleteItem(int $itemId)
     {
         $dataManager = new DataManager;
-       // $url = $dataManager->getCustomerIdByItemId($id);
-        $site = $dataManager->GetSiteIdByItemId($itemId);
+        $site = $dataManager->getSiteIdByItemId($itemId);
         $customer = $dataManager->getCustomerIdByItemId($itemId);
-        $status = $dataManager->DeleteItem($itemId);
+        $status = $dataManager->deleteItem($itemId);
 
 
         if ($status)
@@ -209,5 +208,24 @@ class PortalPageController extends Controller
     {
         $customers = Customer::all();
         return view('pages/portal/contactList')->with('customers', $customers);
+    }
+    
+    public function viewCategory()
+    {
+        $dataManager = new DataManager;
+        $categories = $dataManager->getCategories();
+        
+        return view('pages/portal/categoryList')->with('categories', $categories);
+    }
+
+    public function deleteCategory(int $categoryId)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->deleteCategory($categoryId);
+
+        if ($status)
+        {
+            return redirect('category')->with('success');
+        }
     }
 }

@@ -7,7 +7,7 @@ use App\Models\Customer;
 
 class ItemsManager
 {
-    public function DeleteItemById($itemId)
+    public function deleteItemById($itemId)
     {
         $item = Item::where('item_id', $itemId);
         $item->delete();

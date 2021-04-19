@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResourceHandler\SiteManager;
 use App\Http\Controllers\ResourceHandler\MakerManager;
-
 use App\Http\Controllers\ResourceHandler\ItemsManager;
+use App\Http\Controllers\ResourceHandler\CategoriesManager;
 use App\Http\Controllers\ResourceHandler\CustomerManager;
 
 use App\Models\Site;
@@ -87,10 +87,10 @@ class DataManager extends Controller
         return $status;
     }
     
-    public function DeleteItem(int $itemId)
+    public function deleteItem(int $itemId)
     {
         $itemsManager = new ItemsManager;
-        $status = $itemsManager->DeleteItemById($itemId);
+        $status = $itemsManager->deleteItemById($itemId);
 
         if ($status)
         {
@@ -171,13 +171,37 @@ class DataManager extends Controller
         return $items;
     }  
 
-    public function GetSiteIdByItemId(int $itemId)
+    public function getSiteIdByItemId(int $itemId)
     {
 
         $siteManager = new SiteManager;
-        $site = $siteManager->GetSiteIdByItemId($itemId);
+        $site = $siteManager->getSiteIdByItemId($itemId);
 
         return $site;
     }  
+
+    public function getCategories()
+    {
+
+        $categoriesManager = new CategoriesManager;
+        $categories = $categoriesManager->getCategories();
+
+        return $categories;
+    }
+
+    public function deleteCategory(int $categoryId)
+    {
+        $categoriesManager = new CategoriesManager;
+        $status = $categoriesManager->deleteCategory($categoryId);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }
