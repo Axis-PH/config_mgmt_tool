@@ -8,12 +8,12 @@ use App\Models\Customer;
 
 use DB;
 
-class CustomerManager extends Controller
+class CustomersManager extends Controller
 {
     public function getCustomerDropdownList()
     {
         $customerDropdownList = Customer::all()
-            ->pluck('name', 'id');
+            ->pluck('customer_name', 'customer_id');
         
         return $customerDropdownList;
     }

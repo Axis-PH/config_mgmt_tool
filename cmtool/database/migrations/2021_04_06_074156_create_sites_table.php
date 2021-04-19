@@ -14,9 +14,9 @@ class CreateSitesTable extends Migration
     public function up()
     {
         Schema::create('sites', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('customerId');
+            $table->id('site_id');
+            $table->string('site_name');
+            $table->integer('customer_id');
             $table->timestamps();
         });
     }

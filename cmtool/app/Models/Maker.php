@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Maker extends Model
 {
     use HasFactory;
+    
+    protected $primaryKey = 'maker_id';
 }

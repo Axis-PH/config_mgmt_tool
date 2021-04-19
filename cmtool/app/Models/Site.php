@@ -9,8 +9,10 @@ class Site extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'site_id';
+
     public function customer()
     {
-        return $this->hasOne(Customer::class, 'id', 'customerId');
+        return $this->hasOne(Customer::class, 'customer_id', 'customer_id');
     }
 }

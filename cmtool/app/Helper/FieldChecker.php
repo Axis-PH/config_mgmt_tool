@@ -4,9 +4,17 @@ namespace App\Helper;
 
 class FieldChecker
 {
-    public function isValidSiteName($name)
+    public function isValidName($name)
     {
         if (preg_match('~[0-9]+~', $name) or (is_null($name)))
+            return false;
+
+        return true;
+    }
+
+    public function isValidTel($tel)
+    {
+        if (!is_numeric($tel))
             return false;
 
         return true;
