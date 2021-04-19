@@ -7,11 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Site;
 use Facades\App\Helper\FieldChecker;
 
-class SiteManager extends Controller
+class SitesManager extends Controller
 {
     public function getAllSites()
     {
-        $sites = Site::all();
+        $sites = Site::simplePaginate(5);
         
         return $sites;
     }

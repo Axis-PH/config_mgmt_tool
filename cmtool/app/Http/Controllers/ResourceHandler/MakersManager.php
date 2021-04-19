@@ -8,7 +8,7 @@ use App\Models\Maker;
 
 use Facades\App\Helper\FieldChecker;
 
-class MakerManager extends Controller
+class MakersManager extends Controller
 {
     public function getAllMakers()
     {
