@@ -49,8 +49,8 @@ class DataManager extends Controller
 
     public function getCustomerDropdownList()
     {
-        $customerManager = new CustomerManager;
-        $customerDropdownList = $customerManager->getCustomerDropdownList();
+        $customersManager = new CustomersManager;
+        $customerDropdownList = $customersManager->getCustomerDropdownList();
 
         return $customerDropdownList;
     }
@@ -104,8 +104,8 @@ class DataManager extends Controller
 
     public function getCustomerIdByItemId($itemId)
     {
-        $customerManager = new CustomerManager;
-        $url = $customerManager->getCustomerId($itemId);
+        $customersManager = new CustomersManager;
+        $url = $customersManager->getCustomerId($itemId);
 
         if ($url)
         {
@@ -191,8 +191,30 @@ class DataManager extends Controller
         {
             return null;
         }
+       
+    }
 
-        return $status;
+    public function getLastCustomerId() {
+
+        $customersManager = new CustomersManager;
+        $getLastCustomerId = $customersManager->getLastCustomerId();
+
+        return $getLastCustomerId;
+    }
+
+    public function addCustomer($request) {
+
+        $customersManager = new CustomersManager;
+        $status = $customersManager->addCustomer($request);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return null;
+        }
        
     }
 

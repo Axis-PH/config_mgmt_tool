@@ -223,8 +223,27 @@ class PortalPageController extends Controller
         
         if ($status)
         {
-            return redirect('/customerList')->with('success');
+            return redirect('/customers')->with('success');
         }
 
+    }
+
+    public function viewAddCustomerListPage() {
+
+        $dataManager = new DataManager;
+        $customerId = $dataManager->getLastCustomerId() + 1;
+
+        return view('pages/portal/addCustomerList')->with('customerId', $customerId);
+    }
+
+    public function addCustomer(Request $request) {
+
+        $dataManager = new DataManager;
+        $status = $dataManager->addCustomer($request);
+
+        if ($status)
+        {
+            return redirect('/customers')->with('success');
+        }
     }
 }

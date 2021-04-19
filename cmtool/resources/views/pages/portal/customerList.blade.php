@@ -6,7 +6,7 @@
         <h1 style="margin-top:20px; ">連絡先一覧</h1>
         {{-- <h1 style="margin-top:20px; ">Contact List</h1> --}}
         <div style="float:left; padding:5px">
-            <a href="{{ url("contactList/create") }}" class="btn btn-success" 
+            <a href="{{ url("customers/create") }}" class="btn btn-success" 
                 style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
         </div>
         <table class="table table-bordered table-striped table-responsive">
