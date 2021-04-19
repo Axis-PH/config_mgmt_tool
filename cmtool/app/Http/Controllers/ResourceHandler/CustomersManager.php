@@ -31,7 +31,10 @@ class CustomersManager extends Controller
 
     public function getCustomerList() {
 
-        $customers = Customer::all();
+        //$customers = Customer::all();
+        $customers = DB::table('customers')
+            ->select('*')
+            ->paginate(2);
 
         return $customers;
     }
@@ -104,16 +107,5 @@ class CustomersManager extends Controller
             ->last();
 
         return $customer->customer_id;
-    }
-
-    private function isCustomerToFillNull($request) {
-
-        $name = $request->customer_name;
-        $staff = $request->customer_staff;
-        $tel = $request->customer_tel;
-        $mail = $request->customer_mail;
-        $memo = $request->customer_memo;
-
-       
     }
 }

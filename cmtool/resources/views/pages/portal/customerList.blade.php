@@ -41,10 +41,14 @@
                 </tr> 
                 @endforeach
         </table>
+        <div class="pagination">
+            {{ $customers->links() }}
+        </div>
         <div style="margin-top:-10px; margin-bottom:10px">
             <a href={{ '/contactLanding' }} class="btn btn-link" 
                 style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">{{ __('バック') }}</a>
         </div>
+        
     </div>
 
 <style>
