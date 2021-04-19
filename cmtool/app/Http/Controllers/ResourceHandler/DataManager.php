@@ -4,11 +4,9 @@ namespace App\Http\Controllers\ResourceHandler;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\ResourceHandler\SiteManager;
-use App\Http\Controllers\ResourceHandler\MakerManager;
 use App\Http\Controllers\ResourceHandler\ItemsManager;
 use App\Http\Controllers\ResourceHandler\CategoriesManager;
-use App\Http\Controllers\ResourceHandler\CustomerManager;
+use App\Http\Controllers\ResourceHandler\CustomersManager;
 
 use App\Models\Site;
 
@@ -65,8 +63,8 @@ class DataManager extends Controller
 
     public function getCustomerDropdownList()
     {
-        $customerManager = new CustomersManager;
-        $customerDropdownList = $customerManager->getCustomerDropdownList();
+        $customersManager = new CustomersManager;
+        $customerDropdownList = $customersManager->getCustomerDropdownList();
 
         return $customerDropdownList;
     }
@@ -120,8 +118,8 @@ class DataManager extends Controller
 
     public function getCustomerIdByItemId($itemId)
     {
-        $customerManager = new CustomerManager;
-        $url = $customerManager->getCustomerId($itemId);
+        $customersManager = new CustomersManager;
+        $url = $customersManager->getCustomerId($itemId);
 
         if ($url)
         {
@@ -218,6 +216,77 @@ class DataManager extends Controller
         {
             return false;
         }
+    }
+
+    public function getAllCustomers() {
+
+        $customersManager = new CustomersManager;
+        $customers = $customersManager->getCustomerList();
+
+        return $customers;
+    }
+
+    public function getCustomerByCustomerId($customer_id) {
+
+        $customersManager = new CustomersManager;
+        $customers = $customersManager->getCustomerById($customer_id);
+
+        return $customers;
+    }
+
+    public function updateCustomer($request) {
+
+        $customersManager = new CustomersManager;
+        $status = $customersManager->updateCustomer($request);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function deleteCustomer($customerId) {
+
+        $customersManager = new CustomersManager;
+        $status = $customersManager->deleteCustomer($customerId);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return null;
+        }
+       
+    }
+
+    public function getLastCustomerId() {
+
+        $customersManager = new CustomersManager;
+        $getLastCustomerId = $customersManager->getLastCustomerId();
+
+        return $getLastCustomerId;
+    }
+
+    public function addCustomer($request) {
+
+        $customersManager = new CustomersManager;
+        $status = $customersManager->addCustomer($request);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return null;
+        }
+       
     }
 
 }

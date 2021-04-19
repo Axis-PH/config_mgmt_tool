@@ -19,6 +19,8 @@ class CreateMakersTable extends Migration
             $table->string('maker_staff');
             $table->string('maker_tel');
             $table->string('maker_mail');
+            $table->string('hp_address');
+            $table->string('maker_memo');
             $table->timestamps();
         });
     }

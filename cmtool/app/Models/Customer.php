@@ -9,7 +9,9 @@ class Customer extends Model
 {
     use HasFactory;
 
-    public function item()
+    protected $primaryKey = 'customer_id';
+
+    public function equipments()
     {
         return $this->hasMany(Item::class, 'customer_id');
     }

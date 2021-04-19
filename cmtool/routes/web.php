@@ -36,7 +36,13 @@ Route::get('/makers/create', [App\Http\Controllers\PortalPageController::class, 
 Route::put('/makers/add', [App\Http\Controllers\PortalPageController::class, 'addMaker'])->name('addMaker');
 
 
-Route::get('/contactList', [App\Http\Controllers\PortalPageController::class, 'contactList'])->name('contactList');
+//Route::get('/contactList', [App\Http\Controllers\PortalPageController::class, 'contactList'])->name('contactList');
+Route::get('/customers', [App\Http\Controllers\PortalPageController::class, 'viewCustomerListPage'])->name('viewCustomerListPage');
+Route::get('/customers/create', [App\Http\Controllers\PortalPageController::class, 'viewAddCustomerListPage'])->name('viewAddCustomerListPage');
+Route::put('/customers/add', [App\Http\Controllers\PortalPageController::class, 'addCustomer'])->name('addCustomer');
+Route::get('/customers/update/{customerId}', [App\Http\Controllers\PortalPageController::class, 'viewUpdateCustomerListPage'])->name('viewUpdateCustomerListPage');
+Route::put('/customers/delete/{customerId}', [App\Http\Controllers\PortalPageController::class, 'deleteCustomer'])->name('deleteCustomer');
+Route::put('/customers/update', [App\Http\Controllers\PortalPageController::class, 'updateCustomer'])->name('updateCustomer');
 
 Route::get('/admin', [App\Http\Controllers\AdminPageController::class, 'index'])->name('admin');
 

@@ -220,7 +220,9 @@ class PortalPageController extends Controller
         $item = $dataManager->getItemDetailsForUpdate($id);
 
       //  $equipment = Equipment::find($id);
-        return view('pages/portal/displayItem')->with('item', $item);
+        // return view('pages/portal/displayItem')->with('item', $item);
+        // $equipment = Equipment::find($id);
+        // return view('pages/portal/displayDevice')->with('equipment', $equipment);
     }
 
     public function itemList()
@@ -228,10 +230,62 @@ class PortalPageController extends Controller
         return view('pages/portal/itemList');
     }
 
-    public function contactList()
-    {
-        $customers = Customer::all();
-        return view('pages/portal/contactList')->with('customers', $customers);
+    public function viewCustomerListPage() {
+
+        $dataManager = new DataManager;
+        $customers = $dataManager->getAllCustomers();
+
+        return view('pages/portal/customerList')->with('customers', $customers);
+    }
+
+    public function viewUpdateCustomerListPage(int $customerId) {
+
+        $dataManager = new DataManager;
+        $customers = $dataManager->getCustomerByCustomerId($customerId);
+
+        return view('pages/portal/updateCustomerList')->with('customers', $customers);
+    }
+
+    public function updateCustomer(Request $request) {
+
+        $dataManager = new DataManager;
+        $status = $dataManager->updateCustomer($request);
+
+        if ($status)
+        {
+            return redirect('/customers')->with('success');
+        }
+    }
+
+    public function deleteCustomer(int $customerId) {
+
+        $dataManager = new DataManager;
+        $status = $dataManager->deleteCustomer($customerId);
+        
+        if ($status)
+        {
+            return redirect('/customers')->with('success');
+        }
+
+    }
+
+    public function viewAddCustomerListPage() {
+
+        $dataManager = new DataManager;
+        $customerId = $dataManager->getLastCustomerId() + 1;
+
+        return view('pages/portal/addCustomerList')->with('customerId', $customerId);
+    }
+
+    public function addCustomer(Request $request) {
+
+        $dataManager = new DataManager;
+        $status = $dataManager->addCustomer($request);
+
+        if ($status)
+        {
+            return redirect('/customers')->with('success');
+        }
     }
     
     public function viewCategory()

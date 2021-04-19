@@ -6,36 +6,38 @@
         <h1 style="margin-top:20px; ">連絡先一覧</h1>
         {{-- <h1 style="margin-top:20px; ">Contact List</h1> --}}
         <div style="float:left; padding:5px">
-            <a href="{{ url("contactList/create") }}" class="btn btn-success" 
+            <a href="{{ url("customers/create") }}" class="btn btn-success" 
                 style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
         </div>
         <table class="table table-bordered table-striped table-responsive">
             <thead class="thead-dark">
             <tr>
+                <th class="nameHeader">{{ __('Id') }}</th>
                 <th class="nameHeader">{{ __('Name') }}</th>
                 <th class="nameHeader">{{ __('NamePIC') }}</th>
                 <th class="otherHeader">{{ __('Tel #') }}</th>
                 <th class="otherHeader">{{ __('Email') }}</th>
                 <th class="otherHeader">{{ __('Remarks') }}</th>
                 <th class="otherHeader"></th>
-                <th class="otherHeader"></th>
+                <!-- <th class="otherHeader"></th> -->
             </tr>
             </thead>
                 @foreach ($customers as $customer)
                 <tr>
-                    <td>{{$customer->name}}</td>
-                    <td>{{ $customer->namePIC }}</td>
-                    <td>{{ $customer->telephoneNumber }}</td>
-                    <td>{{ $customer->email }}</td>
-                    <td>{{ 'remarks here' }}</td>
+                    <td>{{$customer->customer_id}}</td>
+                    <td>{{$customer->customer_name}}</td>
+                    <td>{{ $customer->customer_staff }}</td>
+                    <td>{{ $customer->customer_tel }}</td>
+                    <td>{{ $customer->customer_mail }}</td>
+                    <td>{{ $customer->customer_memo }}</td>
                     <td>
-                        <a href="{{ url("maintenance/project/user_setu") }}" 
+                        <a href="{{ url("customers/update/" .$customer->customer_id) }}" 
                             class="btn btn-success" style="font-size:15px; width:70px; height: 100%">{{ __('edit') }}</a>
                     </td>
-                    <td>
+                    <!-- <td>
                         <a href="{{ url("maintenance/project/user_setu") }}" 
                             class="btn btn-primary" style="font-size:15px; width:70px; height: 100%">{{ __('delete') }}</a>
-                    </td> 
+                    </td>  -->
                 </tr> 
                 @endforeach
         </table>

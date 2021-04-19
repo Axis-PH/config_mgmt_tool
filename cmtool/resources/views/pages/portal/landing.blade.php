@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-md-7" style="padding:5px">
                             <a href="{{ url('/contactLanding') }}" class="btn btn-primary" 
-                                style="font-size:20px; width:100%; height: 100%"> {{ __('Makers/Contacts') }} </a>
+                                style="font-size:20px; width:100%; height: 100%"> {{ __('Makers/Customer') }} </a>
                                 {{-- style="font-size:20px; width:100%; height: 100%"> {{ __('連絡先一覧') }} </a> --}}
                         </div>
                         <div class="col-md-7" style="padding:5px">
