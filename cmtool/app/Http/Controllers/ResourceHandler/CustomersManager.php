@@ -46,8 +46,19 @@ class CustomersManager extends Controller
         return $customer;
     }
 
-    public function updateCustomer() {
+    public function updateCustomer($request) {
 
+        $customer = Customer::all()
+            ->where('customer_id', '=', $request->customer_id)
+            ->last();
+
+        $customer->customer_name = $request->customer_name;
+        $customer->customer_staff = $request->customer_staff;
+        $customer->customer_tel = $request->customer_tel;
+        $customer->customer_mail = $request->customer_mail;
+        $customer->customer_memo = $request->customer_memo;
+        $customer->save();
+        return true;
     }
 
     public function deleteCustomer(int $id) {
@@ -72,6 +83,8 @@ class CustomersManager extends Controller
 
     public function addCustomer($request) {
 
+        $this->isCustomerToFillNull($request);
+
         $customer = new Customer;
         $customer->customer_id = $this->getLastCustomerId() + 1;
         $customer->customer_name = $request->customer_name;
@@ -91,5 +104,16 @@ class CustomersManager extends Controller
             ->last();
 
         return $customer->customer_id;
+    }
+
+    private function isCustomerToFillNull($request) {
+
+        $name = $request->customer_name;
+        $staff = $request->customer_staff;
+        $tel = $request->customer_tel;
+        $mail = $request->customer_mail;
+        $memo = $request->customer_memo;
+
+       
     }
 }

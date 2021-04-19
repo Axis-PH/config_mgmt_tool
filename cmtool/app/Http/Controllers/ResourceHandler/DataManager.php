@@ -178,6 +178,21 @@ class DataManager extends Controller
         return $customers;
     }
 
+    public function updateCustomer($request) {
+
+        $customersManager = new CustomersManager;
+        $status = $customersManager->updateCustomer($request);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public function deleteCustomer($customerId) {
 
         $customersManager = new CustomersManager;

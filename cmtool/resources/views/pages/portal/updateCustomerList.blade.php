@@ -8,37 +8,37 @@
         {{ Form::open(['action' => ['PortalPageController@updateCustomer', $customers->customer_id], 'method' => 'POST']) }}
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('ID: ') }}</label>
-                {{Form::text('name', $customers->customer_id, ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'placeholder' => __('ID')])}}
+                {{Form::text('customer_id', $customers->customer_id, ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control', 'placeholder' => __('ID'), 'readonly' => 'true'])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Customer Name: ') }}</label>
-                {{Form::text('name', $customers->customer_name, ['style' => 'float:right; width:500px; margin-right: 120px', 
+                {{Form::text('customer_name', $customers->customer_name, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Customer Name')])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('PIC: ') }}</label>
-                {{Form::text('name', $customers->customer_staff, ['style' => 'float:right; width:500px; margin-right: 120px', 
+                {{Form::text('customer_staff', $customers->customer_staff, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Person In Charge')])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Tel: ') }}</label>
-                {{Form::text('name', $customers->customer_tel, ['style' => 'float:right; width:500px; margin-right: 120px', 
+                {{Form::text('customer_tel', $customers->customer_tel, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Telephone')])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Email: ') }}</label>
-                {{Form::text('name', $customers->customer_mail, ['style' => 'float:right; width:500px; margin-right: 120px', 
+                {{Form::text('customer_mail', $customers->customer_mail, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Email')])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Remarks: ') }}</label>
-                {{Form::text('name', $customers->customer_memo, ['style' => 'float:right; width:500px; margin-right: 120px', 
+                {{Form::text('customer_memo', $customers->customer_memo, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Remarks')])}}
             </div>
             {{Form::hidden('customerId', $customers->customer_id)}}

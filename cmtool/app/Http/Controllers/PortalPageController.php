@@ -216,6 +216,17 @@ class PortalPageController extends Controller
         return view('pages/portal/updateCustomerList')->with('customers', $customers);
     }
 
+    public function updateCustomer(Request $request) {
+
+        $dataManager = new DataManager;
+        $status = $dataManager->updateCustomer($request);
+
+        if ($status)
+        {
+            return redirect('/customers')->with('success');
+        }
+    }
+
     public function deleteCustomer(int $customerId) {
 
         $dataManager = new DataManager;
