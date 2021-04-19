@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResourceHandler\SiteManager;
 use App\Http\Controllers\ResourceHandler\MakerManager;
-
-use App\Http\Controllers\ResourceHandler\DeviceManager;
+use App\Http\Controllers\ResourceHandler\ItemsManager;
+use App\Http\Controllers\ResourceHandler\CategoriesManager;
 use App\Http\Controllers\ResourceHandler\CustomerManager;
 
 use App\Models\Site;
@@ -103,10 +103,10 @@ class DataManager extends Controller
         return $status;
     }
     
-    public function DeleteDevice($itemId)
+    public function deleteItem(int $itemId)
     {
-        $deviceManager = new DeviceManager;
-        $status = $deviceManager->DeleteItemById($itemId);
+        $itemsManager = new ItemsManager;
+        $status = $itemsManager->deleteItemById($itemId);
 
         if ($status)
         {
@@ -114,7 +114,7 @@ class DataManager extends Controller
         }
         else
         {
-            return null;
+            return false;
         }
     }
 
@@ -129,14 +129,14 @@ class DataManager extends Controller
         }
         else
         {
-            return null;
+            return false;
         }
     }
 
-    public function addDevice($request)
+    public function addItem($request, int $siteId, int $customerId)
     {
-        $deviceManager = new DeviceManager;
-        $status = $deviceManager->addDevice($request);
+        $itemsManager = new ItemsManager;
+        $status = $itemsManager->addItem($request, $siteId, $customerId);
 
         if ($status)
         {
@@ -144,14 +144,14 @@ class DataManager extends Controller
         }
         else
         {
-            return null;
+            return false;
         }
     }
 
-    public function getDeviceDetailsForUpdate($id)
+    public function getItemDetailsForUpdate($id)
     {
-        $deviceManager = new DeviceManager;
-        $status = $deviceManager->getDeviceDetails($id);
+        $itemsManager = new ItemsManager;
+        $status = $itemsManager->getItemDetails($id);
 
         if ($status)
         {
@@ -159,14 +159,14 @@ class DataManager extends Controller
         }
         else
         {
-            return null;
+            return false;
         }
     }
 
-    public function editDeviceDetails($request, int $id)
+    public function editItemDetails($request, int $id, int $siteId, int $customerId)
     {
-        $deviceManager = new DeviceManager;
-        $status = $deviceManager->updateDeviceDetails($request, $id);
+        $itemsManager = new ItemsManager;
+        $status = $itemsManager->updateItemDetails($request, $id, $siteId, $customerId);
 
         if ($status)
         {
@@ -174,7 +174,49 @@ class DataManager extends Controller
         }
         else
         {
-            return null;
+            return false;
+        }
+    }
+
+    public function getItemsByCustomerId(int $customerId)
+    {
+
+        $itemManager = new ItemsManager;
+        $items = $itemManager->getItemsByCustomerId($customerId);
+
+        return $items;
+    }  
+
+    public function getSiteIdByItemId(int $itemId)
+    {
+
+        $siteManager = new SiteManager;
+        $site = $siteManager->getSiteIdByItemId($itemId);
+
+        return $site;
+    }  
+
+    public function getCategories()
+    {
+
+        $categoriesManager = new CategoriesManager;
+        $categories = $categoriesManager->getCategories();
+
+        return $categories;
+    }
+
+    public function deleteCategory(int $categoryId)
+    {
+        $categoriesManager = new CategoriesManager;
+        $status = $categoriesManager->deleteCategory($categoryId);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return false;
         }
     }
 

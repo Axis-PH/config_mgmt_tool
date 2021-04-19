@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Item extends Model
 {
+    public $table = "item";
+    protected $primaryKey = 'item_id';
     use HasFactory;
-
-    public function item()
-    {
-        return $this->hasMany(Item::class, 'customer_id');
-    }
 }

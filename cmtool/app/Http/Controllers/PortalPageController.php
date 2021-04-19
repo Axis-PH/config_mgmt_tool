@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Customer;
-use App\Models\Equipment;
 
 use App\Http\Controllers\ResourceHandler\DataManager;
 
@@ -157,72 +156,71 @@ class PortalPageController extends Controller
         return view('pages/portal/makers')->with('makers', $makers);
     }
 
-    // public function item(int $itemId)
-    // {
-    //     $equipment = Equipment::find($itemId);
-    //     return view('pages/portal/item')->with('equipment', $equipment);
-    // }
-
-    // public function itemListByCustomerId(int $customerId)
-    // {
-    //     $customer = Customer::find($customerId);
-    //     return view('pages/portal/itemList')->with('equipments', $customer->equipments);
-    // }
-
-    public function deleteDevice(int $itemId)
+    public function itemListByCustomerId(int $siteId, int $customerId)
     {
         $dataManager = new DataManager;
-        $url = $dataManager->getCustomerIdByItemId($itemId);
-        $status = $dataManager->DeleteDevice($itemId);
+        $items = $dataManager->getItemsByCustomerId($customerId);
         
+        return view('pages/portal/itemList')->with('items', $items->item)->with('siteId', $siteId)->with('customerId', $customerId);
+    }
+
+    public function deleteItem(int $itemId)
+    {
+        $dataManager = new DataManager;
+        $site = $dataManager->getSiteIdByItemId($itemId);
+        $customer = $dataManager->getCustomerIdByItemId($itemId);
+        $status = $dataManager->deleteItem($itemId);
+
+
         if ($status)
         {
-            return redirect('itemList/'.$url)->with('success');
+            return redirect('items/'.$site.'/'.$customer)->with('success');
         }
     }
 
-    public function createDevice()
+    public function createItem(int $siteId, int $customerId)
     {
-        return view('pages/portal/deviceCreation');
+        return view('pages/portal/createItem')->with('siteId', $siteId)->with('customerId', $customerId);
     }
 
-    public function addDevice(Request $request)
+    public function addItem(Request $request, int $siteId, int $customerId)
     {
         $dataManager = new DataManager;
-        $status = $dataManager->addDevice($request);
+        $status = $dataManager->addItem($request, $siteId, $customerId);
 
         if ($status)
-            return redirect('itemList/'.$request->customerId)->with('success');
+            return redirect('items/'.$siteId.'/'.$request->customerId)->with('success');
         else
-            return redirect('itemList/'.$request->customerId)->with('error');
+            return redirect('items/'.$siteId.'/'.$request->customerId)->with('error');
     }
 
-    public function editDevice(int $id)
+    public function editItem(int $siteId, int $customerId, int $id)
     {
+        
         $dataManager = new DataManager;
-        $equipment = $dataManager->getDeviceDetailsForUpdate($id);
-
-        return view('pages/portal/deviceUpdate')->with('id', $id)->with('equipment', $equipment);
+        $item = $dataManager->getItemDetailsForUpdate($id);
+        
+        return view('pages/portal/itemUpdate')->with('id', $id)->with('item', $item)->with('siteId', $siteId)->with('customerId', $customerId);
     }
 
-    public function updateDevice(Request $request, int $id)
+    public function updateItem(Request $request, int $id, int $siteId, int $customerId)
     {
         $dataManager = new DataManager;
-        $status = $dataManager->editDeviceDetails($request, $id);
+        $status = $dataManager->editItemDetails($request, $id, $siteId, $customerId);
 
         if ($status)
-            return redirect('itemList/'.$request->customerId)->with('success');
+            return redirect('items/'.$siteId.'/'.$request->customerId)->with('success');
         else
-            return redirect('itemList/'.$request->customerId)->with('error');        
+            return redirect('items/'.$siteId.'/'.$request->customerId)->with('error');        
     }
 
-    public function displayDevice(int $id)
+    public function displayItem(int $id)
     {
         $dataManager = new DataManager;
-        $equipment = $dataManager->getDeviceDetailsForUpdate($id);
+        $item = $dataManager->getItemDetailsForUpdate($id);
 
       //  $equipment = Equipment::find($id);
-        return view('pages/portal/displayDevice')->with('equipment', $equipment);
+        return view('pages/portal/displayItem')->with('item', $item);
     }
 
     public function itemList()
@@ -230,9 +228,28 @@ class PortalPageController extends Controller
         return view('pages/portal/itemList');
     }
 
-    // public function contactList()
-    // {
-    //     $customers = Customer::all();
-    //     return view('pages/portal/contactList')->with('customers', $customers);
-    // }
+    public function contactList()
+    {
+        $customers = Customer::all();
+        return view('pages/portal/contactList')->with('customers', $customers);
+    }
+    
+    public function viewCategory()
+    {
+        $dataManager = new DataManager;
+        $categories = $dataManager->getCategories();
+        
+        return view('pages/portal/categoryList')->with('categories', $categories);
+    }
+
+    public function deleteCategory(int $categoryId)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->deleteCategory($categoryId);
+
+        if ($status)
+        {
+            return redirect('category')->with('success');
+        }
+    }
 }
