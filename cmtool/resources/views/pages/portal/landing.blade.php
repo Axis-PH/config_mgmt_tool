@@ -12,17 +12,17 @@
                     <div class="form-group row justify-content-center" style="width:100%;padding-top:15px">
                         <div class="col-md-7" style="padding:5px">
                             <a href="{{ url("/sites") }}" class="btn btn-primary" 
-                                style="font-size:20px; width:100%; height: 100%"> {{ __('Maintenance Destination List') }} </a>
+                                style="font-size:20px; width:100%; height: 100%"> {{ __('Sites') }} </a>
                                 {{-- style="font-size:20px; width:100%; height: 100%"> {{ __('保守先一覧') }} </a> --}}
                         </div>
                         <div class="col-md-7" style="padding:5px">
                             <a href="{{ url('/contactLanding') }}" class="btn btn-primary" 
-                                style="font-size:20px; width:100%; height: 100%"> {{ __('Makers/Customer') }} </a>
+                                style="font-size:20px; width:100%; height: 100%"> {{ __('Makers/Customers') }} </a>
                                 {{-- style="font-size:20px; width:100%; height: 100%"> {{ __('連絡先一覧') }} </a> --}}
                         </div>
                         <div class="col-md-7" style="padding:5px">
                             <a href="{{ url('/category') }}" class="btn btn-primary" 
-                                style="font-size:20px; width:100%; height: 100%"> {{ __('Item Category') }} </a>
+                                style="font-size:20px; width:100%; height: 100%"> {{ __('Item Categories') }} </a>
                                 {{-- style="font-size:20px; width:100%; height: 100%"> {{ __('連絡先一覧') }} </a> --}}
                         </div>
                         {{-- <div class="col-md-7" style="padding:5px">

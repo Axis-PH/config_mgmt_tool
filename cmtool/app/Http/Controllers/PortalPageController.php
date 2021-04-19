@@ -148,7 +148,7 @@ class PortalPageController extends Controller
             return redirect('/makers')->with('error', 'Delete ERROR');
     }
 
-    public function viewMakerListPage()
+    public function viewMakersPage()
     {
         $dataManager = new DataManager;
         $makers = $dataManager->getAllMakers();
@@ -219,15 +219,15 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $item = $dataManager->getItemDetailsForUpdate($id);
 
-      //  $equipment = Equipment::find($id);
-        // return view('pages/portal/displayItem')->with('item', $item);
+       $equipment = Equipment::find($id);
+        return view('pages/portal/displayItem')->with('item', $item);
         // $equipment = Equipment::find($id);
         // return view('pages/portal/displayDevice')->with('equipment', $equipment);
     }
 
     public function itemList()
     {
-        return view('pages/portal/itemList');
+        return view('pages/portal/items');
     }
 
     public function viewCustomerListPage() {

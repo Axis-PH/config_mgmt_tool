@@ -28,7 +28,7 @@ Route::put('/sites/update', [App\Http\Controllers\PortalPageController::class, '
 
 Route::get('/contactLanding', [App\Http\Controllers\PortalPageController::class, 'viewContactLandingPage'])->name('viewContactLandingPage');
 
-Route::get('/makers', [App\Http\Controllers\PortalPageController::class, 'viewMakerListPage'])->name('viewMakerListPage');
+Route::get('/makers', [App\Http\Controllers\PortalPageController::class, 'viewMakersPage'])->name('viewMakersPage');
 Route::get('/makers/update/{makerId}', [App\Http\Controllers\PortalPageController::class, 'viewMakerUpdatePage'])->name('viewMakerUpdatePage');
 Route::put('/makers/delete/{makerId}', [App\Http\Controllers\PortalPageController::class, 'deleteMaker'])->name('deleteMaker');
 Route::put('/makers/update', [App\Http\Controllers\PortalPageController::class, 'updateMaker'])->name('updateMaker');
