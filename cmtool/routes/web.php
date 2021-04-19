@@ -19,7 +19,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\PortalPageController::class, 'index']);
 Route::get('/', [App\Http\Controllers\PortalPageController::class, 'index'])->name('home');
 
-Route::get('/sites', [App\Http\Controllers\PortalPageController::class, 'viewSiteListPage'])->name('viewSiteListPage');
+Route::get('/sites', [App\Http\Controllers\PortalPageController::class, 'viewSitesPage'])->name('viewSitesPage');
 Route::get('/sites/update/{siteId}', [App\Http\Controllers\PortalPageController::class, 'viewSiteUpdatePage'])->name('viewSiteUpdatePage');
 Route::put('/sites/delete/{siteId}', [App\Http\Controllers\PortalPageController::class, 'deleteSite'])->name('deleteSite');
 Route::get('/sites/create', [App\Http\Controllers\PortalPageController::class, 'viewSiteCreatePage'])->name('viewSiteCreatePage');

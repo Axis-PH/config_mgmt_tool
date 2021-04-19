@@ -18,15 +18,15 @@ class SiteManager extends Controller
 
     public function addSite(Request $request)
     {
-        $valid = FieldChecker::isValidSiteName($request->name);
+        $valid = FieldChecker::isValidSiteName($request->site_name);
         
         if (!$valid)
             return false;
             
         try {
             $site = new Site;
-            $site->name = $request->name;
-            $site->customerId = $request->customerId;
+            $site->site_name = $request->site_name;
+            $site->customer_id = $request->customer_id;
             $site->save();
             return true;
         }
@@ -39,18 +39,16 @@ class SiteManager extends Controller
 
     public function updateSite(Request $request)
     {
-        $valid = FieldChecker::isValidSiteName($request->name);
+        $valid = FieldChecker::isValidSiteName($request->site_name);
         
         if (!$valid){
             return false;
         }
 
         try {
-
-
-            $site = Site::find($request->siteId);
-            $site->name = $request->name;
-            $site->customerId = $request->customerId;
+            $site = \App\Models\Site::find($request->site_id);
+            $site->site_name = $request->site_name;
+            $site->customer_id = $request->customer_id;
             $site->save();
 
             return true;
@@ -65,7 +63,7 @@ class SiteManager extends Controller
     public function getSiteById(int $id)
     {
         try {
-            $site = Site::find($id);
+            $site = \App\Models\Site::find($id);
             return $site;
         }
 

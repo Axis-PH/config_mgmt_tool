@@ -18,7 +18,7 @@ class MakerManager extends Controller
 
     public function getMakerById(int $id)
     {
-        $maker = Maker::find($id);
+        $maker = \App\Models\Maker::find($id);
         return $maker;
     }
 
@@ -38,17 +38,17 @@ class MakerManager extends Controller
 
     public function addMaker(Request $request)
     {
-        $valid = FieldChecker::isValidSiteName($request->name);
+        $valid = FieldChecker::isValidSiteName($request->maker_name);
         
         if (!$valid)
             return false;
             
         try {
             $maker = new Maker;
-            $maker->name = $request->name;
-            $maker->namePIC = $request->namePIC;
-            $maker->telephoneNumber = $request->telephoneNumber;
-            $maker->email = $request->email;
+            $maker->maker_name = $request->maker_name;
+            $maker->maker_staff = $request->maker_staff;
+            $maker->maker_tel = $request->maker_tel;
+            $maker->maker_mail = $request->maker_mail;
             $maker->save();
             return true;
         }
@@ -61,18 +61,18 @@ class MakerManager extends Controller
 
     public function updateMaker(Request $request)
     {
-        $valid = FieldChecker::isValidSiteName($request->name);
+        $valid = FieldChecker::isValidSiteName($request->maker_name);
         
         if (!$valid){
             return false;
         }
 
         try {
-            $maker = Maker::find($request->makerId);
-            $maker->name = $request->name;
-            $maker->namePIC = $request->namePIC;
-            $maker->telephoneNumber = $request->telephoneNumber;
-            $maker->email = $request->email;
+            $maker = \App\Models\Maker::find($request->maker_id);
+            $maker->maker_name = $request->maker_name;
+            $maker->maker_staff = $request->maker_staff;
+            $maker->maker_tel = $request->maker_tel;
+            $maker->maker_mail = $request->maker_mail;
             $maker->save();
 
             return true;

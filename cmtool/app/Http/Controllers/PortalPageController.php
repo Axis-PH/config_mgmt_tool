@@ -31,12 +31,13 @@ class PortalPageController extends Controller
         return view('pages/portal/landing');
     }
 
-    public function viewSiteListPage()
+    public function viewSitesPage()
     {
         $dataManager = new DataManager;
         $sites = $dataManager->getAllSites();
+        // dd($sites[0]->customer->customer_name);
 
-        return view('pages/portal/siteList')->with('sites', $sites);
+        return view('pages/portal/sites')->with('sites', $sites);
     }
 
     public function viewSiteCreatePage()
@@ -52,7 +53,7 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $site = $dataManager->getSiteById($siteId);
         $customers = $dataManager->getCustomerDropdownList();
-        $selectedCustomerId = $site->customer->id;
+        $selectedCustomerId = $site->customer->customer_id;
 
         return view('pages/portal/updateSite')->with('site', $site)->with('customers', $customers)
             ->with('selectedCustomerId', $selectedCustomerId);
@@ -82,10 +83,10 @@ class PortalPageController extends Controller
         $status = $dataManager->addSite($request);
 
         if ($status)
-            return redirect('/site')->with('success', 'Site Added' );
+            return redirect('/sites')->with('success', 'Site Added' );
 
         else 
-            return redirect('/site')->with('error', 'Site Add ERROR' );
+            return redirect('/sites')->with('error', 'Site Add ERROR' );
     }
 
     public function addMaker(Request $request)
@@ -106,10 +107,10 @@ class PortalPageController extends Controller
         $status = $dataManager->updateSite($request);
 
         if ($status)
-            return redirect('/site')->with('success', 'Site Updated' );
+            return redirect('/sites')->with('success', 'Site Updated' );
 
         else 
-            return redirect('/site')->with('error', 'Site Update ERROR' );
+            return redirect('/sites')->with('error', 'Site Update ERROR' );
     }
 
     public function updateMaker(Request $request)
@@ -153,7 +154,7 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $makers = $dataManager->getAllMakers();
 
-        return view('pages/portal/makerList')->with('makers', $makers);
+        return view('pages/portal/makers')->with('makers', $makers);
     }
 
     // public function item(int $itemId)

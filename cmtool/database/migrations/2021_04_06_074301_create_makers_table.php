@@ -14,11 +14,11 @@ class CreateMakersTable extends Migration
     public function up()
     {
         Schema::create('makers', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('namePIC');
-            $table->string('telephoneNumber');
-            $table->string('email');
+            $table->id('maker_id');
+            $table->string('maker_name');
+            $table->string('maker_staff');
+            $table->string('maker_tel');
+            $table->string('maker_mail');
             $table->timestamps();
         });
     }

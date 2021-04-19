@@ -11,7 +11,7 @@ class CustomerManager extends Controller
     public function getCustomerDropdownList()
     {
         $customerDropdownList = Customer::all()
-            ->pluck('name', 'id');
+            ->pluck('customer_name', 'customer_id');
         
         return $customerDropdownList;
     }

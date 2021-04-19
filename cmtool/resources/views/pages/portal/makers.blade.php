@@ -22,39 +22,39 @@
                 @foreach ($makers as $maker)
                 <tr>
                     <?php 
-                        if (!empty($maker->name)) 
-                            $name = $maker->name;
+                        if (!empty($maker->maker_name)) 
+                            $name = $maker->maker_name;
                         else 
                             $name = '';
                     ?>
                         <td>{{ $name }}</td>
 
                     <?php 
-                        if (!empty($maker->namePIC)) 
-                            $namePIC = $maker->namePIC;
+                        if (!empty($maker->maker_staff)) 
+                            $namePIC = $maker->maker_staff;
                         else 
                             $namePIC = '';
                     ?>
                         <td>{{ $namePIC }}</td>
                         
                     <?php 
-                        if (!empty($maker->telephoneNumber)) 
-                            $telephoneNumber = $maker->telephoneNumber;
+                        if (!empty($maker->maker_tel)) 
+                            $telephoneNumber = $maker->maker_tel;
                         else 
                             $telephoneNumber = '';
                     ?>
                         <td>{{ $telephoneNumber }}</td>
 
                     <?php 
-                        if (!empty($maker->email)) 
-                            $email = $maker->email;
+                        if (!empty($maker->maker_mail)) 
+                            $email = $maker->maker_mail;
                         else 
                             $email = '';
                     ?>
                         <td>{{ $email }}</td>
 
                     <td>
-                        <a href="{{ url("makers/update/" . $maker->id) }}" 
+                        <a href="{{ url("makers/update/" . $maker->maker_id) }}" 
                             class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('edit') }}</a>
                     </td>
                 </tr> 
