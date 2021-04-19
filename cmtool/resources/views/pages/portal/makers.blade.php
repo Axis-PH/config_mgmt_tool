@@ -19,53 +19,54 @@
                 <th class="buttonHeader"></th>
             </tr>
             </thead>
-                @foreach ($makers as $maker)
-                <tr>
-                    <?php 
-                        if (!empty($maker->maker_name)) 
-                            $name = $maker->maker_name;
-                        else 
-                            $name = '';
-                    ?>
-                        <td>{{ $name }}</td>
+                    @foreach ($makers as $maker)
+                    <tr>
+                        <?php 
+                            if (!empty($maker->maker_name)) 
+                                $name = $maker->maker_name;
+                            else 
+                                $name = '';
+                        ?>
+                            <td>{{ $name }}</td>
 
-                    <?php 
-                        if (!empty($maker->maker_staff)) 
-                            $namePIC = $maker->maker_staff;
-                        else 
-                            $namePIC = '';
-                    ?>
-                        <td>{{ $namePIC }}</td>
-                        
-                    <?php 
-                        if (!empty($maker->maker_tel)) 
-                            $telephoneNumber = $maker->maker_tel;
-                        else 
-                            $telephoneNumber = '';
-                    ?>
-                        <td>{{ $telephoneNumber }}</td>
+                        <?php 
+                            if (!empty($maker->maker_staff)) 
+                                $namePIC = $maker->maker_staff;
+                            else 
+                                $namePIC = '';
+                        ?>
+                            <td>{{ $namePIC }}</td>
+                            
+                        <?php 
+                            if (!empty($maker->maker_tel)) 
+                                $telephoneNumber = $maker->maker_tel;
+                            else 
+                                $telephoneNumber = '';
+                        ?>
+                            <td>{{ $telephoneNumber }}</td>
 
-                    <?php 
-                        if (!empty($maker->maker_mail)) 
-                            $email = $maker->maker_mail;
-                        else 
-                            $email = '';
-                    ?>
-                        <td>{{ $email }}</td>
+                        <?php 
+                            if (!empty($maker->maker_mail)) 
+                                $email = $maker->maker_mail;
+                            else 
+                                $email = '';
+                        ?>
+                            <td>{{ $email }}</td>
 
-                    <td>
-                        <a href="{{ url("makers/update/" . $maker->maker_id) }}" 
-                            class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('edit') }}</a>
-                    </td>
-                </tr> 
-                @endforeach
+                        <td>
+                            <a href="{{ url("makers/update/" . $maker->maker_id) }}" 
+                                class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('edit') }}</a>
+                        </td>
+                    </tr> 
+                    @endforeach
         </table>
+        <?php echo $makers->render(); ?>
+        <br><br>
         <div style="margin-top:-10px; margin-bottom:10px">
             <a href={{ '/contactLanding' }} class="btn btn-link" 
                 style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">{{ __('バック') }}</a>
         </div>
     </div>
-
 <style>
 
     .nameHeader {

@@ -12,7 +12,7 @@ class MakerManager extends Controller
 {
     public function getAllMakers()
     {
-        $makers = Maker::all();
+        $makers = Maker::simplePaginate(5);
         return $makers;
     }
 
@@ -38,7 +38,7 @@ class MakerManager extends Controller
 
     public function addMaker(Request $request)
     {
-        $valid = FieldChecker::isValidSiteName($request->maker_name);
+        $valid = FieldChecker::isValidName($request->maker_name);
         
         if (!$valid)
             return false;
@@ -61,11 +61,14 @@ class MakerManager extends Controller
 
     public function updateMaker(Request $request)
     {
-        $valid = FieldChecker::isValidSiteName($request->maker_name);
-        
-        if (!$valid){
+        if (!FieldChecker::isValidName($request->maker_name))
             return false;
-        }
+
+        if (!FieldChecker::isValidName($request->maker_staff))
+            return false;
+    
+        if (!FieldChecker::isValidTel($request->maker_tel))
+            return false;
 
         try {
             $maker = \App\Models\Maker::find($request->maker_id);
