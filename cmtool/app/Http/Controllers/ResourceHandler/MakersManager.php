@@ -92,6 +92,7 @@ class MakersManager extends Controller
 
     public function saveMaker(Maker $maker, $request)
     {
+
         if (!FieldChecker::isValidName($request->maker_name))
             return false;
 
@@ -106,6 +107,8 @@ class MakersManager extends Controller
             $maker->maker_staff = $request->maker_staff;
             $maker->maker_tel = $request->maker_tel;
             $maker->maker_mail = $request->maker_mail;
+            $maker->hp_address = $request->hp_address;
+            $maker->maker_memo = $request->maker_memo;
             $maker->save();
 
             return true;
@@ -113,6 +116,7 @@ class MakersManager extends Controller
 
         catch (\Exception $exception)
         {
+            dd($exception->getMessage());
             return false;
         }
     }

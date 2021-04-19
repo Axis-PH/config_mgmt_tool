@@ -29,6 +29,18 @@
                 {{Form::text('maker_mail', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('xxx@email.com')])}}
             </div>
+            <br><br>
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('HP Address: ') }}</label>
+                {{Form::text('hp_address', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control', 'placeholder' => __('hp address')])}}
+            </div>
+            <br><br>
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Memo: ') }}</label>
+                {{Form::text('maker_memo', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control', 'placeholder' => __('memo')])}}
+            </div>
             <br><br><br>
         {{Form::submit( __('Create') , ['class' => 'btn btn-primary'])}}
         <a href={{ redirect()->getUrlGenerator()->previous() }} class="btn btn-link">{{ __('Cancel') }}</a>
