@@ -38,28 +38,59 @@ class MakerManager extends Controller
 
     public function addMaker(Request $request)
     {
-        $valid = FieldChecker::isValidName($request->maker_name);
+        return $this->saveMaker(new Maker, $request);
+        // $valid = FieldChecker::isValidName($request->maker_name);
         
-        if (!$valid)
-            return false;
+        // if (!$valid)
+        //     return false;
             
-        try {
-            $maker = new Maker;
-            $maker->maker_name = $request->maker_name;
-            $maker->maker_staff = $request->maker_staff;
-            $maker->maker_tel = $request->maker_tel;
-            $maker->maker_mail = $request->maker_mail;
-            $maker->save();
-            return true;
-        }
+        // try {
+        //     $maker = new Maker;
+        //     $maker->maker_name = $request->maker_name;
+        //     $maker->maker_staff = $request->maker_staff;
+        //     $maker->maker_tel = $request->maker_tel;
+        //     $maker->maker_mail = $request->maker_mail;
+        //     $maker->save();
+        //     return true;
+        // }
 
-        catch (\Exception $exception)
-        {
-            return false;
-        }
+        // catch (\Exception $exception)
+        // {
+        //     return false;
+        // }
     }
 
     public function updateMaker(Request $request)
+    {
+        return $this->saveMaker(Maker::find($request->maker_id), $request);
+
+        // if (!FieldChecker::isValidName($request->maker_name))
+        //     return false;
+
+        // if (!FieldChecker::isValidName($request->maker_staff))
+        //     return false;
+    
+        // if (!FieldChecker::isValidTel($request->maker_tel))
+        //     return false;
+
+        // try {
+        //     $maker = \App\Models\Maker::find($request->maker_id);
+        //     $maker->maker_name = $request->maker_name;
+        //     $maker->maker_staff = $request->maker_staff;
+        //     $maker->maker_tel = $request->maker_tel;
+        //     $maker->maker_mail = $request->maker_mail;
+        //     $maker->save();
+
+        //     return true;
+        // }
+
+        // catch (\Exception $exception)
+        // {
+        //     return false;
+        // }
+    }
+
+    public function saveMaker(Maker $maker, $request)
     {
         if (!FieldChecker::isValidName($request->maker_name))
             return false;
@@ -71,7 +102,6 @@ class MakerManager extends Controller
             return false;
 
         try {
-            $maker = \App\Models\Maker::find($request->maker_id);
             $maker->maker_name = $request->maker_name;
             $maker->maker_staff = $request->maker_staff;
             $maker->maker_tel = $request->maker_tel;
