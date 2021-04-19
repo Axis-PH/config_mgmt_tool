@@ -57,7 +57,7 @@ Route::put('/updateItem/{siteId}/{customerId}/{id}', [App\Http\Controllers\Porta
 
 Route::get('/category', [App\Http\Controllers\PortalPageController::class, 'viewCategory'])->name('viewCategory');
 Route::get('/category/delete/{itemId}', [App\Http\Controllers\PortalPageController::class, 'deleteCategory'])->name('deleteCategory');
-Route::get('/category/add', [App\Http\Controllers\PortalPageController::class, 'createCategory'])->name('createCategory');
+Route::get('/category/create', [App\Http\Controllers\PortalPageController::class, 'createCategory'])->name('createCategory');
 Route::put('/addCategory', [App\Http\Controllers\PortalPageController::class, 'addCategory'])->name('addCategory');
 Route::get('/category/edit/{categoryId}', [App\Http\Controllers\PortalPageController::class, 'editCategory'])->name('editCategory');
 Route::put('/updateCategory/{categoryId}', [App\Http\Controllers\PortalPageController::class, 'updateCategory'])->name('updateCategory');
