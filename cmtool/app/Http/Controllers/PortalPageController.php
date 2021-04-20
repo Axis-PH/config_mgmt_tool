@@ -266,7 +266,7 @@ class PortalPageController extends Controller
     public function viewAddCustomerListPage() {
 
         $dataManager = new DataManager;
-        $customerId = $dataManager->getLastCustomerId() + 1;
+        $customerId = $dataManager->getLastCustomerId();
 
         return view('pages/portal/addCustomerList')->with('customerId', $customerId);
     }

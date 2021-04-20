@@ -96,18 +96,41 @@ class CustomersManager extends Controller
             return false;
 
         if ($addStatus == true) {
-            try {
-                $customer->customer_id = $this->getLastCustomerId() + 1;
-                $customer->customer_name = $request->customer_name;
-                $customer->customer_staff = $request->customer_staff;
-                $customer->customer_tel = $request->customer_tel;
-                $customer->customer_mail = $request->customer_mail;
-                $customer->customer_memo = $request->customer_memo;
-                $customer->save();
-                return true;
+
+            $customerDB = DB::table('customers')
+                ->orderBy('customer_id')
+                ->get()
+                ->last();
+            
+            if ($customerDB == null) {
+                try {
+                    $customer->customer_id = 1;
+                    $customer->customer_name = $request->customer_name;
+                    $customer->customer_staff = $request->customer_staff;
+                    $customer->customer_tel = $request->customer_tel;
+                    $customer->customer_mail = $request->customer_mail;
+                    $customer->customer_memo = $request->customer_memo;
+                    $customer->save();
+                    return true;
+                }
+                catch (\Exception $exception) {
+                    return false;
+                }
             }
-            catch (\Exception $exception) {
-                return false;
+            else {
+                try {
+                        $customer->customer_id = $this->getLastCustomerId() + 1;
+                        $customer->customer_name = $request->customer_name;
+                        $customer->customer_staff = $request->customer_staff;
+                        $customer->customer_tel = $request->customer_tel;
+                        $customer->customer_mail = $request->customer_mail;
+                        $customer->customer_memo = $request->customer_memo;
+                        $customer->save();
+                        return true;
+                    }
+                catch (\Exception $exception) {
+                        return false;
+                    }
             }
         }
         else if ($updateStatus == true) {
@@ -137,6 +160,10 @@ class CustomersManager extends Controller
             ->get()
             ->last();
 
-        return $customer->customer_id;
+        if ($customer == null) {
+            return 1;
+        }
+
+        return $customer->customer_id + 1;
     }
 }
