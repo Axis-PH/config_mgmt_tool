@@ -22,6 +22,7 @@ class CreateItemsTable extends Migration
             $table->string('ip');
             $table->string('netmask');
             $table->string('gateway');
+            $table->integer('customer_id');
             $table->integer('site_id');
             $table->string('place');
             $table->integer('maker_id');

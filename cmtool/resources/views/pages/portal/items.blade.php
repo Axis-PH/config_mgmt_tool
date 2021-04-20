@@ -6,7 +6,7 @@
         {{-- <h1 style="margin-top:20px; ">Item List</h1> --}}
         <h1 style="margin-top:20px; ">機器一覧</h1>
         <div style="float:left; padding:5px">
-            <a href="{{ url("/item/create") . '/' . $siteId . '/' . $customerId }}" class="btn btn-success" 
+            <a href="{{ url("/items/create") . '/' . $siteId . '/' . $customerId }}" class="btn btn-success" 
                 style="font-size:15px; width:100px; height: 100%">{{ __('Add Item') }}</a>
         </div>
         <table class="table table-bordered table-striped table-responsive">
@@ -32,17 +32,17 @@
                     <td>{{ $item->category }}</td>
                     <td>{{ $item->customer_id }}</td>
                     <td>{{ $item->maker_id }}</td>
-                    <td><a href="{{ url('/item/display' . '/' . $item->item_id) }}" class="btn btn-primary" 
+                    <td><a href="{{ url('/items' . '/' . $item->item_id . '/' . 'info') }}" class="btn btn-primary" 
                         style="font-size:15px; width:100%; height: 100%">Display</a></td>
                     <td>
-                        <a href="{{ url('/item/edit' . '/' . $siteId . '/' . $customerId  . '/' . $item->item_id) }}" class="btn btn-success" 
+                        <a href="{{ url('/items/edit' . '/' . $siteId . '/' . $customerId  . '/' . $item->item_id) }}" class="btn btn-success" 
                             style="font-size:15px; width:100%; height: 100%">Edit</a>
                     </td>
                 </tr> 
                 @endforeach
         </table>
         <div style="margin-top:-10px; margin-bottom:10px">
-            <a href={{ '/site' }} class="btn btn-link" 
+            <a href={{ '/sites' }} class="btn btn-link" 
                 style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">戻る</a>
         </div>
     </div>
