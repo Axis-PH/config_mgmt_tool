@@ -20,7 +20,7 @@ class CustomersManager extends Controller
 
     public function getCustomerId($itemId)
     {
-        $item = DB::table('item')
+        $item = DB::table('items')
             ->select('customer_id')
             ->where('item_id', '=', $itemId)
             ->first();

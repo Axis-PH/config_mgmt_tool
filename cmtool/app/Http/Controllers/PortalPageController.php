@@ -156,12 +156,12 @@ class PortalPageController extends Controller
         return view('pages/portal/makers')->with('makers', $makers);
     }
 
-    public function itemListByCustomerId(int $siteId, int $customerId)
+    public function viewItemsPage(int $siteId, int $customerId)
     {
         $dataManager = new DataManager;
         $items = $dataManager->getItemsByCustomerId($customerId);
         
-        return view('pages/portal/itemList')->with('items', $items->item)->with('siteId', $siteId)->with('customerId', $customerId);
+        return view('pages/portal/items')->with('items', $items)->with('siteId', $siteId)->with('customerId', $customerId);
     }
 
     public function deleteItem(int $itemId)
@@ -170,15 +170,14 @@ class PortalPageController extends Controller
         $site = $dataManager->getSiteIdByItemId($itemId);
         $customer = $dataManager->getCustomerIdByItemId($itemId);
         $status = $dataManager->deleteItem($itemId);
-
-
+        
         if ($status)
-        {
-            return redirect('items/'.$site.'/'.$customer)->with('success');
-        }
+            return redirect('items/list/'.$site.'/'.$customer)->with('success');
+        else
+            return redirect('items/list/'.$site.'/'.$customer)->with('error');
     }
 
-    public function createItem(int $siteId, int $customerId)
+    public function viewCreateItemPage(int $siteId, int $customerId)
     {
         return view('pages/portal/createItem')->with('siteId', $siteId)->with('customerId', $customerId);
     }
@@ -189,45 +188,37 @@ class PortalPageController extends Controller
         $status = $dataManager->addItem($request, $siteId, $customerId);
 
         if ($status)
-            return redirect('items/'.$siteId.'/'.$request->customerId)->with('success');
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success');
         else
-            return redirect('items/'.$siteId.'/'.$request->customerId)->with('error');
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error');
     }
 
-    public function editItem(int $siteId, int $customerId, int $id)
+    public function viewUpdateItemPage(int $siteId, int $customerId, int $id)
     {
         
         $dataManager = new DataManager;
         $item = $dataManager->getItemDetailsForUpdate($id);
         
-        return view('pages/portal/itemUpdate')->with('id', $id)->with('item', $item)->with('siteId', $siteId)->with('customerId', $customerId);
+        return view('pages/portal/updateItem')->with('id', $id)->with('item', $item)->with('siteId', $siteId)->with('customerId', $customerId);
     }
 
     public function updateItem(Request $request, int $id, int $siteId, int $customerId)
     {
         $dataManager = new DataManager;
-        $status = $dataManager->editItemDetails($request, $id, $siteId, $customerId);
+        $status = $dataManager->updateItemDetails($request, $id, $siteId, $customerId);
 
         if ($status)
-            return redirect('items/'.$siteId.'/'.$request->customerId)->with('success');
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success');
         else
-            return redirect('items/'.$siteId.'/'.$request->customerId)->with('error');        
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error');        
     }
 
-    public function displayItem(int $id)
+    public function viewItemInfoPage(int $id)
     {
         $dataManager = new DataManager;
         $item = $dataManager->getItemDetailsForUpdate($id);
-
-       $equipment = Equipment::find($id);
+        
         return view('pages/portal/displayItem')->with('item', $item);
-        // $equipment = Equipment::find($id);
-        // return view('pages/portal/displayDevice')->with('equipment', $equipment);
-    }
-
-    public function itemList()
-    {
-        return view('pages/portal/items');
     }
 
     public function viewCustomerListPage() {
@@ -288,12 +279,12 @@ class PortalPageController extends Controller
         }
     }
     
-    public function viewCategory()
+    public function viewCategoriesPage()
     {
         $dataManager = new DataManager;
         $categories = $dataManager->getCategories();
         
-        return view('pages/portal/categoryList')->with('categories', $categories);
+        return view('pages/portal/categories')->with('categories', $categories);
     }
 
     public function deleteCategory(int $categoryId)
@@ -302,8 +293,43 @@ class PortalPageController extends Controller
         $status = $dataManager->deleteCategory($categoryId);
 
         if ($status)
-        {
-            return redirect('category')->with('success');
-        }
+            return redirect('categories')->with('success');
+        else
+            return redirect('categories')->with('error');        
+    }
+
+    public function viewCreateCategoryPage()
+    {
+        return view('pages/portal/createCategory');
+    }
+
+    public function addCategory(Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->addCategory($request);
+
+        if ($status)
+            return redirect('categories')->with('success');
+        else
+            return redirect('categories')->with('error');
+    }
+
+    public function viewUpdateCategoryPage(int $categoryId)
+    {
+        $dataManager = new DataManager;
+        $category = $dataManager->getCategoryForUpdate($categoryId);
+        
+        return view('pages/portal/updateCategory')->with('category', $category)->with('categoryId', $categoryId);
+    }
+
+    public function updateCategory(int $categoryId, Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->updateCategory($categoryId, $request);
+        
+        if ($status)
+            return redirect('categories')->with('success');
+        else
+            return redirect('categories')->with('error');
     }
 }

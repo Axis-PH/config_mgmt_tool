@@ -80,8 +80,8 @@ class ItemsManager
 
     public function getItemsByCustomerId(int $customerId)
     {
-        $items = Customer::find($customerId);
-
+        $items = Item::all()
+            ->where('customer_id', '=', $customerId);
         return $items;
     }  
 }

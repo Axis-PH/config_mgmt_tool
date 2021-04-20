@@ -161,7 +161,7 @@ class DataManager extends Controller
         }
     }
 
-    public function editItemDetails($request, int $id, int $siteId, int $customerId)
+    public function updateItemDetails($request, int $id, int $siteId, int $customerId)
     {
         $itemsManager = new ItemsManager;
         $status = $itemsManager->updateItemDetails($request, $id, $siteId, $customerId);
@@ -188,8 +188,8 @@ class DataManager extends Controller
     public function getSiteIdByItemId(int $itemId)
     {
 
-        $siteManager = new SiteManager;
-        $site = $siteManager->getSiteIdByItemId($itemId);
+        $sitesManager = new SitesManager;
+        $site = $sitesManager->getSiteIdByItemId($itemId);
 
         return $site;
     }  
@@ -207,6 +207,51 @@ class DataManager extends Controller
     {
         $categoriesManager = new CategoriesManager;
         $status = $categoriesManager->deleteCategory($categoryId);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function getCategoryForUpdate($id)
+    {
+        $categoriesManager = new CategoriesManager;
+        $status = $categoriesManager->getCategoryForUpdate($id);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function addCategory(request $request)
+    {
+        $categoriesManager = new CategoriesManager;
+        $status = $categoriesManager->addCategory($request);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function updateCategory(int $categoryId, Request $request)
+    {
+        $categoriesManager = new CategoriesManager;
+        $status = $categoriesManager->updateCategory($categoryId, $request);
 
         if ($status)
         {
