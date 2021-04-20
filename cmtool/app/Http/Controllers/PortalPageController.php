@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 
 use App\Http\Controllers\ResourceHandler\DataManager;
+use Redirect;
 
 class PortalPageController extends Controller
 {
@@ -251,9 +252,11 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->updateCustomer($request);
 
-        if ($status)
-        {
-            return redirect('/customers')->with('success');
+        if ($status) {
+            return redirect('/customers')->with('success', 'Successfully updated the customer.');
+        }
+        else {
+            return redirect('/customers')->with('error', 'ERROR.');
         }
     }
 
@@ -282,9 +285,11 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->addCustomer($request);
 
-        if ($status)
-        {
-            return redirect('/customers')->with('success');
+        if ($status) {
+            return redirect('/customers')->with('success', 'Successfully added the customer.');
+        }
+        else {
+            return redirect('/customers')->with('error', 'ERROR.');
         }
     }
     

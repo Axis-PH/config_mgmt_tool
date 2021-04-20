@@ -237,7 +237,9 @@ class DataManager extends Controller
     public function updateCustomer($request) {
 
         $customersManager = new CustomersManager;
-        $status = $customersManager->updateCustomer($request);
+        $updateStatus = true; 
+        $addStatus = false;
+        $status = $customersManager->updateCustomer($request, $updateStatus, $addStatus);
 
         if ($status)
         {
@@ -276,7 +278,9 @@ class DataManager extends Controller
     public function addCustomer($request) {
 
         $customersManager = new CustomersManager;
-        $status = $customersManager->addCustomer($request);
+        $addStatus = true;
+        $updateStatus = false;
+        $status = $customersManager->addCustomer($request, $addStatus, $updateStatus);
 
         if ($status)
         {

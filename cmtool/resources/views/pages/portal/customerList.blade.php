@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- @include('includes.messages') --}}
+    @include('includes.messages')
     <div style="display: inline-block; width: 800px; border:1px solid black;">
         <h1 style="margin-top:20px; ">連絡先一覧</h1>
         {{-- <h1 style="margin-top:20px; ">Contact List</h1> --}}
@@ -41,9 +41,11 @@
                 </tr> 
                 @endforeach
         </table>
-        <div class="pagination">
+        <!-- <div class="pagination">
             {{ $customers->links() }}
-        </div>
+        </div> -->
+        <?php echo $customers->render(); ?>
+        <br><br>
         <div style="margin-top:-10px; margin-bottom:10px">
             <a href={{ '/contactLanding' }} class="btn btn-link" 
                 style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">{{ __('バック') }}</a>
