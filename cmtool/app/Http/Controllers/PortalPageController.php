@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Customer;
-use App\Models\Equipment;
 
 use App\Http\Controllers\ResourceHandler\DataManager;
 
@@ -31,12 +30,13 @@ class PortalPageController extends Controller
         return view('pages/portal/landing');
     }
 
-    public function viewSiteListPage()
+    public function viewSitesPage()
     {
         $dataManager = new DataManager;
         $sites = $dataManager->getAllSites();
+        // dd($sites[0]->customer->customer_name);
 
-        return view('pages/portal/siteList')->with('sites', $sites);
+        return view('pages/portal/sites')->with('sites', $sites);
     }
 
     public function viewSiteCreatePage()
@@ -52,7 +52,7 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $site = $dataManager->getSiteById($siteId);
         $customers = $dataManager->getCustomerDropdownList();
-        $selectedCustomerId = $site->customer->id;
+        $selectedCustomerId = $site->customer->customer_id;
 
         return view('pages/portal/updateSite')->with('site', $site)->with('customers', $customers)
             ->with('selectedCustomerId', $selectedCustomerId);
@@ -66,6 +66,11 @@ class PortalPageController extends Controller
         return view('pages/portal/updateMaker')->with('maker', $maker);
     }
 
+    public function viewMakerCreatePage()
+    {
+        return view('pages/portal/createMaker');
+    }
+
     public function viewContactLandingPage()
     {
         return view('pages/portal/contactLanding');
@@ -77,10 +82,22 @@ class PortalPageController extends Controller
         $status = $dataManager->addSite($request);
 
         if ($status)
-            return redirect('/site')->with('success', 'Site Added' );
+            return redirect('/sites')->with('success', 'Site Added');
 
         else 
-            return redirect('/site')->with('error', 'Site Add ERROR' );
+            return redirect('/sites')->with('error', 'Site Add ERROR');
+    }
+
+    public function addMaker(Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->addMaker($request);
+
+        if ($status)
+            return redirect('/makers')->with('success', 'Maker Added');
+
+        else 
+            return redirect('/makers')->with('error', 'Maker Add ERROR');
     }
 
     public function updateSite(Request $request)
@@ -89,10 +106,22 @@ class PortalPageController extends Controller
         $status = $dataManager->updateSite($request);
 
         if ($status)
-            return redirect('/site')->with('success', 'Site Updated' );
+            return redirect('/sites')->with('success', 'Site Updated');
 
         else 
-            return redirect('/site')->with('error', 'Site Update ERROR' );
+            return redirect('/sites')->with('error', 'Site Update ERROR');
+    }
+
+    public function updateMaker(Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->updateMaker($request);
+
+        if ($status)
+            return redirect('/makers')->with('success', 'Maker Updated');
+
+        else 
+            return redirect('/makers')->with('error', 'Maker Update ERROR');
     }
 
     public function deleteSite(int $id)
@@ -101,10 +130,10 @@ class PortalPageController extends Controller
         $status = $dataManager->deleteSite($id);
 
         if ($status)
-            return redirect('/site')->with('success', 'Site Deleted' );
+            return redirect('/sites')->with('success', 'Site Deleted');
 
         else 
-            return redirect('/site')->with('error', 'Delete ERROR' );
+            return redirect('/sites')->with('error', 'Delete ERROR');
     }
 
     public function deleteMaker(int $id)
@@ -113,91 +142,92 @@ class PortalPageController extends Controller
         $status = $dataManager->deleteMaker($id);
 
         if ($status)
-            return redirect('/maker')->with('success', 'Maker Deleted' );
+            return redirect('/makers')->with('success', 'Maker Deleted');
 
         else 
-            return redirect('/maker')->with('error', 'Delete ERROR' );
+            return redirect('/makers')->with('error', 'Delete ERROR');
     }
 
-    public function viewMakerListPage()
+    public function viewMakersPage()
     {
         $dataManager = new DataManager;
         $makers = $dataManager->getAllMakers();
 
-        return view('pages/portal/makerList')->with('makers', $makers);
+        return view('pages/portal/makers')->with('makers', $makers);
     }
 
-    public function item(int $itemId)
-    {
-        $equipment = Equipment::find($itemId);
-        return view('pages/portal/item')->with('equipment', $equipment);
-    }
-
-    public function itemListByCustomerId(int $customerId)
-    {
-        $customer = Customer::find($customerId);
-        return view('pages/portal/itemList')->with('equipments', $customer->equipments);
-    }
-
-    public function deleteDevice(int $itemId)
+    public function itemListByCustomerId(int $siteId, int $customerId)
     {
         $dataManager = new DataManager;
-        $url = $dataManager->getCustomerIdByItemId($itemId);
-        $status = $dataManager->DeleteDevice($itemId);
+        $items = $dataManager->getItemsByCustomerId($customerId);
         
+        return view('pages/portal/itemList')->with('items', $items->item)->with('siteId', $siteId)->with('customerId', $customerId);
+    }
+
+    public function deleteItem(int $itemId)
+    {
+        $dataManager = new DataManager;
+        $site = $dataManager->getSiteIdByItemId($itemId);
+        $customer = $dataManager->getCustomerIdByItemId($itemId);
+        $status = $dataManager->deleteItem($itemId);
+
+
         if ($status)
         {
-            return redirect('itemList/'.$url)->with('success');
+            return redirect('items/'.$site.'/'.$customer)->with('success');
         }
     }
 
-    public function createDevice()
+    public function createItem(int $siteId, int $customerId)
     {
-        return view('pages/portal/deviceCreation');
+        return view('pages/portal/createItem')->with('siteId', $siteId)->with('customerId', $customerId);
     }
 
-    public function addDevice(Request $request)
+    public function addItem(Request $request, int $siteId, int $customerId)
     {
         $dataManager = new DataManager;
-        $status = $dataManager->addDevice($request);
+        $status = $dataManager->addItem($request, $siteId, $customerId);
 
         if ($status)
-            return redirect('itemList/'.$request->customerId)->with('success');
+            return redirect('items/'.$siteId.'/'.$request->customerId)->with('success');
         else
-            return redirect('itemList/'.$request->customerId)->with('error');
+            return redirect('items/'.$siteId.'/'.$request->customerId)->with('error');
     }
 
-    public function editDevice(int $id)
+    public function editItem(int $siteId, int $customerId, int $id)
     {
+        
         $dataManager = new DataManager;
-        $equipment = $dataManager->getDeviceDetailsForUpdate($id);
-
-        return view('pages/portal/deviceUpdate')->with('id', $id)->with('equipment', $equipment);
+        $item = $dataManager->getItemDetailsForUpdate($id);
+        
+        return view('pages/portal/itemUpdate')->with('id', $id)->with('item', $item)->with('siteId', $siteId)->with('customerId', $customerId);
     }
 
-    public function updateDevice(Request $request, int $id)
+    public function updateItem(Request $request, int $id, int $siteId, int $customerId)
     {
         $dataManager = new DataManager;
-        $status = $dataManager->editDeviceDetails($request, $id);
+        $status = $dataManager->editItemDetails($request, $id, $siteId, $customerId);
 
         if ($status)
-            return redirect('itemList/'.$request->customerId)->with('success');
+            return redirect('items/'.$siteId.'/'.$request->customerId)->with('success');
         else
-            return redirect('itemList/'.$request->customerId)->with('error');        
+            return redirect('items/'.$siteId.'/'.$request->customerId)->with('error');        
     }
 
-    public function displayDevice(int $id)
+    public function displayItem(int $id)
     {
         $dataManager = new DataManager;
-        $equipment = $dataManager->getDeviceDetailsForUpdate($id);
+        $item = $dataManager->getItemDetailsForUpdate($id);
 
-        $equipment = Equipment::find($id);
-        return view('pages/portal/displayDevice')->with('equipment', $equipment);
+       $equipment = Equipment::find($id);
+        return view('pages/portal/displayItem')->with('item', $item);
+        // $equipment = Equipment::find($id);
+        // return view('pages/portal/displayDevice')->with('equipment', $equipment);
     }
 
     public function itemList()
     {
-        return view('pages/portal/itemList');
+        return view('pages/portal/items');
     }
 
     public function viewCustomerListPage() {
@@ -255,6 +285,25 @@ class PortalPageController extends Controller
         if ($status)
         {
             return redirect('/customers')->with('success');
+        }
+    }
+    
+    public function viewCategory()
+    {
+        $dataManager = new DataManager;
+        $categories = $dataManager->getCategories();
+        
+        return view('pages/portal/categoryList')->with('categories', $categories);
+    }
+
+    public function deleteCategory(int $categoryId)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->deleteCategory($categoryId);
+
+        if ($status)
+        {
+            return redirect('category')->with('success');
         }
     }
 }

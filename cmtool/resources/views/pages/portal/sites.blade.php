@@ -3,10 +3,10 @@
 @section('content')
     @include('includes.messages')
     <div style="display: inline-block; width: 800px; border:1px solid black;">
-        <h1 style="margin-top:20px; ">Site List</h1>
+        <h1 style="margin-top:20px; ">Sites</h1>
         {{-- <h1 style="margin-top:20px; ">保守先一覧</h1> --}}
         <div style="float:left; padding:5px">
-            <a href="{{ url("site/create") }}" class="btn btn-success" 
+            <a href="{{ url("sites/create") }}" class="btn btn-success" 
                 style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
         </div>
         <table style="width:800px" class="table table-bordered table-striped table-responsive">
@@ -22,27 +22,29 @@
             </thead>
                 @foreach ($sites as $site)
                 <tr>
-                    <td>{{$site->name}}</td>
+                    <td>{{$site->site_name}}</td>
 
                     <?php 
-                        if (!empty($site->customer->name)) 
-                            $siteName = $site->customer->name;
+                        if (!empty($site->customer->customer_name)) 
+                            $customer_name = $site->customer->customer_name;
                         else 
-                            $siteName = '';
+                            $customer_name = '';
                     ?>
-                        <td>{{ $siteName }}</td>
+                        <td>{{ $customer_name }}</td>
                         
                     <td>
-                        <a href="{{ url('/itemList' . '/' . $site->customerId) }}" class="btn btn-dark" 
+                        <a href="{{ url('/items' . '/' . $site->id . '/' . $site->customerId) }}" class="btn btn-dark" 
                             style="font-size:15px; width:100%; height: 100%"> {{ __('機器一覧') }} </a>
                     </td>
                     <td>
-                        <a href="{{ url("site/update/" . $site->id) }}" 
+                        <a href="{{ url("sites/update/" . $site->site_id) }}" 
                             class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('edit') }}</a>
                     </td>
                 </tr> 
                 @endforeach
         </table>
+        <?php echo $sites->render(); ?>
+        <br><br>
         <div style="margin-top:-10px; margin-bottom:10px">
             <a href={{ '/' }} class="btn btn-link" 
                 style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">{{ __('バック') }}</a>

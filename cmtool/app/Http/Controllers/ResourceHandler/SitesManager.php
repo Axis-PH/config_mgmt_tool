@@ -5,52 +5,36 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Models\Site;
+use App\Models\Item;
 use Facades\App\Helper\FieldChecker;
 
-class SiteManager extends Controller
+class SitesManager extends Controller
 {
     public function getAllSites()
     {
-        $sites = Site::all();
+        $sites = Site::simplePaginate(5);
         
         return $sites;
     }
 
     public function addSite(Request $request)
     {
-        $valid = FieldChecker::isValidSiteName($request->name);
-        
-        if (!$valid)
-            return false;
-            
-        try {
-            $site = new Site;
-            $site->name = $request->name;
-            $site->customerId = $request->customerId;
-            $site->save();
-            return true;
-        }
-
-        catch (\Exception $exception)
-        {
-            return false;
-        }
+        return $this->saveSite(new Site, $request);
     }
 
     public function updateSite(Request $request)
     {
-        $valid = FieldChecker::isValidSiteName($request->name);
-        
-        if (!$valid){
+        return $this->saveSite(Site::find($request->site_id), $request);
+    }
+
+    private function saveSite(Site $site, Request $request)
+    {
+        if (!FieldChecker::isValidName($request->site_name))
             return false;
-        }
 
         try {
-
-
-            $site = Site::find($request->siteId);
-            $site->name = $request->name;
-            $site->customerId = $request->customerId;
+            $site->site_name = $request->site_name;
+            $site->customer_id = $request->customer_id;
             $site->save();
 
             return true;
@@ -58,7 +42,6 @@ class SiteManager extends Controller
 
         catch (\Exception $exception)
         {
-            dd(2);
             return false;
         }
     }
@@ -66,7 +49,7 @@ class SiteManager extends Controller
     public function getSiteById(int $id)
     {
         try {
-            $site = Site::find($id);
+            $site = \App\Models\Site::find($id);
             return $site;
         }
 
@@ -87,5 +70,12 @@ class SiteManager extends Controller
             return false;
         }
     }
+
+    public function getSiteIdByItemId(int $itemId)
+    {
+        $siteDataHolder = Item::find($itemId);
+        $site = $siteDataHolder->site_id;
+        return $site;
+    }  
 }
 

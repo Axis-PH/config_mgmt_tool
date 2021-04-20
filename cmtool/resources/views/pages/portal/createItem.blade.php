@@ -6,17 +6,17 @@
         <div class="title m-b-md">
             <br>
             <h2>
-                Create Device
+                Create Item
             </h2>
         </div>
-        {{ Form::open(['action' => ['PortalPageController@addDevice'], 'method' => 'POST']) }}
+        {{ Form::open(['action' => ['PortalPageController@addItem', $siteId, $customerId], 'method' => 'POST']) }}
             <div class="form-group">
-                Device Name:
-                {{Form::text('deviceName', '', ['class' => 'form-control'])}}
+                Item Name:
+                {{Form::text('itemName', '', ['class' => 'form-control'])}}
             </div>
             <div class="form-group">
-                Device Classification Number:
-                {{Form::text('deviceClassificationNumber', '', ['class' => 'form-control'])}}
+                Item Category:
+                {{Form::text('itemCategory', '', ['class' => 'form-control'])}}
             </div>
             <div class="form-group">
                 Model:
@@ -39,14 +39,6 @@
                 {{Form::text('gateway', '', ['class' => 'form-control'])}}
             </div>
             <div class="form-group">
-                Customer ID:
-                {{Form::text('customerId', '', ['class' => 'form-control'])}}
-            </div>
-            <div class="form-group">
-                Site ID:
-                {{Form::text('siteId', '', ['class' => 'form-control'])}}
-            </div>
-            <div class="form-group">
                 Installation Location:
                 {{Form::text('installationLocation', '', ['class' => 'form-control'])}}
             </div>
@@ -58,7 +50,7 @@
                 Remarks:
                 {{Form::text('remarks', '', ['class' => 'form-control'])}}
             </div>
-        {{Form::submit('Add Device', ['class' => 'btn btn-primary'])}}
+        {{Form::submit('Add Item', ['class' => 'btn btn-primary'])}}
         <a href={{ redirect()->getUrlGenerator()->previous() }} class="btn btn-link">Cancel</a>
         {{ Form::hidden('_method', 'PUT')}}
         {{ Form::close() }} 

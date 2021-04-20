@@ -13,6 +13,6 @@ class Customer extends Model
 
     public function equipments()
     {
-        return $this->hasMany(Equipment::class, 'customerId');
+        return $this->hasMany(Item::class, 'customer_id');
     }
 }

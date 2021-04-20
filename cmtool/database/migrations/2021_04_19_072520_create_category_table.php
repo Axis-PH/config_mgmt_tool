@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEquipmentClassificationsTable extends Migration
+class CreateCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateEquipmentClassificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipment_classifications', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('category', function (Blueprint $table) {
+            $table->id('category_id');
+            $table->string('category_name');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateEquipmentClassificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipment_classifications');
+        Schema::dropIfExists('category');
     }
 }

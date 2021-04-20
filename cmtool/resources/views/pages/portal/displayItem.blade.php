@@ -6,44 +6,44 @@
         <div class="title m-b-md">
             <br>
             <h2>
-                Device Information
+                Item Information
             </h2>
         </div>
             <div class="form-group">
-                Device Name: {{$equipment->name}}
+                Item Name: {{$item->item_name}}
             </div>
             <div class="form-group">
-                Device Classification Number: {{$equipment->equipmentClassificationId}}
+                Item Category: {{$item->category}}
             </div>
             <div class="form-group">
-                Model: {{$equipment->model}}
+                Model: {{$item->model}}
             </div>
             <div class="form-group">
-                S/N: {{$equipment->serialNumber}}
+                S/N: {{$item->serial}}
             </div>
             <div class="form-group">
-                IP Address: {{$equipment->ipAddress}}
+                IP Address: {{$item->ip}}
             </div>
             <div class="form-group">
-                Netmask: {{$equipment->netmask}}
+                Netmask: {{$item->netmask}}
             </div>
             <div class="form-group">
-                Gateway: {{$equipment->gateway}}
+                Gateway: {{$item->gateway}}
             </div>
             <div class="form-group">
-                Customer ID: {{$equipment->customerId}}
+                Customer ID: {{$item->customer_id}}
             </div>
             <div class="form-group">
-                Site ID: {{$equipment->baseId}}
+                Site ID: {{$item->site_id}}
             </div>
             <div class="form-group">
-                Installation Location: {{$equipment->installationLocation}}
+                Installation Location: {{$item->place}}
             </div>
             <div class="form-group">
-                Maker ID: {{$equipment->makerId}}
+                Maker ID: {{$item->maker_id}}
             </div>
             <div class="form-group">
-                Remarks: {{$equipment->remarks}}
+                Remarks: {{$item->memo}}
             </div>
         <a href={{ redirect()->getUrlGenerator()->previous() }} class="btn btn-primary">Return</a>
         {{ Form::hidden('_method', 'PUT')}}
