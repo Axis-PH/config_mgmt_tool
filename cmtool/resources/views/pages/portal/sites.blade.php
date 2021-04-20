@@ -13,9 +13,9 @@
             <thead style="width:800px"class="thead-dark">
             <tr>
                 {{-- <th class="nameHeader">{{ __('拠点名') }}</th> --}}
-                <th class="nameHeader">{{ __('Site') }}</th>
+                <th class="nameHeader">{{ __('site.siteName') }}</th>
                 {{-- <th class="dateTimeHeader">{{ __('顧客名') }}</th> --}}
-                <th class="nameHeader">{{ __('Customer') }}</th>
+                <th class="nameHeader">{{ __('site.customerName') }}</th>
                 <th class="buttonHeader"></th>
                 <th class="buttonHeader"></th>
             </tr>

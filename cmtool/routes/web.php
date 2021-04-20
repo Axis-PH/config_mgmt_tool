@@ -17,10 +17,15 @@ Auth::routes();
 
 
 Route::get('/home', [App\Http\Controllers\PortalPageController::class, 'index']);
-Route::get('/', [App\Http\Controllers\PortalPageController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\PortalPageController::class, 'index'])->name('home')->middleware('language');
 
-Route::get('/sites', [App\Http\Controllers\PortalPageController::class, 'viewSitesPage'])->name('viewSitesPage');
-Route::get('/sites/update/{siteId}', [App\Http\Controllers\PortalPageController::class, 'viewSiteUpdatePage'])->name('viewSiteUpdatePage');
+Route::get('setlocale/{locale}',function($lang){
+    \Session::put('locale',$lang);
+    return redirect()->back();   
+});
+
+Route::get('/sites', [App\Http\Controllers\PortalPageController::class, 'viewSitesPage'])->middleware('language');
+Route::get('/sites/update/{siteId}', [App\Http\Controllers\PortalPageController::class, 'viewSiteUpdatePage'])->name('viewSiteUpdatePage')->middleware('language');
 Route::put('/sites/delete/{siteId}', [App\Http\Controllers\PortalPageController::class, 'deleteSite'])->name('deleteSite');
 Route::get('/sites/create', [App\Http\Controllers\PortalPageController::class, 'viewSiteCreatePage'])->name('viewSiteCreatePage');
 Route::put('/sites/add', [App\Http\Controllers\PortalPageController::class, 'addSite'])->name('addSite');
@@ -42,3 +47,5 @@ Route::get('/itemList/{customerId}', [App\Http\Controllers\PortalPageController:
 Route::get('/contactList', [App\Http\Controllers\PortalPageController::class, 'contactList'])->name('contactList');
 
 Route::get('/admin', [App\Http\Controllers\AdminPageController::class, 'index'])->name('admin');
+
+
