@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\ResourceHandler;
+use Facades\App\Helper\FieldChecker;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
@@ -33,6 +34,9 @@ class CategoriesManager
 
     private function saveCategory(Category $category, Request $request)
     {
+        if (!FieldChecker::isValidName($request->categoryName))
+            return false;
+
         try {        
             $category->category_name = $request->categoryName;
             $category->save();
