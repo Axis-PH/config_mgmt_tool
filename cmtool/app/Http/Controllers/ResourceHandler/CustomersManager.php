@@ -26,9 +26,9 @@ class CustomersManager extends Controller
             ->select('customer_id')
             ->where('item_id', '=', $itemId)
             ->first();
-        $url = $item->customer_id;
+        $customerId = $item->customer_id;
 
-        return $url;
+        return $customerId;
     }
 
     public function getCustomerList() {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ResourceHandler;
 
+use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Customer;
 
@@ -17,44 +18,16 @@ class ItemsManager
 
     public function addItem($request, int $siteId, int $customerId)
     {
-        try {        
-            $item = new Item;
-            $item->item_name = $request->itemName;
-            $item->category = $request->itemCategory;
-            $item->model = $request->model;
-            $item->serial = $request->serialNumber;
-            $item->ip = $request->ipAddress;
-            $item->netmask = $request->netmask;
-            $item->gateway = $request->gateway;
-            $item->customer_id = $customerId;
-            $item->site_id = $siteId;
-            $item->place = $request->installationLocation;
-            $item->maker_id = $request->makerId;
-            $item->memo = $request->remarks;
-            $item->save();
-            return true;
-        }
-        catch (\Exception $e)
-        {
-            return false;
-        }        
+        return $this->saveItem(new Item, $request, $siteId, $customerId);
     }
 
-    public function getItemDetails($itemId)
+    public function updateItemDetails($request, int $itemId, int $siteId, int $customerId)
     {
-        $item = Item::all()
-            ->where('item_id', '=', $itemId)
-            ->last();
-        
-        return $item;
+        return $this->saveItem(Item::find($itemId), $request, $siteId, $customerId);
     }
 
-    public function updateItemDetails($request, int $id, int $siteId, int $customerId)
+    private function saveItem(Item $items, Request $request, int $siteId, int $customerId)
     {
-        $items = Item::all()
-            ->where('item_id', '=', $id)
-            ->last();
-       
         try {        
             $items->item_name = $request->itemName;
             $items->category = $request->itemCategory;
@@ -75,8 +48,17 @@ class ItemsManager
         catch (\Exception $e)
         {
             return false;
-        }     
-    }  
+        }  
+    }
+
+    public function getItemDetails($itemId)
+    {
+        $item = Item::all()
+            ->where('item_id', '=', $itemId)
+            ->last();
+        
+        return $item;
+    }
 
     public function getItemsByCustomerId(int $customerId)
     {

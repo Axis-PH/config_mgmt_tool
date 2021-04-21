@@ -173,9 +173,9 @@ class PortalPageController extends Controller
         $status = $dataManager->deleteItem($itemId);
         
         if ($status)
-            return redirect('items/list/'.$site.'/'.$customer)->with('success');
+            return redirect('items/list/'.$site.'/'.$customer)->with('success', 'Item has been deleted.');
         else
-            return redirect('items/list/'.$site.'/'.$customer)->with('error');
+            return redirect('items/list/'.$site.'/'.$customer)->with('error', 'Failed to delete item.');
     }
 
     public function viewCreateItemPage(int $siteId, int $customerId)
@@ -189,16 +189,16 @@ class PortalPageController extends Controller
         $status = $dataManager->addItem($request, $siteId, $customerId);
 
         if ($status)
-            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success');
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success', 'Item has been created.');
         else
-            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error');
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error', 'Failed to create item.');
     }
 
     public function viewUpdateItemPage(int $siteId, int $customerId, int $id)
     {
         
         $dataManager = new DataManager;
-        $item = $dataManager->getItemDetailsForUpdate($id);
+        $item = $dataManager->getItemDetails($id);
         
         return view('pages/portal/updateItem')->with('id', $id)->with('item', $item)->with('siteId', $siteId)->with('customerId', $customerId);
     }
@@ -209,15 +209,15 @@ class PortalPageController extends Controller
         $status = $dataManager->updateItemDetails($request, $id, $siteId, $customerId);
 
         if ($status)
-            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success');
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success', 'Item has been updated.');
         else
-            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error');        
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error', 'Failed to update item.');        
     }
 
     public function viewItemInfoPage(int $id)
     {
         $dataManager = new DataManager;
-        $item = $dataManager->getItemDetailsForUpdate($id);
+        $item = $dataManager->getItemDetails($id);
         
         return view('pages/portal/displayItem')->with('item', $item);
     }
@@ -298,9 +298,9 @@ class PortalPageController extends Controller
         $status = $dataManager->deleteCategory($categoryId);
 
         if ($status)
-            return redirect('categories')->with('success');
+            return redirect('categories')->with('success')->with('success', 'Category has been deleted.');
         else
-            return redirect('categories')->with('error');        
+            return redirect('categories')->with('error')->with('error', 'Failed to delete category.');     
     }
 
     public function viewCreateCategoryPage()
@@ -314,9 +314,9 @@ class PortalPageController extends Controller
         $status = $dataManager->addCategory($request);
 
         if ($status)
-            return redirect('categories')->with('success');
+            return redirect('categories')->with('success')->with('success', 'Category has been created.');
         else
-            return redirect('categories')->with('error');
+            return redirect('categories')->with('error')->with('error', 'Failed to create category.');
     }
 
     public function viewUpdateCategoryPage(int $categoryId)
@@ -333,8 +333,8 @@ class PortalPageController extends Controller
         $status = $dataManager->updateCategory($categoryId, $request);
         
         if ($status)
-            return redirect('categories')->with('success');
+            return redirect('categories')->with('success')->with('success', 'Category has been updated.');
         else
-            return redirect('categories')->with('error');
+            return redirect('categories')->with('error')->with('error', 'Failed to update category.');  
     }
 }

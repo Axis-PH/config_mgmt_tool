@@ -119,11 +119,11 @@ class DataManager extends Controller
     public function getCustomerIdByItemId($itemId)
     {
         $customersManager = new CustomersManager;
-        $url = $customersManager->getCustomerId($itemId);
+        $customerId = $customersManager->getCustomerId($itemId);
 
-        if ($url)
+        if ($customerId)
         {
-            return $url;
+            return $customerId;
         }
         else
         {
@@ -146,7 +146,7 @@ class DataManager extends Controller
         }
     }
 
-    public function getItemDetailsForUpdate($id)
+    public function getItemDetails($id)
     {
         $itemsManager = new ItemsManager;
         $status = $itemsManager->getItemDetails($id);
@@ -179,8 +179,8 @@ class DataManager extends Controller
     public function getItemsByCustomerId(int $customerId)
     {
 
-        $itemManager = new ItemsManager;
-        $items = $itemManager->getItemsByCustomerId($customerId);
+        $itemsManager = new ItemsManager;
+        $items = $itemsManager->getItemsByCustomerId($customerId);
 
         return $items;
     }  

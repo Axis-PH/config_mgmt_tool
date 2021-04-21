@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- @include('includes.messages') --}}
+    @include('includes.messages')
     <div style="display: inline-block; width: 900px; border:1px solid black;">
         {{-- <h1 style="margin-top:20px; ">Item List</h1> --}}
         <h1 style="margin-top:20px; ">機器一覧</h1>

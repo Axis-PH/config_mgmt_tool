@@ -50,7 +50,8 @@
             Remarks:
             {{Form::text('remarks', $item->memo, ['class' => 'form-control', 'placeholder' => 'Remarks'])}}
         </div>
-        <a href="{{ url('/items/delete' . '/' . $item->item_id) }}" class="btn btn-danger">Delete</a>
+        <a href="{{ url('/items/delete' . '/' . $item->item_id) }}" class="btn btn-danger"
+        onclick="return confirm('Are you sure you want to proceed with the deletion of this category?')">Delete</a>
         {{Form::submit('Update Item', ['class' => 'btn btn-primary'])}}
         <a href={{ redirect()->getUrlGenerator()->previous() }} class="btn btn-link">Cancel</a>
         {{ Form::hidden('_method', 'PUT')}}
