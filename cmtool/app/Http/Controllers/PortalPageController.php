@@ -222,20 +222,21 @@ class PortalPageController extends Controller
         return view('pages/portal/displayItem')->with('item', $item);
     }
 
-    public function viewCustomerListPage() {
+    public function viewCustomerPage() {
 
         $dataManager = new DataManager;
         $customers = $dataManager->getAllCustomers();
 
-        return view('pages/portal/customerList')->with('customers', $customers);
+        return view('pages/portal/customers')->with('customers', $customers);
     }
 
-    public function viewUpdateCustomerListPage(int $customerId) {
+    public function viewUpdateCustomerPage(int $customerId) {
 
         $dataManager = new DataManager;
-        $customers = $dataManager->getCustomerByCustomerId($customerId);
+        //$customers = $dataManager->getCustomerByCustomerId($customerId); //make it singular
+        $customer = $dataManager->getCustomerByCustomerId($customerId);
 
-        return view('pages/portal/updateCustomerList')->with('customers', $customers);
+        return view('pages/portal/updateCustomers')->with('customer', $customer);
     }
 
     public function updateCustomer(Request $request) {
@@ -263,12 +264,12 @@ class PortalPageController extends Controller
 
     }
 
-    public function viewAddCustomerListPage() {
+    public function viewAddCustomerPage() {
 
         $dataManager = new DataManager;
         $customerId = $dataManager->getLastCustomerId();
 
-        return view('pages/portal/addCustomerList')->with('customerId', $customerId);
+        return view('pages/portal/addCustomers')->with('customerId', $customerId);
     }
 
     public function addCustomer(Request $request) {

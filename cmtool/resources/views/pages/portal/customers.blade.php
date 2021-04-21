@@ -2,7 +2,7 @@
 
 @section('content')
     @include('includes.messages')
-    <div style="display: inline-block; width: 800px; border:1px solid black;">
+    <div style="display: inline-block; width: 100%; border:1px solid black; padding: 0px 10px;">
         <h1 style="margin-top:20px; ">連絡先一覧</h1>
         {{-- <h1 style="margin-top:20px; ">Contact List</h1> --}}
         <div style="float:left; padding:5px">

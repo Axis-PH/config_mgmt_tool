@@ -266,7 +266,7 @@ class DataManager extends Controller
     public function getAllCustomers() {
 
         $customersManager = new CustomersManager;
-        $customers = $customersManager->getCustomerList();
+        $customers = $customersManager->getAllCustomer();
 
         return $customers;
     }
@@ -274,18 +274,19 @@ class DataManager extends Controller
     public function getCustomerByCustomerId($customer_id) {
 
         $customersManager = new CustomersManager;
-        $customers = $customersManager->getCustomerById($customer_id);
+        //$customers = $customersManager->getCustomerById($customer_id); //naming convention singular
+        $customer = $customersManager->getCustomerById($customer_id);
 
-        return $customers;
+        return $customer;
     }
 
     public function updateCustomer($request) {
 
         $customersManager = new CustomersManager;
-        $updateStatus = true; 
-        $addStatus = false;
-        $status = $customersManager->updateCustomer($request, $updateStatus, $addStatus);
-
+        // $updateStatus = true; 
+        // $addStatus = false;
+        // $status = $customersManager->updateCustomer($request, $updateStatus, $addStatus);
+        $status = $customersManager->updateCustomer($request);
         if ($status)
         {
             return $status;
@@ -315,18 +316,19 @@ class DataManager extends Controller
     public function getLastCustomerId() {
 
         $customersManager = new CustomersManager;
-        $getLastCustomerId = $customersManager->getLastCustomerId();
-
-        return $getLastCustomerId;
+        //$getLastCustomerId = $customersManager->getLastCustomerId(); //naming convention
+        $lastCustomerId = $customersManager->getLastCustomerId();
+        
+        return $lastCustomerId;
     }
 
     public function addCustomer($request) {
 
         $customersManager = new CustomersManager;
-        $addStatus = true;
-        $updateStatus = false;
-        $status = $customersManager->addCustomer($request, $addStatus, $updateStatus);
-
+        // $addStatus = true;
+        // $updateStatus = false;
+        // $status = $customersManager->addCustomer($request, $addStatus, $updateStatus);
+        $status = $customersManager->addCustomer($request);
         if ($status)
         {
             return $status;

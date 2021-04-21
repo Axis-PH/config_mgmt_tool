@@ -31,12 +31,9 @@ class CustomersManager extends Controller
         return $customerId;
     }
 
-    public function getCustomerList() {
+    public function getAllCustomer() {
 
         $customers = Customer::simplePaginate(5);
-        // $customers = DB::table('customers')
-        //     ->select('*')
-        //     ->paginate(5);
 
         return $customers;
     }
@@ -51,9 +48,10 @@ class CustomersManager extends Controller
         return $customer;
     }
 
-    public function updateCustomer($request, string $updateStatus, string $addStatus) {
+    public function updateCustomer($request) {
 
-        return $this->saveCustomer(Customer::find($request->customer_id), $request, $addStatus, $updateStatus);
+        $status = 'update';
+        return $this->saveCustomer(Customer::find($request->customer_id), $request, $status);
     }
 
     public function deleteCustomer(int $id) {
@@ -64,45 +62,45 @@ class CustomersManager extends Controller
                 ->first();
         
         if ($customer) {
-            $customer = DB::table('customers')
+
+            try {
+                $customer = DB::table('customers')
                 ->select('*')
                 ->where('customer_id', '=', $id)
                 ->delete();
 
                 return true;
+            }
+            catch (\Exception $exception) {
+                return false;
+            }
         }
         else {
+
             dd("no data.");
         } 
     }
 
-    public function addCustomer($request, string $updateStatus, string $addStatus) {
+    public function addCustomer($request) {
 
-        return $this->saveCustomer(new Customer, $request, $addStatus, $updateStatus);
+        $status = 'add';
+        return $this->saveCustomer(new Customer, $request, $status);
     }
 
-    public function saveCustomer(Customer $customer, $request, $addStatus, $updateStatus) {
+    public function saveCustomer(Customer $customer, $request, $status) {
 
-        if (!FieldChecker::isValidName($request->customer_name))
+       if ($this->getFieldChecker($request) == false) {
             return false;
+       }
 
-        if (!FieldChecker::isValidName($request->customer_staff))
-            return false;
-    
-        if (!FieldChecker::isValidTel($request->customer_tel))
-            return false;
+        if ($status == 'add') {
 
-        if (!FieldChecker::isValidEmail($request->customer_mail))
-            return false;
-
-        if ($addStatus == true) {
-
-            $customerDB = DB::table('customers')
+            $customerRecord = DB::table('customers')
                 ->orderBy('customer_id')
                 ->get()
                 ->last();
             
-            if ($customerDB == null) {
+            if ($customerRecord == null) {
                 try {
                     $customer->customer_id = 1;
                     $customer->customer_name = $request->customer_name;
@@ -119,7 +117,7 @@ class CustomersManager extends Controller
             }
             else {
                 try {
-                        $customer->customer_id = $this->getLastCustomerId() + 1;
+                        $customer->customer_id = $this->getLastCustomerId();
                         $customer->customer_name = $request->customer_name;
                         $customer->customer_staff = $request->customer_staff;
                         $customer->customer_tel = $request->customer_tel;
@@ -133,7 +131,7 @@ class CustomersManager extends Controller
                     }
             }
         }
-        else if ($updateStatus == true) {
+        else if ($status == 'update') {
             try {
                 $customer->customer_name = $request->customer_name;
                 $customer->customer_staff = $request->customer_staff;
@@ -165,5 +163,22 @@ class CustomersManager extends Controller
         }
 
         return $customer->customer_id + 1;
+    }
+
+    private function getFieldChecker($request) {
+
+        if (!FieldChecker::isValidName($request->customer_name))
+            return false;
+
+        if (!FieldChecker::isValidName($request->customer_staff))
+            return false;
+    
+        if (!FieldChecker::isValidTel($request->customer_tel))
+            return false;
+
+        if (!FieldChecker::isValidEmail($request->customer_mail))
+            return false;
+
+        return true;
     }
 }
