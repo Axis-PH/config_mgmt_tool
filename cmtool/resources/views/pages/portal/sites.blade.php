@@ -3,11 +3,11 @@
 @section('content')
     @include('includes.messages')
     <div style="display: inline-block; width: 800px; border:1px solid black;">
-        <h1 style="margin-top:20px; ">Sites</h1>
+        <h1 style="margin-top:20px; ">{{ __('site.site') }}</h1>
         {{-- <h1 style="margin-top:20px; ">保守先一覧</h1> --}}
         <div style="float:left; padding:5px">
             <a href="{{ url("sites/create") }}" class="btn btn-success" 
-                style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
+                style="font-size:15px; width:100px; height: 100%">{{ __('site.create') }}</a>
         </div>
         <table style="width:800px" class="table table-bordered table-striped table-responsive">
             <thead style="width:800px"class="thead-dark">
@@ -32,11 +32,11 @@
                         
                     <td>
                         <a href="{{ url('/items/list' . '/' . $site->site_id . '/' . $site->customer_id) }}" class="btn btn-dark" 
-                            style="font-size:15px; width:100%; height: 100%"> {{ __('機器一覧') }} </a>
+                            style="font-size:15px; width:100%; height: 100%"> {{ __('site.itemList') }} </a>
                     </td>
                     <td>
                         <a href="{{ url("sites/update/" . $site->site_id) }}" 
-                            class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('edit') }}</a>
+                            class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('site.update') }}</a>
                     </td>
                 </tr> 
                 @endforeach
@@ -45,7 +45,7 @@
         <br><br>
         <div style="margin-top:-10px; margin-bottom:10px">
             <a href={{ '/' }} class="btn btn-link" 
-                style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">{{ __('バック') }}</a>
+                style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">{{ __('site.back') }}</a>
         </div>
     </div>
 

@@ -40,7 +40,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <div style="margin-right:5px; margin-top:8px; display:inline">
-                            <a style="display:inline" href="{{ url('/setlocale/en') }}">{{__("eng")}}</a>
+                            <a style="display:inline" href="{{ url('/setlocale/en') }}">{{__("en")}}</a>
                             <div style="width:10px; display:inline"></div>
                             <a style="display:inline" href="{{ url('/setlocale/jpn') }}">{{__("jpn")}}</a>
                         </div>
