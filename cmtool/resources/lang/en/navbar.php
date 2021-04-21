@@ -4,12 +4,9 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Menu JAPANESE Language Lines
+    | Menu ENGLISH Language Lines
     |--------------------------------------------------------------------------
     */
 
-    'portal' => '総合メニュー',
-    'sites' => '保守先一覧',
-    'contacts' => '連絡先一覧',
-    'itemCategories' => 'アイテムカテゴリ'
+    'menu' => 'Configuration Management Tool',
 ];

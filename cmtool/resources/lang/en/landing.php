@@ -8,6 +8,8 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'sites' => 'SITES',
-    'contacts' => 'CONTACTS',
+    'portal' => 'Portal',
+    'sites' => 'Sites',
+    'contacts' => 'Contacts',
+    'itemCategories' => 'Item Categories'
 ];

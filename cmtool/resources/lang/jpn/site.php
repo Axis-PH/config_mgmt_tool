@@ -8,6 +8,6 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'siteName' => 'Site JPN',
-    'customerName' => 'Customer JPN',
+    'siteName' => '拠点名',
+    'customerName' => '顧客名',
 ];
