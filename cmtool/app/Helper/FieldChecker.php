@@ -17,7 +17,7 @@ class FieldChecker
         if (!is_numeric($tel))
             return false;
 
-        return true;
+        return true; 
     }
 
     public function isValidEmail($mail) {
