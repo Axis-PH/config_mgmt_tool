@@ -20,11 +20,11 @@
                                 style="font-size:20px; width:100%; height: 100%"> {{ __('landing.contacts') }} </a>
                                 {{-- style="font-size:20px; width:100%; height: 100%"> {{ __('連絡先一覧') }} </a> --}}
                         </div>
-                        {{-- <div class="col-md-7" style="padding:5px">
+                        <div class="col-md-7" style="padding:5px">
                             <a href="{{ url('/') }}" class="btn btn-primary" 
-                                style="font-size:20px; width:100%; height: 100%"> {{ __('Main Menu') }} </a> --}}
+                                style="font-size:20px; width:100%; height: 100%"> {{ __('Main Menu') }} </a>
                                 {{-- style="font-size:20px; width:100%; height: 100%"> {{ __('総合メニュー') }} </a> --}}
-                        {{-- </div> --}}
+                        </div>
                     </div>
                     {{-- @endauth --}}
                 </div>
