@@ -7,19 +7,18 @@
         {{-- <h1 style="margin-top:20px; ">Contact List</h1> --}}
         <div style="float:left; padding:5px">
             <a href="{{ url("customers/create") }}" class="btn btn-success" 
-                style="font-size:15px; width:100px; height: 100%">{{ __('Create') }}</a>
+                style="font-size:15px; width:100px; height: 100%">{{ __('customer.create') }}</a>
         </div>
         <table class="table table-bordered table-striped table-responsive">
             <thead class="thead-dark">
             <tr>
-                <th class="nameHeader">{{ __('Id') }}</th>
-                <th class="nameHeader">{{ __('Name') }}</th>
-                <th class="nameHeader">{{ __('NamePIC') }}</th>
-                <th class="otherHeader">{{ __('Tel #') }}</th>
-                <th class="otherHeader">{{ __('Email') }}</th>
-                <th class="otherHeader">{{ __('Remarks') }}</th>
+                <th class="nameHeader">{{ __('customer.id') }}</th>
+                <th class="nameHeader">{{ __('customer.name') }}</th>
+                <th class="nameHeader">{{ __('customer.staff') }}</th>
+                <th class="otherHeader">{{ __('customer.tel') }}</th>
+                <th class="otherHeader">{{ __('customer.mail') }}</th>
+                <th class="otherHeader">{{ __('customer.memo') }}</th>
                 <th class="otherHeader"></th>
-                <!-- <th class="otherHeader"></th> -->
             </tr>
             </thead>
                 @foreach ($customers as $customer)
@@ -32,18 +31,11 @@
                     <td>{{ $customer->customer_memo }}</td>
                     <td>
                         <a href="{{ url("customers/update/" .$customer->customer_id) }}" 
-                            class="btn btn-success" style="font-size:15px; width:70px; height: 100%">{{ __('edit') }}</a>
+                            class="btn btn-success" style="font-size:15px; width:70px; height: 100%">{{ __('customer.edit') }}</a>
                     </td>
-                    <!-- <td>
-                        <a href="{{ url("maintenance/project/user_setu") }}" 
-                            class="btn btn-primary" style="font-size:15px; width:70px; height: 100%">{{ __('delete') }}</a>
-                    </td>  -->
                 </tr> 
                 @endforeach
         </table>
-        <!-- <div class="pagination">
-            {{ $customers->links() }}
-        </div> -->
         <?php echo $customers->render(); ?>
         <br><br>
         <div style="margin-top:-10px; margin-bottom:10px">

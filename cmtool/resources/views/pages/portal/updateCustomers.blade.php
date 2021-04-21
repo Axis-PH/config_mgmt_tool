@@ -7,37 +7,37 @@
         {{-- <h1 style="margin-top:20px; ">保守先一覧</h1> --}}
         {{ Form::open(['action' => ['PortalPageController@updateCustomer', $customer->customer_id], 'method' => 'POST']) }}
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('ID: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addid') }}:</label>
                 {{Form::text('customer_id', $customer->customer_id, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('ID'), 'readonly' => 'true'])}}
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Customer Name: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addname') }}:</label>
                 {{Form::text('customer_name', $customer->customer_name, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Customer Name')])}}
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('PIC: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addstaff') }}:</label>
                 {{Form::text('customer_staff', $customer->customer_staff, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Person In Charge')])}}
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Tel: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addtel') }}:</label>
                 {{Form::text('customer_tel', $customer->customer_tel, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Telephone')])}}
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Email: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addmail') }}:</label>
                 {{Form::text('customer_mail', $customer->customer_mail, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Email')])}}
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Remarks: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addmemo') }}:</label>
                 {{Form::text('customer_memo', $customer->customer_memo, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Remarks')])}}
             </div>
@@ -45,13 +45,13 @@
             <br><br><br>
             
         <div style="display:flex; float:right; margin-right:120px; margin-bottom:20px">
-            {{Form::submit( __('Update') , ['style' => 'margin-left:5px', 'class' => 'btn btn-primary'])}}
+            {{Form::submit( __('customer.update') , ['style' => 'margin-left:5px', 'class' => 'btn btn-primary'])}}
             {{ Form::hidden('_method', 'PUT')}}
             {{ Form::close() }} 
         
             {{ Form::open(['action' => ['PortalPageController@deleteCustomer', $customer->customer_id], 'method' => 'POST']) }}
                 <button style="margin-left:5px" type="submit" class="btn btn-danger" 
-                    onclick="return confirm('Are you sure you want to delete this customer?')">{{ 'Delete' }}</button>
+                    onclick="return confirm('Are you sure you want to delete this customer?')">{{ __('customer.delete') }}</button>
             {{ Form::hidden('_method', 'PUT')}}
             {{ Form::close() }} 
 

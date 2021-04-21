@@ -60,3 +60,8 @@ Route::get('/categories/create', [App\Http\Controllers\PortalPageController::cla
 Route::put('/categories/add', [App\Http\Controllers\PortalPageController::class, 'addCategory'])->name('addCategory');
 Route::get('/categories/edit/{categoryId}', [App\Http\Controllers\PortalPageController::class, 'viewUpdateCategoryPage'])->name('viewUpdateCategoryPage');
 Route::put('/categories/update/{categoryId}', [App\Http\Controllers\PortalPageController::class, 'updateCategory'])->name('updateCategory');
+
+// Route::get('setlocale/{locale}',function($lang) {
+//     \Session::put('locale',$lang);
+//     return redirect()->back();
+// });
