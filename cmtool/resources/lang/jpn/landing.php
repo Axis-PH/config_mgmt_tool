@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'sites' => 'SITES JAPANESE',
-    'contacts' => 'CONTACTS JAPANESE',
+    'portal' => '総合メニュー',
+    'sites' => 'サイト',
+    'contacts' => '連絡先',
 ];
