@@ -19,4 +19,11 @@ class FieldChecker
 
         return true;
     }
+
+    public function isValidEmail($mail) {
+        if (!preg_match('[@]', $mail)) 
+           return false;
+        
+        return true;
+    }
 }

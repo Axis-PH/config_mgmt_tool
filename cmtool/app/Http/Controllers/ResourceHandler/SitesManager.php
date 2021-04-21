@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Models\Site;
+use App\Models\Item;
 use Facades\App\Helper\FieldChecker;
 
 class SitesManager extends Controller
@@ -69,4 +70,12 @@ class SitesManager extends Controller
             return false;
         }
     }
+
+    public function getSiteIdByItemId(int $itemId)
+    {
+        $item = Item::find($itemId);
+        $site = $item->site_id;
+        return $site;
+    }  
 }
+

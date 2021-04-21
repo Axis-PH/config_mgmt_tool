@@ -13,9 +13,11 @@
             <thead class="thead-dark">
             <tr>
                 <th class="nameHeader">{{ __('Name') }}</th>
-                <th class="nameHeader">{{ __('NamePIC') }}</th>
+                <th class="nameHeader">{{ __('Staff') }}</th>
                 <th class="telephoneHeader">{{ __('Telephone') }}</th>
                 <th class="emailHeader">{{ __('Email') }}</th>
+                <th class="hpAddHeader">{{ __('HP Address') }}</th>
+                <th class="memoHeader">{{ __('Memo') }}</th>
                 <th class="buttonHeader"></th>
             </tr>
             </thead>
@@ -53,6 +55,22 @@
                         ?>
                             <td>{{ $email }}</td>
 
+                        <?php 
+                            if (!empty($maker->hp_address)) 
+                                $hp_address = $maker->hp_address;
+                            else 
+                                $hp_address = '';
+                        ?>
+                            <td>{{ $hp_address }}</td>
+
+                        <?php 
+                            if (!empty($maker->maker_memo)) 
+                                $maker_memo = $maker->maker_memo;
+                            else 
+                                $maker_memo = '';
+                        ?>
+                            <td>{{ $maker_memo }}</td>
+
                         <td>
                             <a href="{{ url("makers/update/" . $maker->maker_id) }}" 
                                 class="btn btn-primary" style="font-size:15px; width:100%; height: 100%">{{ __('edit') }}</a>
@@ -88,6 +106,18 @@
     }
 
     .buttonHeader {
+        text-align:center; 
+        width:10%; 
+        border: 1px solid black
+    }
+
+    .hpAddHeader {
+        text-align:center; 
+        width:10%; 
+        border: 1px solid black
+    }
+
+    .memoHeader {
         text-align:center; 
         width:10%; 
         border: 1px solid black

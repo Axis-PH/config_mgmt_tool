@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Customer;
-use App\Models\Equipment;
 
 use App\Http\Controllers\ResourceHandler\DataManager;
+use Redirect;
 
 class PortalPageController extends Controller
 {
@@ -149,7 +149,7 @@ class PortalPageController extends Controller
             return redirect('/makers')->with('error', 'Delete ERROR');
     }
 
-    public function viewMakerListPage()
+    public function viewMakersPage()
     {
         $dataManager = new DataManager;
         $makers = $dataManager->getAllMakers();
@@ -157,26 +157,184 @@ class PortalPageController extends Controller
         return view('pages/portal/makers')->with('makers', $makers);
     }
 
-    // public function item(int $itemId)
-    // {
-    //     $equipment = Equipment::find($itemId);
-    //     return view('pages/portal/item')->with('equipment', $equipment);
-    // }
-
-    // public function itemListByCustomerId(int $customerId)
-    // {
-    //     $customer = Customer::find($customerId);
-    //     return view('pages/portal/itemList')->with('equipments', $customer->equipments);
-    // }
-
-    public function itemList()
+    public function viewItemsPage(int $siteId, int $customerId)
     {
-        return view('pages/portal/itemList');
+        $dataManager = new DataManager;
+        $items = $dataManager->getItemsByCustomerId($customerId);
+        
+        return view('pages/portal/items')->with('items', $items)->with('siteId', $siteId)->with('customerId', $customerId);
     }
 
-    // public function contactList()
-    // {
-    //     $customers = Customer::all();
-    //     return view('pages/portal/contactList')->with('customers', $customers);
-    // }
+    public function deleteItem(int $itemId)
+    {
+        $dataManager = new DataManager;
+        $site = $dataManager->getSiteIdByItemId($itemId);
+        $customer = $dataManager->getCustomerIdByItemId($itemId);
+        $status = $dataManager->deleteItem($itemId);
+        
+        if ($status)
+            return redirect('items/list/'.$site.'/'.$customer)->with('success');
+        else
+            return redirect('items/list/'.$site.'/'.$customer)->with('error');
+    }
+
+    public function viewCreateItemPage(int $siteId, int $customerId)
+    {
+        return view('pages/portal/createItem')->with('siteId', $siteId)->with('customerId', $customerId);
+    }
+
+    public function addItem(Request $request, int $siteId, int $customerId)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->addItem($request, $siteId, $customerId);
+
+        if ($status)
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success');
+        else
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error');
+    }
+
+    public function viewUpdateItemPage(int $siteId, int $customerId, int $id)
+    {
+        
+        $dataManager = new DataManager;
+        $item = $dataManager->getItemDetailsForUpdate($id);
+        
+        return view('pages/portal/updateItem')->with('id', $id)->with('item', $item)->with('siteId', $siteId)->with('customerId', $customerId);
+    }
+
+    public function updateItem(Request $request, int $id, int $siteId, int $customerId)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->updateItemDetails($request, $id, $siteId, $customerId);
+
+        if ($status)
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success');
+        else
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error');        
+    }
+
+    public function viewItemInfoPage(int $id)
+    {
+        $dataManager = new DataManager;
+        $item = $dataManager->getItemDetailsForUpdate($id);
+        
+        return view('pages/portal/displayItem')->with('item', $item);
+    }
+
+    public function viewCustomerListPage() {
+
+        $dataManager = new DataManager;
+        $customers = $dataManager->getAllCustomers();
+
+        return view('pages/portal/customerList')->with('customers', $customers);
+    }
+
+    public function viewUpdateCustomerListPage(int $customerId) {
+
+        $dataManager = new DataManager;
+        $customers = $dataManager->getCustomerByCustomerId($customerId);
+
+        return view('pages/portal/updateCustomerList')->with('customers', $customers);
+    }
+
+    public function updateCustomer(Request $request) {
+
+        $dataManager = new DataManager;
+        $status = $dataManager->updateCustomer($request);
+
+        if ($status) {
+            return redirect('/customers')->with('success', 'Successfully updated the customer.');
+        }
+        else {
+            return redirect('/customers')->with('error', 'ERROR.');
+        }
+    }
+
+    public function deleteCustomer(int $customerId) {
+
+        $dataManager = new DataManager;
+        $status = $dataManager->deleteCustomer($customerId);
+        
+        if ($status)
+        {
+            return redirect('/customers')->with('success');
+        }
+
+    }
+
+    public function viewAddCustomerListPage() {
+
+        $dataManager = new DataManager;
+        $customerId = $dataManager->getLastCustomerId();
+
+        return view('pages/portal/addCustomerList')->with('customerId', $customerId);
+    }
+
+    public function addCustomer(Request $request) {
+
+        $dataManager = new DataManager;
+        $status = $dataManager->addCustomer($request);
+
+        if ($status) {
+            return redirect('/customers')->with('success', 'Successfully added the customer.');
+        }
+        else {
+            return redirect('/customers')->with('error', 'ERROR.');
+        }
+    }
+    
+    public function viewCategoriesPage()
+    {
+        $dataManager = new DataManager;
+        $categories = $dataManager->getCategories();
+        
+        return view('pages/portal/categories')->with('categories', $categories);
+    }
+
+    public function deleteCategory(int $categoryId)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->deleteCategory($categoryId);
+
+        if ($status)
+            return redirect('categories')->with('success');
+        else
+            return redirect('categories')->with('error');        
+    }
+
+    public function viewCreateCategoryPage()
+    {
+        return view('pages/portal/createCategory');
+    }
+
+    public function addCategory(Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->addCategory($request);
+
+        if ($status)
+            return redirect('categories')->with('success');
+        else
+            return redirect('categories')->with('error');
+    }
+
+    public function viewUpdateCategoryPage(int $categoryId)
+    {
+        $dataManager = new DataManager;
+        $category = $dataManager->getCategoryForUpdate($categoryId);
+        
+        return view('pages/portal/updateCategory')->with('category', $category)->with('categoryId', $categoryId);
+    }
+
+    public function updateCategory(int $categoryId, Request $request)
+    {
+        $dataManager = new DataManager;
+        $status = $dataManager->updateCategory($categoryId, $request);
+        
+        if ($status)
+            return redirect('categories')->with('success');
+        else
+            return redirect('categories')->with('error');
+    }
 }

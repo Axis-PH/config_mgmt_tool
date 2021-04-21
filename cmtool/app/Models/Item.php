@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EquipmentClassification extends Model
+class Item extends Model
 {
+    protected $primaryKey = 'item_id';
     use HasFactory;
 }
