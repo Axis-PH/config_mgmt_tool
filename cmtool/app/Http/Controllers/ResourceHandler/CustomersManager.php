@@ -31,12 +31,9 @@ class CustomersManager extends Controller
         return $url;
     }
 
-    public function getCustomerList() {
+    public function getAllCustomer() {
 
         $customers = Customer::simplePaginate(5);
-        // $customers = DB::table('customers')
-        //     ->select('*')
-        //     ->paginate(5);
 
         return $customers;
     }
@@ -51,8 +48,10 @@ class CustomersManager extends Controller
         return $customer;
     }
 
-    public function updateCustomer($request, string $updateStatus, string $addStatus) {
+    public function updateCustomer($request) {
 
+        $addStatus = false;
+        $updateStatus = true;
         return $this->saveCustomer(Customer::find($request->customer_id), $request, $addStatus, $updateStatus);
     }
 
@@ -64,20 +63,29 @@ class CustomersManager extends Controller
                 ->first();
         
         if ($customer) {
-            $customer = DB::table('customers')
+
+            try {
+                $customer = DB::table('customers')
                 ->select('*')
                 ->where('customer_id', '=', $id)
                 ->delete();
 
                 return true;
+            }
+            catch (\Exception $exception) {
+                return false;
+            }
         }
         else {
+            
             dd("no data.");
         } 
     }
 
-    public function addCustomer($request, string $updateStatus, string $addStatus) {
+    public function addCustomer($request) {
 
+        $addStatus = true;
+        $updateStatus = false;
         return $this->saveCustomer(new Customer, $request, $addStatus, $updateStatus);
     }
 
@@ -119,7 +127,7 @@ class CustomersManager extends Controller
             }
             else {
                 try {
-                        $customer->customer_id = $this->getLastCustomerId() + 1;
+                        $customer->customer_id = $this->getLastCustomerId();
                         $customer->customer_name = $request->customer_name;
                         $customer->customer_staff = $request->customer_staff;
                         $customer->customer_tel = $request->customer_tel;
