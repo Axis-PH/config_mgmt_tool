@@ -9,37 +9,37 @@
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addid') }}:</label>
                 {{Form::text('customer_id', $customer->customer_id, ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'placeholder' => __('ID'), 'readonly' => 'true'])}}
+                    'class' => 'form-control', 'placeholder' => __('customer.addid'), 'readonly' => 'true'])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addname') }}:</label>
                 {{Form::text('customer_name', $customer->customer_name, ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'placeholder' => __('Customer Name')])}}
+                    'class' => 'form-control', 'placeholder' => __('customer.addname')])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addstaff') }}:</label>
                 {{Form::text('customer_staff', $customer->customer_staff, ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'placeholder' => __('Person In Charge')])}}
+                    'class' => 'form-control', 'placeholder' => __('customer.addstaff')])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addtel') }}:</label>
                 {{Form::text('customer_tel', $customer->customer_tel, ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'placeholder' => __('Telephone')])}}
+                    'class' => 'form-control', 'placeholder' => __('customer.addtel')])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addmail') }}:</label>
                 {{Form::text('customer_mail', $customer->customer_mail, ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'placeholder' => __('Email')])}}
+                    'class' => 'form-control', 'placeholder' => __('customer.addmail')])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('customer.addmemo') }}:</label>
                 {{Form::text('customer_memo', $customer->customer_memo, ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'placeholder' => __('Remarks')])}}
+                    'class' => 'form-control', 'placeholder' => __('customer.addmemo')])}}
             </div>
             {{Form::hidden('customerId', $customer->customer_id)}}
             <br><br><br>
@@ -56,7 +56,7 @@
             {{ Form::close() }} 
 
             <a style="margin-left:5px" href={{ redirect()->getUrlGenerator()->previous() }} 
-                class="btn btn-secondary">{{ __('Cancel') }}</a>
+                class="btn btn-secondary">{{ __('customer.cancel') }}</a>
         </div>
     </div>
 

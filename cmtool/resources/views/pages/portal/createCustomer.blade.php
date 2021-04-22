@@ -50,7 +50,7 @@
             {{ Form::close() }} 
 
             <a style="margin-left:5px" href={{ redirect()->getUrlGenerator()->previous() }} 
-                class="btn btn-secondary">{{ __('Cancel') }}</a>
+                class="btn btn-secondary">{{ __('customer.cancel') }}</a>
         </div>
     </div>
 

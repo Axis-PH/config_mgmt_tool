@@ -4,7 +4,6 @@
     @include('includes.messages')
     <div style="display: inline-block; width: 100%; border:1px solid black; padding: 0px 10px;">
         <h1 style="margin-top:20px; ">連絡先一覧</h1>
-        {{-- <h1 style="margin-top:20px; ">Contact List</h1> --}}
         <div style="float:left; padding:5px">
             <a href="{{ url("customers/create") }}" class="btn btn-success" 
                 style="font-size:15px; width:100px; height: 100%">{{ __('customer.create') }}</a>
@@ -40,7 +39,7 @@
         <br><br>
         <div style="margin-top:-10px; margin-bottom:10px">
             <a href={{ '/contactLanding' }} class="btn btn-link" 
-                style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">{{ __('バック') }}</a>
+                style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">{{ __('customer.back') }}</a>
         </div>
         
     </div>

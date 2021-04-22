@@ -29,6 +29,8 @@ return [
     'edit' => 'Edit',
     'update' => 'Update',
     'delete' => 'Delete',
+    'cancel' => 'Cancel',
+    'back' => 'Back',
 
 
 ];

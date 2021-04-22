@@ -33,7 +33,7 @@ class CustomersManager extends Controller
 
     public function getAllCustomer() {
 
-        $customers = Customer::simplePaginate(5);
+        $customers = Customer::simplePaginate(10);
 
         return $customers;
     }
@@ -89,7 +89,7 @@ class CustomersManager extends Controller
 
     public function saveCustomer(Customer $customer, $request, $status) {
 
-       if ($this->getFieldChecker($request) == false) {
+       if ($this->checkCustomer($request) == false) {
             return false;
        }
 
@@ -101,49 +101,20 @@ class CustomersManager extends Controller
                 ->last();
             
             if ($customerRecord == null) {
-                try {
-                    $customer->customer_id = 1;
-                    $customer->customer_name = $request->customer_name;
-                    $customer->customer_staff = $request->customer_staff;
-                    $customer->customer_tel = $request->customer_tel;
-                    $customer->customer_mail = $request->customer_mail;
-                    $customer->customer_memo = $request->customer_memo;
-                    $customer->save();
-                    return true;
-                }
-                catch (\Exception $exception) {
-                    return false;
-                }
+                $newCustomer_id = 1;
+
+                return $this->saveCustomerRecord($request, $customer, $newCustomer_id);
             }
             else {
-                try {
-                        $customer->customer_id = $this->getLastCustomerId();
-                        $customer->customer_name = $request->customer_name;
-                        $customer->customer_staff = $request->customer_staff;
-                        $customer->customer_tel = $request->customer_tel;
-                        $customer->customer_mail = $request->customer_mail;
-                        $customer->customer_memo = $request->customer_memo;
-                        $customer->save();
-                        return true;
-                    }
-                catch (\Exception $exception) {
-                        return false;
-                    }
+                $newCustomer_id = $this->getLastCustomerId();
+
+                return $this->saveCustomerRecord($request, $customer, $newCustomer_id);
             }
         }
         else if ($status == 'update') {
-            try {
-                $customer->customer_name = $request->customer_name;
-                $customer->customer_staff = $request->customer_staff;
-                $customer->customer_tel = $request->customer_tel;
-                $customer->customer_mail = $request->customer_mail;
-                $customer->customer_memo = $request->customer_memo;
-                $customer->save();
-                return true;
-            }
-            catch (\Exception $exception) {
-                return false;
-            }
+            $newCustomer_id = $customer->customer_id;
+
+            return $this->saveCustomerRecord($request, $customer, $newCustomer_id);
         }
         else {
             return null;
@@ -165,7 +136,7 @@ class CustomersManager extends Controller
         return $customer->customer_id + 1;
     }
 
-    private function getFieldChecker($request) {
+    private function checkCustomer($request) {
 
         if (!FieldChecker::isValidName($request->customer_name))
             return false;
@@ -180,5 +151,22 @@ class CustomersManager extends Controller
             return false;
 
         return true;
+    }
+
+    private function saveCustomerRecord($request, $customer, $newCustomer_id) {
+
+        try {
+            $customer->customer_id = $newCustomer_id;
+            $customer->customer_name = $request->customer_name;
+            $customer->customer_staff = $request->customer_staff;
+            $customer->customer_tel = $request->customer_tel;
+            $customer->customer_mail = $request->customer_mail;
+            $customer->customer_memo = $request->customer_memo;
+            $customer->save();
+            return true;
+        }
+        catch (\Exception $exception) {
+            return false;
+        }
     }
 }

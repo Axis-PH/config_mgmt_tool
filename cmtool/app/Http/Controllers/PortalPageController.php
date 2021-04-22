@@ -227,16 +227,15 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $customers = $dataManager->getAllCustomers();
 
-        return view('pages/portal/customers')->with('customers', $customers);
+        return view('pages/portal/customer')->with('customers', $customers);
     }
 
     public function viewUpdateCustomerPage(int $customerId) {
 
         $dataManager = new DataManager;
-        //$customers = $dataManager->getCustomerByCustomerId($customerId); //make it singular
         $customer = $dataManager->getCustomerByCustomerId($customerId);
 
-        return view('pages/portal/updateCustomers')->with('customer', $customer);
+        return view('pages/portal/updateCustomer')->with('customer', $customer);
     }
 
     public function updateCustomer(Request $request) {
@@ -269,7 +268,7 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $customerId = $dataManager->getLastCustomerId();
 
-        return view('pages/portal/addCustomers')->with('customerId', $customerId);
+        return view('pages/portal/createCustomer')->with('customerId', $customerId);
     }
 
     public function addCustomer(Request $request) {
