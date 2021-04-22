@@ -31,6 +31,16 @@ class CustomersManager extends Controller
         return $customerId;
     }
 
+    public function getCustomerName($customerId)
+    {
+        $customerName = DB::table('customers')
+        ->select('customer_name')
+        ->where('customer_id', '=', $customerId)
+        ->first();       
+        
+        return $customerName->customer_name;
+    }
+
     public function getAllCustomer() {
 
         $customers = Customer::simplePaginate(10);

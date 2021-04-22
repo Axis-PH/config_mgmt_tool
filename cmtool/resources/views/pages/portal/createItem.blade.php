@@ -1,60 +1,82 @@
 @extends('layouts.app')
 
 @section('content')
-<div class='container'>
-    <div class="content">
-        <div class="title m-b-md">
-            <br>
-            <h2>
-                Create Item
-            </h2>
-        </div>
+    @include('includes.messages')
+    <div style="display: inline-block; width: 800px; border:1px solid black;">
+        <h1 style="margin-top:20px; ">{{ __('Create Item') }}</h1>
         {{ Form::open(['action' => ['PortalPageController@addItem', $siteId, $customerId], 'method' => 'POST']) }}
-            <div class="form-group">
-                Item Name:
-                {{Form::text('itemName', '', ['class' => 'form-control'])}}
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Item Name: ') }}</label>
+                {{Form::text('itemName', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control', 'placeholder' => __('Item Name')])}}
             </div>
-            <div class="form-group">
-                Item Category:
-                {{Form::text('itemCategory', '', ['class' => 'form-control'])}}
+            <br><br>
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Item Category: ') }}</label>
+                {{Form::select('itemCategory', $categories, '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control'])}}
             </div>
-            <div class="form-group">
-                Model:
-                {{Form::text('model', '', ['class' => 'form-control'])}}
+            <br><br>
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Model: ') }}</label>
+                {{Form::text('model', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control', 'placeholder' => __('Model')])}}
             </div>
-            <div class="form-group">
-                S/N:
-                {{Form::text('serialNumber', '', ['class' => 'form-control'])}}
+            <br><br>
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Serial Number: ') }}</label>
+                {{Form::text('serialNumber', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control', 'placeholder' => __('Serial Number')])}}
             </div>
-            <div class="form-group">
-                IP Address:
-                {{Form::text('ipAddress', '', ['class' => 'form-control'])}}
+            <br><br>
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('IP Address: ') }}</label>
+                {{Form::text('ipAddress', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control', 'placeholder' => __('IP Address')])}}            
             </div>
-            <div class="form-group">
-                Netmask:
-                {{Form::text('netmask', '', ['class' => 'form-control'])}}
+            <br><br>
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Netmask: ') }}</label>
+                {{Form::text('netmask', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control', 'placeholder' => __('Netmask')])}}            
             </div>
-            <div class="form-group">
-                Gateway:
-                {{Form::text('gateway', '', ['class' => 'form-control'])}}
+            <br><br>
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Gateway: ') }}</label>
+                {{Form::text('gateway', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control', 'placeholder' => __('Gateway')])}}            
             </div>
-            <div class="form-group">
-                Installation Location:
-                {{Form::text('installationLocation', '', ['class' => 'form-control'])}}
+            <br><br>
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Location: ') }}</label>
+                {{Form::text('installationLocation', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control', 'placeholder' => __('Installation Location')])}}            
             </div>
-            <div class="form-group">
-                Maker ID:
-                {{Form::text('makerId', '', ['class' => 'form-control'])}}
+            <br><br>
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Maker: ') }}</label>
+                {{Form::select('makerId', $makers, '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control'])}}
             </div>
-            <div class="form-group">
-                Remarks:
-                {{Form::text('remarks', '', ['class' => 'form-control'])}}
+            <br><br>
+            <div>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Remarks: ') }}</label>
+                {{Form::text('remarks', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
+                    'class' => 'form-control', 'placeholder' => __('Remarks')])}}            
             </div>
-        {{Form::submit('Add Item', ['class' => 'btn btn-primary'])}}
-        <a href={{ redirect()->getUrlGenerator()->previous() }} class="btn btn-link">Cancel</a>
-        {{ Form::hidden('_method', 'PUT')}}
-        {{ Form::close() }} 
+            <br><br><br>
+            
+        <div style="display:flex; float:right; margin-right:120px; margin-bottom:20px">
+            {{Form::submit(__('Create Item'), ['class' => 'btn btn-primary'])}}
+            {{ Form::hidden('_method', 'PUT')}}
+            {{ Form::close() }} 
+
+            <a style="margin-left:5px" href={{ redirect()->getUrlGenerator()->previous() }} 
+                class="btn btn-secondary">{{ __('Cancel') }}</a>
+        </div>
     </div>
-</div>
+
+<style>
+</style>
+
 @endsection
-   

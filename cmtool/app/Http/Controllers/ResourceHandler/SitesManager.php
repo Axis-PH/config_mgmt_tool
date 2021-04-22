@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Site;
 use App\Models\Item;
 use Facades\App\Helper\FieldChecker;
+use DB;
 
 class SitesManager extends Controller
 {
@@ -77,5 +78,15 @@ class SitesManager extends Controller
         $site = $item->site_id;
         return $site;
     }  
+
+    public function getSiteName(int $siteId)
+    {
+        $siteName = DB::table('sites')
+        ->select('site_name')
+        ->where('site_id', '=', $siteId)
+        ->first();       
+        
+        return $siteName->site_name;
+    } 
 }
 

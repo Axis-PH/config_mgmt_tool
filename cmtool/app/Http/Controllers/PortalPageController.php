@@ -164,7 +164,7 @@ class PortalPageController extends Controller
     public function viewItemsPage(int $siteId, int $customerId)
     {
         $dataManager = new DataManager;
-        $items = $dataManager->getItemsByCustomerId($customerId);
+        $items = $dataManager->getAllItems($siteId, $customerId);
         
         return view('pages/portal/items')->with('items', $items)->with('siteId', $siteId)->with('customerId', $customerId);
     }
@@ -184,7 +184,12 @@ class PortalPageController extends Controller
 
     public function viewCreateItemPage(int $siteId, int $customerId)
     {
-        return view('pages/portal/createItem')->with('siteId', $siteId)->with('customerId', $customerId);
+        $dataManager = new DataManager;
+        $categories = $dataManager->getCategoriesDropdownList();
+        $makers = $dataManager->getMakersDropdownList();
+
+        return view('pages/portal/createItem')->with('siteId', $siteId)->with('customerId', $customerId)
+            ->with('categories', $categories)->with('makers', $makers);
     }
 
     public function addItem(Request $request, int $siteId, int $customerId)
@@ -203,8 +208,11 @@ class PortalPageController extends Controller
         
         $dataManager = new DataManager;
         $item = $dataManager->getItemDetails($id);
+        $categories = $dataManager->getCategoriesDropdownList();
+        $makers = $dataManager->getMakersDropdownList();
         
-        return view('pages/portal/updateItem')->with('id', $id)->with('item', $item)->with('siteId', $siteId)->with('customerId', $customerId);
+        return view('pages/portal/updateItem')->with('id', $id)->with('item', $item)->with('siteId', $siteId)
+            ->with('customerId', $customerId)->with('categories', $categories)->with('makers', $makers);
     }
 
     public function updateItem(Request $request, int $id, int $siteId, int $customerId)
@@ -222,8 +230,13 @@ class PortalPageController extends Controller
     {
         $dataManager = new DataManager;
         $item = $dataManager->getItemDetails($id);
-        
-        return view('pages/portal/displayItem')->with('item', $item);
+        $categoryName = $dataManager->getCategoryName($item->category);
+        $customerName = $dataManager->getCustomerName($item->customer_id);
+        $siteName = $dataManager->getSiteName($item->site_id);
+        $makerName = $dataManager->getMakerName($item->maker_id);
+
+        return view('pages/portal/displayItem')->with('item', $item)->with('categoryName', $categoryName)
+                ->with('customerName', $customerName)->with('siteName', $siteName)->with('makerName', $makerName);
     }
 
     public function viewCustomerPage() {

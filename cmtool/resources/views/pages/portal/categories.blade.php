@@ -2,8 +2,7 @@
 
 @section('content')
     @include('includes.messages')
-    <div style="display: inline-block; width: 900px; border:1px solid black;">
-        {{-- <h1 style="margin-top:20px; ">Item List</h1> --}}
+    <div style="display: inline-block; width: 100%; padding: 0px 10px; border:1px solid black;">
         <h1 style="margin-top:20px; ">{{ __('Category') }}</h1>
         <div style="float:left; padding:5px">
             <a href="{{ url("categories/create")}}" class="btn btn-success" 
@@ -28,6 +27,8 @@
                 </tr> 
                 @endforeach
         </table>
+        <?php echo $categories->render(); ?>
+        <br>
         <div style="margin-top:-10px; margin-bottom:10px">
             <a href={{ '/' }} class="btn btn-link" 
                 style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">{{ __('Back') }}</a>

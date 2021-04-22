@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Models\Maker;
+use DB;
 
 use Facades\App\Helper\FieldChecker;
 
@@ -120,5 +121,23 @@ class MakersManager extends Controller
             return false;
         }
     }
+
+    public function getMakerName($makerId)
+    {
+        $makerName = DB::table('makers')
+        ->select('maker_name')
+        ->where('maker_id', '=', $makerId)
+        ->first();       
+        
+        return $makerName->maker_name;
+    }
+
+    public function getMakersDropdownList()
+    {
+        $makersDropdownList = Maker::all()
+            ->pluck('maker_name', 'maker_id');
+        
+        return $makersDropdownList;
+    }    
 }
 

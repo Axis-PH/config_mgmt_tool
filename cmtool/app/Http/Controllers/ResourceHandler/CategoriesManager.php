@@ -4,12 +4,13 @@ namespace App\Http\Controllers\ResourceHandler;
 use Facades\App\Helper\FieldChecker;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use DB;
 
 class CategoriesManager
 {
     public function getCategories()
     {
-        $categories = Category::all();
+        $categories = Category::simplePaginate(5);
         
         return $categories;
     }
@@ -57,4 +58,22 @@ class CategoriesManager
         
         return $category;
     }
+
+    public function getCategoryName($categoryId)
+    {
+        $categoryName = DB::table('categories')
+        ->select('category_name')
+        ->where('category_id', '=', $categoryId)
+        ->first();       
+        
+        return $categoryName->category_name;
+    }
+
+    public function getCategoriesDropdownList()
+    {
+        $categoriesDropdownList = Category::all()
+            ->pluck('category_name', 'category_id');
+        
+        return $categoriesDropdownList;
+    }    
 }
