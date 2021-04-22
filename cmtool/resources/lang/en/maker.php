@@ -9,6 +9,7 @@ return [
     */
 
     'maker' => 'Makers',
+    'customer' => 'Customers',
     'name' => 'Name',
     'staff' => 'Staff',
     'tel' => 'Tel',

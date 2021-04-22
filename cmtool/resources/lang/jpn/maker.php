@@ -9,6 +9,7 @@ return [
     */
 
     'maker' => 'メーカー',
+    'customer' => 'お客様',
     'name' => '名前',
     'staff' => 'スタッフ',
     'tel' => '電話',

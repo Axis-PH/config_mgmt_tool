@@ -47,12 +47,16 @@ class PortalPageController extends Controller
 
         return view('pages/portal/createSite')->with('customers', $customers);
     }
-
+    
     public function viewSiteUpdatePage(int $siteId)
     {
         $dataManager = new DataManager;
         $site = $dataManager->getSiteById($siteId);
         $customers = $dataManager->getCustomerDropdownList();
+
+        if (empty($site->customer))
+            return redirect('/sites')->with('error', __('site.siteUpdateFailed'));
+
         $selectedCustomerId = $site->customer->customer_id;
 
         return view('pages/portal/updateSite')->with('site', $site)->with('customers', $customers)

@@ -31,7 +31,7 @@ Route::get('/sites/create', [App\Http\Controllers\PortalPageController::class, '
 Route::put('/sites/add', [App\Http\Controllers\PortalPageController::class, 'addSite'])->name('addSite')->middleware('language');
 Route::put('/sites/update', [App\Http\Controllers\PortalPageController::class, 'updateSite'])->name('updateSite')->middleware('language');
 
-Route::get('/contactLanding', [App\Http\Controllers\PortalPageController::class, 'viewContactLandingPage'])->name('viewContactLandingPage');
+Route::get('/contactLanding', [App\Http\Controllers\PortalPageController::class, 'viewContactLandingPage'])->name('viewContactLandingPage')->middleware('language');
 
 Route::get('/makers', [App\Http\Controllers\PortalPageController::class, 'viewMakersPage'])->name('viewMakersPage')->middleware('language');
 Route::get('/makers/update/{makerId}', [App\Http\Controllers\PortalPageController::class, 'viewMakerUpdatePage'])->name('viewMakerUpdatePage')->middleware('language');
