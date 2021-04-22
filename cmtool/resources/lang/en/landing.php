@@ -10,6 +10,6 @@ return [
 
     'portal' => 'Portal',
     'sites' => 'Sites',
-    'customers' => 'Customers',
+    'contacts' => 'Contacts',
     'itemCategories' => 'Item Categories'
 ];

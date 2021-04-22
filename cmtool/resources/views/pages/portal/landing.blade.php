@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-md-7" style="padding:5px">
                             <a href="{{ url('/customers') }}" class="btn btn-primary" 
-                                style="font-size:20px; width:100%; height: 100%"> {{ __('landing.customers') }} </a>
+                                style="font-size:20px; width:100%; height: 100%"> {{ __('landing.contacts') }} </a>
                         </div>
                         <div class="col-md-7" style="padding:5px">
                             <a href="{{ url('/categories') }}" class="btn btn-primary" 
