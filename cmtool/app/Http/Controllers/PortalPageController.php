@@ -83,10 +83,10 @@ class PortalPageController extends Controller
         $status = $dataManager->addSite($request);
 
         if ($status)
-            return redirect('/sites')->with('success', 'Site Added');
+            return redirect('/sites')->with('success', __('site.siteAdded'));
 
         else 
-            return redirect('/sites')->with('error', 'Site Add ERROR');
+            return redirect('/sites')->with('error', __('site.siteAddFailed'));
     }
 
     public function addMaker(Request $request)
@@ -95,10 +95,10 @@ class PortalPageController extends Controller
         $status = $dataManager->addMaker($request);
 
         if ($status)
-            return redirect('/makers')->with('success', 'Maker Added');
+            return redirect('/makers')->with('success', __('maker.makerAdded'));
 
         else 
-            return redirect('/makers')->with('error', 'Maker Add ERROR');
+            return redirect('/makers')->with('error', __('maker.makerAddFailed'));
     }
 
     public function updateSite(Request $request)
@@ -107,10 +107,10 @@ class PortalPageController extends Controller
         $status = $dataManager->updateSite($request);
 
         if ($status)
-            return redirect('/sites')->with('success', 'Site Updated');
+            return redirect('/sites')->with('success', __('site.siteUpdated'));
 
         else 
-            return redirect('/sites')->with('error', 'Site Update ERROR');
+            return redirect('/sites')->with('error', __('site.siteUpdateFailed'));
     }
 
     public function updateMaker(Request $request)
@@ -119,10 +119,10 @@ class PortalPageController extends Controller
         $status = $dataManager->updateMaker($request);
 
         if ($status)
-            return redirect('/makers')->with('success', 'Maker Updated');
+            return redirect('/makers')->with('success', __('maker.makerUpdated'));
 
         else 
-            return redirect('/makers')->with('error', 'Maker Update ERROR');
+            return redirect('/makers')->with('error', __('maker.makerUpdateFailed'));
     }
 
     public function deleteSite(int $id)
@@ -131,10 +131,10 @@ class PortalPageController extends Controller
         $status = $dataManager->deleteSite($id);
 
         if ($status)
-            return redirect('/sites')->with('success', 'Site Deleted');
+            return redirect('/sites')->with('success', __('site.siteDeleted'));
 
         else 
-            return redirect('/sites')->with('error', 'Delete ERROR');
+            return redirect('/sites')->with('error', __('site.siteDeleteFailed'));
     }
 
     public function deleteMaker(int $id)
@@ -143,10 +143,10 @@ class PortalPageController extends Controller
         $status = $dataManager->deleteMaker($id);
 
         if ($status)
-            return redirect('/makers')->with('success', 'Maker Deleted');
+            return redirect('/makers')->with('success', __('maker.makerDeleted'));
 
         else 
-            return redirect('/makers')->with('error', 'Delete ERROR');
+            return redirect('/makers')->with('error', __('maker.makerDeleteFailed'));
     }
 
     public function viewMakersPage()

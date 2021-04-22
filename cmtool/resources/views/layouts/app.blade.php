@@ -25,7 +25,8 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    構成管理ツール 総合メニュー
+                    {{ __('navbar.menu') }}
+
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -39,7 +40,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <div style="margin-right:5px; margin-top:8px; display:inline">
-                            <a style="display:inline" href="{{ url('/setlocale/en') }}">{{__("eng")}}</a>
+                            <a style="display:inline" href="{{ url('/setlocale/en') }}">{{__("en")}}</a>
                             <div style="width:10px; display:inline"></div>
                             <a style="display:inline" href="{{ url('/setlocale/jpn') }}">{{__("jpn")}}</a>
                         </div>
