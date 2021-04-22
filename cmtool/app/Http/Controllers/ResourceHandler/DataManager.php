@@ -69,6 +69,22 @@ class DataManager extends Controller
         return $customerDropdownList;
     }
 
+    public function getCategoriesDropdownList()
+    {
+        $categoriesManager = new CategoriesManager;
+        $categoriesDropdownList = $categoriesManager->getCategoriesDropdownList();
+
+        return $categoriesDropdownList;
+    }
+
+    public function getMakersDropdownList()
+    {
+        $makersManager = new makersManager;
+        $makersDropdownList = $makersManager->getMakersDropdownList();
+
+        return $makersDropdownList;
+    }
+
     public function getSiteById($id)
     {
         $siteManager = new SitesManager;
@@ -161,6 +177,66 @@ class DataManager extends Controller
         }
     }
 
+    public function getCategoryName($categoryId)
+    {
+        $categoriesManager = new CategoriesManager;
+        $status = $categoriesManager->getCategoryName($categoryId);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function getCustomerName($customerId)
+    {
+        $customersManager = new CustomersManager;
+        $status = $customersManager->getCustomerName($customerId);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function getSiteName($siteId)
+    {
+        $sitesManager = new SitesManager;
+        $status = $sitesManager->getSiteName($siteId);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function getMakerName($makerId)
+    {
+        $makersManager = new MakersManager;
+        $status = $makersManager->getMakerName($makerId);
+
+        if ($status)
+        {
+            return $status;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public function updateItemDetails($request, int $id, int $siteId, int $customerId)
     {
         $itemsManager = new ItemsManager;
@@ -176,11 +252,11 @@ class DataManager extends Controller
         }
     }
 
-    public function getItemsByCustomerId(int $customerId)
+    public function getAllItems(int $siteId, int $customerId)
     {
 
         $itemsManager = new ItemsManager;
-        $items = $itemsManager->getItemsByCustomerId($customerId);
+        $items = $itemsManager->getAllItems($siteId, $customerId);
 
         return $items;
     }  

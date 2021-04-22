@@ -2,8 +2,7 @@
 
 @section('content')
     @include('includes.messages')
-    <div style="display: inline-block; width: 900px; border:1px solid black;">
-        {{-- <h1 style="margin-top:20px; ">Item List</h1> --}}
+    <div style="display: inline-block; width: 100%; padding: 0px 10px; border:1px solid black;">
         <h1 style="margin-top:20px; ">機器一覧</h1>
         <div style="float:left; padding:5px">
             <a href="{{ url("/items/create") . '/' . $siteId . '/' . $customerId }}" class="btn btn-success" 
@@ -12,12 +11,6 @@
         <table class="table table-bordered table-striped table-responsive">
             <thead class="thead-dark">
             <tr>
-                {{-- <th class="nameHeader">{{ __('name') }}</th>
-                <th class="dateTimeHeader">{{ __('equipmentClassId') }}</th>
-                <th class="dateTimeHeader">{{ __('customerId') }}</th>
-                <th class="dateTimeHeader">{{ __('makerId') }}</th>
-                <th class="dateTimeHeader">{{ __('info') }}</th>
-                <th class="dateTimeHeader"></th> --}}
                 <th class="nameHeader">Item Name</th>
                 <th class="dateTimeHeader">Item Category</th>
                 <th class="dateTimeHeader">Customer Name</th>
@@ -41,6 +34,8 @@
                 </tr> 
                 @endforeach
         </table>
+        <?php echo $items->render(); ?>
+        <br>
         <div style="margin-top:-10px; margin-bottom:10px">
             <a href={{ '/sites' }} class="btn btn-link" 
                 style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">戻る</a>
