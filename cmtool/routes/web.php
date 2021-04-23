@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-
+ 
 Route::get('/home', [App\Http\Controllers\PortalPageController::class, 'index'])->middleware('language');
 Route::get('/', [App\Http\Controllers\PortalPageController::class, 'index'])->name('home')->middleware('language');
 
