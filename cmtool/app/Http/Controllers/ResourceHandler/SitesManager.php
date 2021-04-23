@@ -81,12 +81,12 @@ class SitesManager extends Controller
 
     public function getSiteName(int $siteId)
     {
-        $siteName = DB::table('sites')
+        $site = DB::table('sites')
         ->select('site_name')
         ->where('site_id', '=', $siteId)
         ->first();       
         
-        return $siteName->site_name;
+        return $site->site_name;
     } 
 }
 

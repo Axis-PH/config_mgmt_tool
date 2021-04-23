@@ -4,82 +4,82 @@
 @section('content')
     @include('includes.messages')
     <div style="display: inline-block; width: 800px; border:1px solid black;">
-        <h1 style="margin-top:20px; ">{{ __('Item Information') }}</h1>
+        <h1 style="margin-top:20px; ">{{ __('item.itemInfo') }}</h1>
 
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Item Name: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.name') }}</label>
                 {{Form::text('itemName', $item->item_name, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Item Name'), 'readonly' => 'true'])}}
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Item Category: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.category') }}</label>
                 {{Form::text('itemCategory', $categoryName, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'readonly' => 'true'])}}
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Model: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.model') }}</label>
                 {{Form::text('model', $item->model, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Model'), 'readonly' => 'true'])}}
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Serial Number: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.serial') }}</label>
                 {{Form::text('serialNumber', $item->serial, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Serial Number'), 'readonly' => 'true'])}}
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('IP Address: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.ip') }}</label>
                 {{Form::text('ipAddress', $item->ip, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('IP Address'), 'readonly' => 'true'])}}            
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Netmask: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.netmask') }}</label>
                 {{Form::text('netmask', $item->netmask, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Netmask'), 'readonly' => 'true'])}}            
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Gateway: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.gateway') }}</label>
                 {{Form::text('gateway', $item->gateway, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Gateway'), 'readonly' => 'true'])}}            
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Customer Name: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.customer') }}</label>
                 {{Form::text('customerName', $customerName, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Customer Name'), 'readonly' => 'true'])}}            
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Site Name: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.site') }}</label>
                 {{Form::text('gateway', $siteName, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Site Name'), 'readonly' => 'true'])}}            
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Location: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.location') }}</label>
                 {{Form::text('installationLocation', $item->place, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Installation Location'), 'readonly' => 'true'])}}            
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Maker: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.maker') }}</label>
                 {{Form::text('makerId', $makerName, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'readonly' => 'true'])}}
             </div>
             <br><br>
             <div>
-                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('Remarks: ') }}</label>
+                <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.memo') }}</label>
                 {{Form::text('remarks', $item->maker_id, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Remarks'), 'readonly' => 'true'])}}            
             </div>
             <br><br><br>
             
-            <a href={{ redirect()->getUrlGenerator()->previous() }} class="btn btn-primary">Return</a>
+            <a href={{ redirect()->getUrlGenerator()->previous() }} class="btn btn-primary">{{ __('item.back') }}</a>
             {{ Form::hidden('_method', 'PUT')}}
             {{ Form::close() }} 
         </div>
