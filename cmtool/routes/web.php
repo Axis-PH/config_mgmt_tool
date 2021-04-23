@@ -44,10 +44,10 @@ Route::put('/makers/add', [App\Http\Controllers\PortalPageController::class, 'ad
 //Route::get('/contactList', [App\Http\Controllers\PortalPageController::class, 'contactList'])->name('contactList');
 Route::get('/customers', [App\Http\Controllers\PortalPageController::class, 'viewCustomerPage'])->name('viewCustomerPage')->middleware('language');
 Route::get('/customers/create', [App\Http\Controllers\PortalPageController::class, 'viewAddCustomerPage'])->name('viewAddCustomerPage')->middleware('language');
-Route::put('/customers/add', [App\Http\Controllers\PortalPageController::class, 'addCustomer'])->name('addCustomer');
+Route::put('/customers/add', [App\Http\Controllers\PortalPageController::class, 'addCustomer'])->name('addCustomer')->middleware('language');
 Route::get('/customers/update/{customerId}', [App\Http\Controllers\PortalPageController::class, 'viewUpdateCustomerPage'])->name('viewUpdateCustomerPage')->middleware('language');
-Route::put('/customers/delete/{customerId}', [App\Http\Controllers\PortalPageController::class, 'deleteCustomer'])->name('deleteCustomer');
-Route::put('/customers/update', [App\Http\Controllers\PortalPageController::class, 'updateCustomer'])->name('updateCustomer');
+Route::put('/customers/delete/{customerId}', [App\Http\Controllers\PortalPageController::class, 'deleteCustomer'])->name('deleteCustomer')->middleware('language');
+Route::put('/customers/update', [App\Http\Controllers\PortalPageController::class, 'updateCustomer'])->name('updateCustomer')->middleware('language');
 
 Route::get('/admin', [App\Http\Controllers\AdminPageController::class, 'index'])->name('admin');
 

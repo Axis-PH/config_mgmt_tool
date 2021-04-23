@@ -31,6 +31,10 @@ return [
     'delete' => '削除',
     'cancel' => 'キャンセル',
     'back' => '戻る',
+    'errorMessageName' => '文字のみを使用してください。例：John ',
+    'errorMessageStaff' => '文字のみを使用してください。例：John ',
+    'errorMessageTel' => '数字のみを使用してください。例：0234123443 ',
+    'errorMessageEmail' => 'これは有効なEメールではありません。例：example@gmail.com ',
 
 
 ];

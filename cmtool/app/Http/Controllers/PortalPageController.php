@@ -243,11 +243,11 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->updateCustomer($request);
 
-        if ($status) {
-            return redirect('/customers')->with('success', 'Successfully updated the customer.');
+        if ($status == 'true') {
+            return redirect('/customers')->with('success', 'Successfully added the customer.');
         }
         else {
-            return redirect('/customers')->with('error', 'ERROR.');
+            return redirect('/customers')->with('error', $status);
         }
     }
 
@@ -276,11 +276,11 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->addCustomer($request);
 
-        if ($status) {
+        if ($status == 'true') {
             return redirect('/customers')->with('success', 'Successfully added the customer.');
         }
         else {
-            return redirect('/customers')->with('error', 'ERROR.');
+            return redirect('/customers')->with('error', $status);
         }
     }
     
