@@ -122,14 +122,7 @@ class DataManager extends Controller
         $itemsManager = new ItemsManager;
         $status = $itemsManager->deleteItemById($itemId);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function getCustomerIdByItemId($itemId)
@@ -137,14 +130,7 @@ class DataManager extends Controller
         $customersManager = new CustomersManager;
         $customerId = $customersManager->getCustomerId($itemId);
 
-        if ($customerId)
-        {
-            return $customerId;
-        }
-        else
-        {
-            return false;
-        }
+        return $customerId;
     }
 
     public function addItem($request, int $siteId, int $customerId)
@@ -152,14 +138,7 @@ class DataManager extends Controller
         $itemsManager = new ItemsManager;
         $status = $itemsManager->addItem($request, $siteId, $customerId);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function getItemDetails($id)
@@ -167,14 +146,7 @@ class DataManager extends Controller
         $itemsManager = new ItemsManager;
         $status = $itemsManager->getItemDetails($id);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function getCategoryName($categoryId)
@@ -182,14 +154,7 @@ class DataManager extends Controller
         $categoriesManager = new CategoriesManager;
         $status = $categoriesManager->getCategoryName($categoryId);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function getCustomerName($customerId)
@@ -197,14 +162,7 @@ class DataManager extends Controller
         $customersManager = new CustomersManager;
         $status = $customersManager->getCustomerName($customerId);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function getSiteName($siteId)
@@ -212,14 +170,7 @@ class DataManager extends Controller
         $sitesManager = new SitesManager;
         $status = $sitesManager->getSiteName($siteId);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function getMakerName($makerId)
@@ -227,14 +178,7 @@ class DataManager extends Controller
         $makersManager = new MakersManager;
         $status = $makersManager->getMakerName($makerId);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function updateItemDetails($request, int $id, int $siteId, int $customerId)
@@ -242,14 +186,7 @@ class DataManager extends Controller
         $itemsManager = new ItemsManager;
         $status = $itemsManager->updateItemDetails($request, $id, $siteId, $customerId);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function getAllItems(int $siteId, int $customerId)
@@ -284,14 +221,7 @@ class DataManager extends Controller
         $categoriesManager = new CategoriesManager;
         $status = $categoriesManager->deleteCategory($categoryId);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function getCategoryForUpdate($id)
@@ -299,14 +229,7 @@ class DataManager extends Controller
         $categoriesManager = new CategoriesManager;
         $status = $categoriesManager->getCategoryForUpdate($id);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function addCategory(request $request)
@@ -314,14 +237,7 @@ class DataManager extends Controller
         $categoriesManager = new CategoriesManager;
         $status = $categoriesManager->addCategory($request);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function updateCategory(int $categoryId, Request $request)
@@ -329,14 +245,7 @@ class DataManager extends Controller
         $categoriesManager = new CategoriesManager;
         $status = $categoriesManager->updateCategory($categoryId, $request);
 
-        if ($status)
-        {
-            return $status;
-        }
-        else
-        {
-            return false;
-        }
+        return $status;
     }
 
     public function getAllCustomers() {
@@ -350,7 +259,6 @@ class DataManager extends Controller
     public function getCustomerByCustomerId($customer_id) {
 
         $customersManager = new CustomersManager;
-        //$customers = $customersManager->getCustomerById($customer_id); //naming convention singular
         $customer = $customersManager->getCustomerById($customer_id);
 
         return $customer;
@@ -359,16 +267,17 @@ class DataManager extends Controller
     public function updateCustomer($request) {
 
         $customersManager = new CustomersManager;
-        // $updateStatus = true; 
-        // $addStatus = false;
-        // $status = $customersManager->updateCustomer($request, $updateStatus, $addStatus);
         $status = $customersManager->updateCustomer($request);
-        if ($status)
+
+        if ($status != 'true')
         {
             return $status;
         }
-        else
+        else if ($status == 'true')
         {
+            return $status;
+        }
+        else {
             return null;
         }
     }
@@ -392,7 +301,6 @@ class DataManager extends Controller
     public function getLastCustomerId() {
 
         $customersManager = new CustomersManager;
-        //$getLastCustomerId = $customersManager->getLastCustomerId(); //naming convention
         $lastCustomerId = $customersManager->getLastCustomerId();
         
         return $lastCustomerId;
@@ -401,16 +309,17 @@ class DataManager extends Controller
     public function addCustomer($request) {
 
         $customersManager = new CustomersManager;
-        // $addStatus = true;
-        // $updateStatus = false;
-        // $status = $customersManager->addCustomer($request, $addStatus, $updateStatus);
         $status = $customersManager->addCustomer($request);
-        if ($status)
+
+        if ($status != 'true')
         {
             return $status;
         }
-        else
+        else if ($status == 'true')
         {
+            return $status;
+        }
+        else {
             return null;
         }
        

@@ -10,7 +10,7 @@ return [
 
     'siteName' => '拠点名',
     'customerName' => '顧客名',
-    'itemList' => '機器リスト',
+    'itemList' => '機器一覧',
     'site' => '地点',
     'sites' => 'サイト',
     'create' => '作る',

@@ -17,10 +17,17 @@ class CategoriesManager
 
     public function deleteCategory(int $categoryId)
     {
-        $category = Category::where('category_id', $categoryId);
-        $category->delete();
+        try {
+            $category = Category::where('category_id', $categoryId);
+            $category->delete();
 
-        return true;
+            return true;
+        }
+
+        catch (\Exception $e)
+        {
+            return false;
+        }     
     }
 
     public function addCategory($request)
@@ -35,19 +42,20 @@ class CategoriesManager
 
     private function saveCategory(Category $category, Request $request)
     {
-        if (!FieldChecker::isValidName($request->categoryName))
-            return false;
+        if (FieldChecker::isNotBlankField($request->categoryName)) {
+            try {        
+                $category->category_name = $request->categoryName;
+                $category->save();
+                return true;
+            }
 
-        try {        
-            $category->category_name = $request->categoryName;
-            $category->save();
-            return true;
+            catch (\Exception $e)
+            {
+                return false;
+            }    
         }
-
-        catch (\Exception $e)
-        {
+        else
             return false;
-        }     
     }
 
     public function getCategoryForUpdate($categoryId)
@@ -61,12 +69,12 @@ class CategoriesManager
 
     public function getCategoryName($categoryId)
     {
-        $categoryName = DB::table('categories')
+        $category = DB::table('categories')
         ->select('category_name')
         ->where('category_id', '=', $categoryId)
         ->first();       
         
-        return $categoryName->category_name;
+        return $category->category_name;
     }
 
     public function getCategoriesDropdownList()

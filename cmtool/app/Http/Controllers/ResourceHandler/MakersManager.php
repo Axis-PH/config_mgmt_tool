@@ -124,12 +124,12 @@ class MakersManager extends Controller
 
     public function getMakerName($makerId)
     {
-        $makerName = DB::table('makers')
+        $maker = DB::table('makers')
         ->select('maker_name')
         ->where('maker_id', '=', $makerId)
         ->first();       
         
-        return $makerName->maker_name;
+        return $maker->maker_name;
     }
 
     public function getMakersDropdownList()

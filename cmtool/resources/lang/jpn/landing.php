@@ -11,5 +11,5 @@ return [
     'portal' => '総合メニュー',
     'sites' => '保守先一覧',
     'contacts' => '連絡先一覧',
-    'itemCategories' => 'アイテムカテゴリ'
+    'itemCategories' => '機器分類'
 ];

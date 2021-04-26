@@ -26,4 +26,11 @@ class FieldChecker
         
         return true;
     }
+
+    public function isNotBlankField($field) {
+        if (is_null($field))
+           return false;
+        
+        return true;
+    }
 }

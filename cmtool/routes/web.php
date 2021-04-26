@@ -43,24 +43,24 @@ Route::put('/makers/add', [App\Http\Controllers\PortalPageController::class, 'ad
 //Route::get('/contactList', [App\Http\Controllers\PortalPageController::class, 'contactList'])->name('contactList');
 Route::get('/customers', [App\Http\Controllers\PortalPageController::class, 'viewCustomerPage'])->name('viewCustomerPage')->middleware('language');
 Route::get('/customers/create', [App\Http\Controllers\PortalPageController::class, 'viewAddCustomerPage'])->name('viewAddCustomerPage')->middleware('language');
-Route::put('/customers/add', [App\Http\Controllers\PortalPageController::class, 'addCustomer'])->name('addCustomer');
+Route::put('/customers/add', [App\Http\Controllers\PortalPageController::class, 'addCustomer'])->name('addCustomer')->middleware('language');
 Route::get('/customers/update/{customerId}', [App\Http\Controllers\PortalPageController::class, 'viewUpdateCustomerPage'])->name('viewUpdateCustomerPage')->middleware('language');
-Route::put('/customers/delete/{customerId}', [App\Http\Controllers\PortalPageController::class, 'deleteCustomer'])->name('deleteCustomer');
-Route::put('/customers/update', [App\Http\Controllers\PortalPageController::class, 'updateCustomer'])->name('updateCustomer');
+Route::put('/customers/delete/{customerId}', [App\Http\Controllers\PortalPageController::class, 'deleteCustomer'])->name('deleteCustomer')->middleware('language');
+Route::put('/customers/update', [App\Http\Controllers\PortalPageController::class, 'updateCustomer'])->name('updateCustomer')->middleware('language');
 
 Route::get('/admin', [App\Http\Controllers\AdminPageController::class, 'index'])->name('admin');
 
-Route::get('/items/list/{siteId}/{customerId}', [App\Http\Controllers\PortalPageController::class, 'viewItemsPage'])->name('viewItemsPage');
-Route::get('/items/delete/{itemId}', [App\Http\Controllers\PortalPageController::class, 'deleteItem'])->name('deleteItem');
-Route::get('/items/{itemId}/info', [App\Http\Controllers\PortalPageController::class, 'viewItemInfoPage'])->name('viewItemInfoPage');
-Route::get('/items/create/{siteId}/{customerId}', [App\Http\Controllers\PortalPageController::class, 'viewCreateItemPage'])->name('viewCreateItemPage');
-Route::get('/items/edit/{siteId}/{customerId}/{itemId}', [App\Http\Controllers\PortalPageController::class, 'viewUpdateItemPage'])->name('viewUpdateItemPage');
-Route::put('/items/add/{siteId}/{customerId}', [App\Http\Controllers\PortalPageController::class, 'addItem'])->name('addItem');
-Route::put('/items/update/{siteId}/{customerId}/{itemId}', [App\Http\Controllers\PortalPageController::class, 'updateItem'])->name('updateItem');
+Route::get('/items/list/{siteId}/{customerId}', [App\Http\Controllers\PortalPageController::class, 'viewItemsPage'])->name('viewItemsPage')->middleware('language');
+Route::get('/items/delete/{itemId}', [App\Http\Controllers\PortalPageController::class, 'deleteItem'])->name('deleteItem')->middleware('language');
+Route::get('/items/{itemId}/info', [App\Http\Controllers\PortalPageController::class, 'viewItemInfoPage'])->name('viewItemInfoPage')->middleware('language');
+Route::get('/items/create/{siteId}/{customerId}', [App\Http\Controllers\PortalPageController::class, 'viewCreateItemPage'])->name('viewCreateItemPage')->middleware('language');
+Route::get('/items/edit/{siteId}/{customerId}/{itemId}', [App\Http\Controllers\PortalPageController::class, 'viewUpdateItemPage'])->name('viewUpdateItemPage')->middleware('language');
+Route::put('/items/add/{siteId}/{customerId}', [App\Http\Controllers\PortalPageController::class, 'addItem'])->name('addItem')->middleware('language');
+Route::put('/items/update/{siteId}/{customerId}/{itemId}', [App\Http\Controllers\PortalPageController::class, 'updateItem'])->name('updateItem')->middleware('language');
 
-Route::get('/categories', [App\Http\Controllers\PortalPageController::class, 'viewCategoriesPage'])->name('viewCategoriesPage');
-Route::get('/categories/delete/{itemId}', [App\Http\Controllers\PortalPageController::class, 'deleteCategory'])->name('deleteCategory');
-Route::get('/categories/create', [App\Http\Controllers\PortalPageController::class, 'viewCreateCategoryPage'])->name('viewCreateCategoryPage');
-Route::put('/categories/add', [App\Http\Controllers\PortalPageController::class, 'addCategory'])->name('addCategory');
-Route::get('/categories/edit/{categoryId}', [App\Http\Controllers\PortalPageController::class, 'viewUpdateCategoryPage'])->name('viewUpdateCategoryPage');
-Route::put('/categories/update/{categoryId}', [App\Http\Controllers\PortalPageController::class, 'updateCategory'])->name('updateCategory');
+Route::get('/categories', [App\Http\Controllers\PortalPageController::class, 'viewCategoriesPage'])->name('viewCategoriesPage')->middleware('language');
+Route::get('/categories/delete/{itemId}', [App\Http\Controllers\PortalPageController::class, 'deleteCategory'])->name('deleteCategory')->middleware('language');
+Route::get('/categories/create', [App\Http\Controllers\PortalPageController::class, 'viewCreateCategoryPage'])->name('viewCreateCategoryPage')->middleware('language');
+Route::put('/categories/add', [App\Http\Controllers\PortalPageController::class, 'addCategory'])->name('addCategory')->middleware('language');
+Route::get('/categories/edit/{categoryId}', [App\Http\Controllers\PortalPageController::class, 'viewUpdateCategoryPage'])->name('viewUpdateCategoryPage')->middleware('language');
+Route::put('/categories/update/{categoryId}', [App\Http\Controllers\PortalPageController::class, 'updateCategory'])->name('updateCategory')->middleware('language');

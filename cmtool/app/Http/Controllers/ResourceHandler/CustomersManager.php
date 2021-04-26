@@ -33,12 +33,12 @@ class CustomersManager extends Controller
 
     public function getCustomerName($customerId)
     {
-        $customerName = DB::table('customers')
+        $customer = DB::table('customers')
         ->select('customer_name')
         ->where('customer_id', '=', $customerId)
         ->first();       
         
-        return $customerName->customer_name;
+        return $customer->customer_name;
     }
 
     public function getAllCustomer() {
@@ -99,8 +99,8 @@ class CustomersManager extends Controller
 
     public function saveCustomer(Customer $customer, $request, $status) {
 
-       if ($this->checkCustomer($request) == false) {
-            return false;
+       if ($this->checkCustomer($request) != 'true') {
+            return $this->checkCustomer($request);
        }
 
         if ($status == 'add') {
@@ -149,18 +149,18 @@ class CustomersManager extends Controller
     private function checkCustomer($request) {
 
         if (!FieldChecker::isValidName($request->customer_name))
-            return false;
+            return __('customer.errorMessageName');
 
         if (!FieldChecker::isValidName($request->customer_staff))
-            return false;
+            return __('customer.errorMessageStaff');
     
         if (!FieldChecker::isValidTel($request->customer_tel))
-            return false;
+            return __('customer.errorMessageTel');
 
         if (!FieldChecker::isValidEmail($request->customer_mail))
-            return false;
+            return __('customer.errorMessageEmail');
 
-        return true;
+        return 'true';
     }
 
     private function saveCustomerRecord($request, $customer, $newCustomer_id) {
