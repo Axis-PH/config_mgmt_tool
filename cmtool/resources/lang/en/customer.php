@@ -31,6 +31,11 @@ return [
     'delete' => 'Delete',
     'cancel' => 'Cancel',
     'back' => 'Back',
+    'errorMessageName' => 'Please use letters only. Example: John',
+    'errorMessageStaff' => 'Please use letters only. Example: John',
+    'errorMessageTel' => 'Please use numbers only. Example: 0234123443',
+    'errorMessageEmail' => 'This is not a valid Email. Example: example@gmail.com',
+
 
 
 ];

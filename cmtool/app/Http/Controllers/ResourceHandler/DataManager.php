@@ -350,7 +350,6 @@ class DataManager extends Controller
     public function getCustomerByCustomerId($customer_id) {
 
         $customersManager = new CustomersManager;
-        //$customers = $customersManager->getCustomerById($customer_id); //naming convention singular
         $customer = $customersManager->getCustomerById($customer_id);
 
         return $customer;
@@ -359,16 +358,17 @@ class DataManager extends Controller
     public function updateCustomer($request) {
 
         $customersManager = new CustomersManager;
-        // $updateStatus = true; 
-        // $addStatus = false;
-        // $status = $customersManager->updateCustomer($request, $updateStatus, $addStatus);
         $status = $customersManager->updateCustomer($request);
-        if ($status)
+
+        if ($status != 'true')
         {
             return $status;
         }
-        else
+        else if ($status == 'true')
         {
+            return $status;
+        }
+        else {
             return null;
         }
     }
@@ -392,7 +392,6 @@ class DataManager extends Controller
     public function getLastCustomerId() {
 
         $customersManager = new CustomersManager;
-        //$getLastCustomerId = $customersManager->getLastCustomerId(); //naming convention
         $lastCustomerId = $customersManager->getLastCustomerId();
         
         return $lastCustomerId;
@@ -401,16 +400,17 @@ class DataManager extends Controller
     public function addCustomer($request) {
 
         $customersManager = new CustomersManager;
-        // $addStatus = true;
-        // $updateStatus = false;
-        // $status = $customersManager->addCustomer($request, $addStatus, $updateStatus);
         $status = $customersManager->addCustomer($request);
-        if ($status)
+
+        if ($status != 'true')
         {
             return $status;
         }
-        else
+        else if ($status == 'true')
         {
+            return $status;
+        }
+        else {
             return null;
         }
        
