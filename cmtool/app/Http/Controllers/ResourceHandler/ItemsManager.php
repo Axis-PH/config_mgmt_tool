@@ -39,11 +39,9 @@ class ItemsManager
     {
         if (FieldChecker::isNotBlankField($request->itemName) or 
             FieldChecker::isNotBlankField($request->model) or
-            FieldChecker::isNotBlankField($request->serialNumber) or
             FieldChecker::isNotBlankField($request->ipAddress) or
             FieldChecker::isNotBlankField($request->netmask) or
             FieldChecker::isNotBlankField($request->gateway) or
-            FieldChecker::isNotBlankField($request->installationLocation) or
             FieldChecker::isNotBlankField($request->remarks))
         { 
             return true;
