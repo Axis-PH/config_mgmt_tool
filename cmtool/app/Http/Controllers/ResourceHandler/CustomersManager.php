@@ -33,12 +33,12 @@ class CustomersManager extends Controller
 
     public function getCustomerName($customerId)
     {
-        $customerName = DB::table('customers')
+        $customer = DB::table('customers')
         ->select('customer_name')
         ->where('customer_id', '=', $customerId)
         ->first();       
         
-        return $customerName->customer_name;
+        return $customer->customer_name;
     }
 
     public function getAllCustomer() {

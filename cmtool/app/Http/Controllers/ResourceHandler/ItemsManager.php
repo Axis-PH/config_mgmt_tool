@@ -12,10 +12,17 @@ class ItemsManager
 {
     public function deleteItemById($itemId)
     {
+        try {
         $item = Item::where('item_id', $itemId);
         $item->delete();
 
         return true;
+        }
+        
+        catch (\Exception $e)
+        {
+            return false;
+        }  
     }
 
     public function addItem($request, int $siteId, int $customerId)
@@ -30,16 +37,17 @@ class ItemsManager
 
     public function checkItems($request)
     {
-        if (!FieldChecker::isValidName($request->itemName) or 
-            !FieldChecker::isValidName($request->model) or
-            !FieldChecker::isValidName($request->serialNumber) or
-            !FieldChecker::isValidName($request->ipAddress) or
-            !FieldChecker::isValidName($request->netmask) or
-            !FieldChecker::isValidName($request->gateway) or
-            !FieldChecker::isValidName($request->installationLocation))
-            return false;
-        else
+        if (FieldChecker::isNotBlankField($request->itemName) or 
+            FieldChecker::isNotBlankField($request->model) or
+            FieldChecker::isNotBlankField($request->ipAddress) or
+            FieldChecker::isNotBlankField($request->netmask) or
+            FieldChecker::isNotBlankField($request->gateway) or
+            FieldChecker::isNotBlankField($request->remarks))
+        { 
             return true;
+        }
+        else
+            return false;
     }
 
     private function saveItem(Item $items, Request $request, int $siteId, int $customerId)
@@ -86,9 +94,14 @@ class ItemsManager
     public function getAllItems(int $siteId, int $customerId)
     {
         $items = DB::table('items')
-        ->select('item_id', 'item_name', 'category', 'customer_id', 'maker_id')
-        ->where('customer_id', '=', $customerId)
-        ->where('site_id', '=', $siteId)
+        ->leftJoin('categories', 'items.category', '=', 'categories.category_id')
+        ->leftJoin('customers', 'items.customer_id', '=', 'customers.customer_id')
+        ->leftJoin('makers', 'items.maker_id', '=', 'makers.maker_id')
+        ->select('items.item_id as itemId', 'items.item_name as itemName', 
+            'categories.category_name as categoryName', 'customers.customer_name as customerName', 
+            'makers.maker_name as makerName')
+        ->where('items.customer_id', '=', $customerId)
+        ->where('items.site_id', '=', $siteId)
         ->simplePaginate(5);
 
         return $items;

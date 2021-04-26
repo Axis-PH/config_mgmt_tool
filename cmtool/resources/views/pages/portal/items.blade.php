@@ -3,33 +3,33 @@
 @section('content')
     @include('includes.messages')
     <div style="display: inline-block; width: 100%; padding: 0px 10px; border:1px solid black;">
-        <h1 style="margin-top:20px; ">機器一覧</h1>
+        <h1 style="margin-top:20px; ">{{ __('item.items') }}</h1>
         <div style="float:left; padding:5px">
             <a href="{{ url("/items/create") . '/' . $siteId . '/' . $customerId }}" class="btn btn-success" 
-                style="font-size:15px; width:100px; height: 100%">{{ __('Add Item') }}</a>
+                style="font-size:15px; width:100px; height: 100%">{{ __('item.add') }}</a>
         </div>
         <table class="table table-bordered table-striped table-responsive">
             <thead class="thead-dark">
             <tr>
-                <th class="nameHeader">Item Name</th>
-                <th class="dateTimeHeader">Item Category</th>
-                <th class="dateTimeHeader">Customer Name</th>
-                <th class="dateTimeHeader">Maker</th>
-                <th class="dateTimeHeader">Details</th>
+                <th class="nameHeader">{{ __('item.name') }}</th>
+                <th class="dateTimeHeader">{{ __('item.category') }}</th>
+                <th class="dateTimeHeader">{{ __('item.customer') }}</th>
+                <th class="dateTimeHeader">{{ __('item.maker') }}</th>
+                <th class="dateTimeHeader">{{ __('item.details') }}</th>
                 <th class="dateTimeHeader"></th>
             </tr>
             </thead>
                 @foreach ($items as $item)
                 <tr>
-                    <td>{{ $item->item_name }}</td>
-                    <td>{{ $item->category }}</td>
-                    <td>{{ $item->customer_id }}</td>
-                    <td>{{ $item->maker_id }}</td>
-                    <td><a href="{{ url('/items' . '/' . $item->item_id . '/' . 'info') }}" class="btn btn-primary" 
-                        style="font-size:15px; width:100%; height: 100%">Display</a></td>
+                    <td>{{ $item->itemName }}</td>
+                    <td>{{ $item->categoryName }}</td>
+                    <td>{{ $item->customerName }}</td>
+                    <td>{{ $item->makerName }}</td>
+                    <td><a href="{{ url('/items' . '/' . $item->itemId . '/' . 'info') }}" class="btn btn-primary" 
+                        style="font-size:15px; width:100%; height: 100%">{{ __('item.display') }}</a></td>
                     <td>
-                        <a href="{{ url('/items/edit' . '/' . $siteId . '/' . $customerId  . '/' . $item->item_id) }}" class="btn btn-success" 
-                            style="font-size:15px; width:100%; height: 100%">Edit</a>
+                        <a href="{{ url('/items/edit' . '/' . $siteId . '/' . $customerId  . '/' . $item->itemId) }}" class="btn btn-success" 
+                            style="font-size:15px; width:100%; height: 100%">{{ __('item.update') }}</a>
                     </td>
                 </tr> 
                 @endforeach
@@ -38,7 +38,7 @@
         <br>
         <div style="margin-top:-10px; margin-bottom:10px">
             <a href={{ '/sites' }} class="btn btn-link" 
-                style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">戻る</a>
+                style="background-color: #f1f1f1; width: 100px; border: 1px solid black; font-size:15px;">{{ __('item.back') }}</a>
         </div>
     </div>
 
