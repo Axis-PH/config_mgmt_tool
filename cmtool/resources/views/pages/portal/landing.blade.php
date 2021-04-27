@@ -15,7 +15,7 @@
                                 style="font-size:20px; width:100%; height: 100%"> {{ __('landing.sites') }} </a>
                         </div>
                         <div class="col-md-7" style="padding:5px">
-                            <a href="{{ url('/customers') }}" class="btn btn-primary" 
+                            <a href="{{ url('/contactLanding') }}" class="btn btn-primary" 
                                 style="font-size:20px; width:100%; height: 100%"> {{ __('landing.contacts') }} </a>
                         </div>
                         <div class="col-md-7" style="padding:5px">
