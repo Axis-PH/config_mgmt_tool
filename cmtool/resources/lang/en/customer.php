@@ -38,6 +38,8 @@ return [
     'createTitle' => 'Create Customer',
     'updateTitle' => 'Update Customer',
     'blank' => '',
+    'addedCustomer' => 'Successfully added the customer.',
+    'updatedCustomer' => 'Successfully updated the customer.',
 
 
 ];

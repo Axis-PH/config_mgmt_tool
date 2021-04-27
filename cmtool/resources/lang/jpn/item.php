@@ -44,6 +44,12 @@ return [
     'addItemFailed' => '機器の追加に失敗しました。',
     'itemUpdated' => '機器が更新されました。',
     'updateItemFailed' => '機器の更新に失敗しました。',
+    'errorMessageName' => 'アイテム名フィールドが空白です。',
+    'errorMessageModel' => 'モデルフィールドが空白です。',
+    'errorMessageIP' => 'IPアドレスフィールドが空白です。',
+    'errorMessageNetmask' => 'ネットマスクフィールドが空白です。',
+    'errorMessageGateway' => 'ゲートウェイフィールドが空白です。',
+    'errorMessageRemarks' => '備考フィールドが空白です。',
 
 
 ];

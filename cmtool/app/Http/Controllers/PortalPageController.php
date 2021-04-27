@@ -197,10 +197,16 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->addItem($request, $siteId, $customerId);
 
-        if ($status)
+        // if ($status)
+        //     return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success', __('item.itemAdded'));
+        // else
+        //     return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error', __('item.addItemFailed'));
+        if ($status == 'true') {
             return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success', __('item.itemAdded'));
-        else
-            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error', __('item.addItemFailed'));
+        }
+        else {
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error', $status);
+        }
     }
 
     public function viewUpdateItemPage(int $siteId, int $customerId, int $id)
@@ -220,10 +226,16 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->updateItemDetails($request, $id, $siteId, $customerId);
 
-        if ($status)
+        // if ($status)
+        //     return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success', __('item.itemUpdated'));
+        // else
+        //     return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error', __('item.updateItemFailed'));        
+        if ($status == 'true') {
             return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success', __('item.itemUpdated'));
-        else
-            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error', __('item.updateItemFailed'));        
+        }
+        else {
+            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error', $status);
+        }
     }
 
     public function viewItemInfoPage(int $id)
@@ -261,7 +273,7 @@ class PortalPageController extends Controller
         $status = $dataManager->updateCustomer($request);
 
         if ($status == 'true') {
-            return redirect('/customers')->with('success', 'Successfully added the customer.');
+            return redirect('/customers')->with('success', __('customer.updatedCustomer'));
         }
         else {
             return redirect('/customers')->with('error', $status);
@@ -294,7 +306,7 @@ class PortalPageController extends Controller
         $status = $dataManager->addCustomer($request);
 
         if ($status == 'true') {
-            return redirect('/customers')->with('success', 'Successfully added the customer.');
+            return redirect('/customers')->with('success',  __('customer.addedCustomer'));
         }
         else {
             return redirect('/customers')->with('error', $status);

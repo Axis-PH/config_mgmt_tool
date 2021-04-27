@@ -37,24 +37,48 @@ class ItemsManager
 
     public function checkItems($request)
     {
-        if (FieldChecker::isNotBlankField($request->itemName) or 
-            FieldChecker::isNotBlankField($request->model) or
-            FieldChecker::isNotBlankField($request->ipAddress) or
-            FieldChecker::isNotBlankField($request->netmask) or
-            FieldChecker::isNotBlankField($request->gateway) or
-            FieldChecker::isNotBlankField($request->remarks))
-        { 
-            return true;
-        }
-        else
-            return false;
+        // if (FieldChecker::isNotBlankField($request->itemName) or 
+        //     FieldChecker::isNotBlankField($request->model) or
+        //     FieldChecker::isNotBlankField($request->ipAddress) or
+        //     FieldChecker::isNotBlankField($request->netmask) or
+        //     FieldChecker::isNotBlankField($request->gateway) or
+        //     FieldChecker::isNotBlankField($request->remarks))
+        // { 
+        //     return true;
+        // }
+        // else
+        //     return false;
+
+        if (!FieldChecker::isNotBlankField($request->itemName))
+            return __('item.errorMessageName');
+
+        if (!FieldChecker::isNotBlankField($request->model))
+            return __('item.errorMessageModel');
+
+        if (!FieldChecker::isNotBlankField($request->ipAddress))
+            return __('item.errorMessageIP');
+
+        if (!FieldChecker::isNotBlankField($request->netmask))
+            return __('item.errorMessageNetmask');
+            
+        if (!FieldChecker::isNotBlankField($request->gateway))
+            return __('item.errorMessageGateway');
+
+        if (!FieldChecker::isNotBlankField($request->remarks))
+            return __('item.errorMessageRemarks');
+
+        return 'true';
     }
 
     private function saveItem(Item $items, Request $request, int $siteId, int $customerId)
     {
-        if(!$this->checkItems($request))
+        // if(!$this->checkItems($request))
+        // {
+        //     return false;
+        // }
+        if($this->checkItems($request) != 'true')
         {
-            return false;
+            return $this->checkItems($request);
         }
         else
         {

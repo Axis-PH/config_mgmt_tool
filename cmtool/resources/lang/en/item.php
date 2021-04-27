@@ -44,6 +44,12 @@ return [
     'addItemFailed' => 'Failed to add item.',
     'itemUpdated' => 'Item has been updated.',
     'updateItemFailed' => 'Failed to update item.',
+    'errorMessageName' => 'Item Name field is blank.',
+    'errorMessageModel' => 'Model field is blank.',
+    'errorMessageIP' => 'Ip Address field is blank.',
+    'errorMessageNetmask' => 'Netmask field is blank.',
+    'errorMessageGateway' => 'Gateway field is blank.',
+    'errorMessageRemarks' => 'Remarks field is blank.',
 
 
 

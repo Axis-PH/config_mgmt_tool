@@ -137,8 +137,19 @@ class DataManager extends Controller
     {
         $itemsManager = new ItemsManager;
         $status = $itemsManager->addItem($request, $siteId, $customerId);
+        //dd($status);
 
-        return $status;
+        if ($status != 'true')
+        {
+            return $status;
+        }
+        else if ($status == 'true')
+        {
+            return $status;
+        }
+        else {
+            return null;
+        }
     }
 
     public function getItemDetails($id)
@@ -186,7 +197,17 @@ class DataManager extends Controller
         $itemsManager = new ItemsManager;
         $status = $itemsManager->updateItemDetails($request, $id, $siteId, $customerId);
 
-        return $status;
+        if ($status != 'true')
+        {
+            return $status;
+        }
+        else if ($status == 'true')
+        {
+            return $status;
+        }
+        else {
+            return null;
+        }
     }
 
     public function getAllItems(int $siteId, int $customerId)
