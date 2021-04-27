@@ -20,7 +20,7 @@
             {{Form::hidden('projectId', 2)}}
             <br><br><br>
         {{Form::submit( __('site.create') , ['class' => 'btn btn-primary'])}}
-        <a href={{ '/sites' }} class="btn btn-link">{{ __('site.back') }}</a>
+        <a style="margin-left:5px" href={{ '/sites' }} class="btn btn-secondary">{{ __('site.back') }}</a>
         {{ Form::hidden('_method', 'PUT')}}
         {{ Form::close() }} 
         <div style="margin-top:10px; margin-bottom:10px"></div>
