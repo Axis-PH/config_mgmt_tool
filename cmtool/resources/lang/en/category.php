@@ -14,6 +14,7 @@ return [
     */
 
     'categories' => 'Categories',
+    'placeholder' => 'Category Name',
     'add' => 'Add',
     'number' => 'Category Number',
     'name' => 'Category Name',

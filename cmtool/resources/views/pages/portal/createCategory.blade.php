@@ -8,7 +8,7 @@
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('category.name') }}</label>
                 {{Form::text('categoryName', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control'])}}
+                    'class' => 'form-control', 'placeholder' => __('category.placeholder')])}}
             </div>    
             <br><br><br>
             
@@ -17,7 +17,7 @@
             {{ Form::hidden('_method', 'PUT')}}
             {{ Form::close() }} 
 
-            <a style="margin-left:5px" href={{ redirect()->getUrlGenerator()->previous() }} 
+            <a style="margin-left:5px" href={{ '/categories' }} 
                 class="btn btn-secondary">{{ __('category.cancel') }}</a>
         </div>
     </div>

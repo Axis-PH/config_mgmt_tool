@@ -14,6 +14,7 @@ return [
     */
 
     'categories' => '機器分類',
+    'placeholder' => '種別名',
     'add' => '追加',
     'number' => '機器分類番号',
     'name' => '機器分類名',

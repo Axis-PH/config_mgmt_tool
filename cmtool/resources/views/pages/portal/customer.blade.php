@@ -3,7 +3,7 @@
 @section('content')
     @include('includes.messages')
     <div style="display: inline-block; width: 100%; border:1px solid black; padding: 0px 10px;">
-        <h1 style="margin-top:20px; ">連絡先一覧</h1>
+        <h1 style="margin-top:20px; ">{{ __('customer.title') }}</h1>
         <div style="float:left; padding:5px">
             <a href="{{ url("customers/create") }}" class="btn btn-success" 
                 style="font-size:15px; width:100px; height: 100%">{{ __('customer.create') }}</a>
@@ -17,7 +17,7 @@
                 <th class="otherHeader">{{ __('customer.tel') }}</th>
                 <th class="otherHeader">{{ __('customer.mail') }}</th>
                 <th class="otherHeader">{{ __('customer.memo') }}</th>
-                <th class="otherHeader"></th>
+                <th class="otherHeader">{{ __('customer.blank') }}</th>
             </tr>
             </thead>
                 @foreach ($customers as $customer)
@@ -30,7 +30,7 @@
                     <td>{{ $customer->customer_memo }}</td>
                     <td>
                         <a href="{{ url("customers/update/" .$customer->customer_id) }}" 
-                            class="btn btn-success" style="font-size:15px; width:70px; height: 100%">{{ __('customer.edit') }}</a>
+                            class="btn btn-primary" style="font-size:15px; width:100%; height: 100%;">{{ __('customer.update') }}</a>
                     </td>
                 </tr> 
                 @endforeach
@@ -48,13 +48,13 @@
 
     .nameHeader {
         text-align:center; 
-        width:11%; 
+        width:16.5%; 
         border: 1px solid black
     }
 
     .otherHeader {
         text-align:center; 
-        width:11%; 
+        width:16.5%; 
         border: 1px solid black
     }
 

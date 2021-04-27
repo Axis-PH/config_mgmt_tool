@@ -12,7 +12,7 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
+    'title' => '顧客先一覧',
     'id' => '顧客ID',
     'name' => '顧客名',
     'staff' => '担当者名',
@@ -35,6 +35,8 @@ return [
     'errorMessageStaff' => '文字のみを使用してください。例：John ',
     'errorMessageTel' => '数字のみを使用してください。例：0234123443 ',
     'errorMessageEmail' => 'これは有効なEメールではありません。例：example@gmail.com ',
+    'createTitle' => '顧客を作成する',
+    'updateTitle' => '顧客の更新',
 
 
 ];

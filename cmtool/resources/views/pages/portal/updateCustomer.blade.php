@@ -3,7 +3,7 @@
 @section('content')
     @include('includes.messages')
     <div style="display: inline-block; width: 800px; border:1px solid black;">
-        <h1 style="margin-top:20px; ">Update Customer</h1>
+        <h1 style="margin-top:20px; ">{{ __('customer.updateTitle') }}</h1>
         {{-- <h1 style="margin-top:20px; ">保守先一覧</h1> --}}
         {{ Form::open(['action' => ['PortalPageController@updateCustomer', $customer->customer_id], 'method' => 'POST']) }}
             <div>
@@ -55,7 +55,7 @@
             {{ Form::hidden('_method', 'PUT')}}
             {{ Form::close() }} 
 
-            <a style="margin-left:5px" href={{ redirect()->getUrlGenerator()->previous() }} 
+            <a style="margin-left:5px" href={{ '/customers' }} 
                 class="btn btn-secondary">{{ __('customer.cancel') }}</a>
         </div>
     </div>

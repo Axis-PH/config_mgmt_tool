@@ -12,19 +12,19 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
+    'title' => 'Customers',
     'id' => 'Id',
     'name' => 'Name',
-    'staff' => 'NamePIC',
-    'tel' => 'Tel #',
+    'staff' => 'Staff',
+    'tel' => 'Tel',
     'mail' => 'Email',
-    'memo' => 'Remarks',
+    'memo' => 'Memo',
     'addid' => 'ID',
-    'addname' => 'Customer Name',
-    'addstaff' => 'PIC',
+    'addname' => 'Name',
+    'addstaff' => 'Staff',
     'addtel' => 'Tel',
     'addmail' => 'Email',
-    'addmemo' => 'Remarks',
+    'addmemo' => 'Memo',
     'create' => 'Create',
     'edit' => 'Edit',
     'update' => 'Update',
@@ -35,7 +35,9 @@ return [
     'errorMessageStaff' => 'Please use letters only. Example: John',
     'errorMessageTel' => 'Please use numbers only. Example: 0234123443',
     'errorMessageEmail' => 'This is not a valid Email. Example: example@gmail.com',
-
+    'createTitle' => 'Create Customer',
+    'updateTitle' => 'Update Customer',
+    'blank' => '',
 
 
 ];
