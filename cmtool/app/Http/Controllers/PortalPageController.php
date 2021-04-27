@@ -122,11 +122,11 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->updateMaker($request);
 
-        if ($status)
+        if ($status == 'true')
             return redirect('/makers')->with('success', __('maker.makerUpdated'));
 
         else 
-            return redirect('/makers')->with('error', __('maker.makerUpdateFailed'));
+            return redirect('/makers')->with('error', $status);
     }
 
     public function deleteSite(int $id)

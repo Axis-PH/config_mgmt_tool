@@ -19,7 +19,7 @@ class MakersManager extends Controller
 
     public function getMakerById(int $id)
     {
-        $maker = \App\Models\Maker::find($id);
+        $maker = Maker::find($id);
         return $maker;
     }
 
@@ -40,68 +40,19 @@ class MakersManager extends Controller
     public function addMaker(Request $request)
     {
         return $this->saveMaker(new Maker, $request);
-        // $valid = FieldChecker::isValidName($request->maker_name);
-        
-        // if (!$valid)
-        //     return false;
-            
-        // try {
-        //     $maker = new Maker;
-        //     $maker->maker_name = $request->maker_name;
-        //     $maker->maker_staff = $request->maker_staff;
-        //     $maker->maker_tel = $request->maker_tel;
-        //     $maker->maker_mail = $request->maker_mail;
-        //     $maker->save();
-        //     return true;
-        // }
-
-        // catch (\Exception $exception)
-        // {
-        //     return false;
-        // }
     }
 
     public function updateMaker(Request $request)
     {
         return $this->saveMaker(Maker::find($request->maker_id), $request);
-
-        // if (!FieldChecker::isValidName($request->maker_name))
-        //     return false;
-
-        // if (!FieldChecker::isValidName($request->maker_staff))
-        //     return false;
-    
-        // if (!FieldChecker::isValidTel($request->maker_tel))
-        //     return false;
-
-        // try {
-        //     $maker = \App\Models\Maker::find($request->maker_id);
-        //     $maker->maker_name = $request->maker_name;
-        //     $maker->maker_staff = $request->maker_staff;
-        //     $maker->maker_tel = $request->maker_tel;
-        //     $maker->maker_mail = $request->maker_mail;
-        //     $maker->save();
-
-        //     return true;
-        // }
-
-        // catch (\Exception $exception)
-        // {
-        //     return false;
-        // }
     }
 
     public function saveMaker(Maker $maker, $request)
     {
+        $status = $this->areFieldsValid($request);
 
-        if (!FieldChecker::isValidName($request->maker_name))
-            return false;
-
-        if (!FieldChecker::isValidName($request->maker_staff))
-            return false;
-    
-        if (!FieldChecker::isValidTel($request->maker_tel))
-            return false;
+        if ($status != 'true')
+            return $status;
 
         try {
             $maker->maker_name = $request->maker_name;
@@ -122,12 +73,29 @@ class MakersManager extends Controller
         }
     }
 
+    private function areFieldsValid(Request $request)
+    {
+        if (!FieldChecker::isValidName($request->maker_name))
+            return 'Invalid Name';
+
+        if (!FieldChecker::isValidName($request->maker_staff))
+            return 'Invalid Staff Name';
+    
+        if (!FieldChecker::isValidTel($request->maker_tel))
+            return 'Invalid Tel';
+    
+        if (!FieldChecker::isValidEmail($request->maker_mail))
+            return 'Invalid Mail';
+
+        return 'true';
+    }
+
     public function getMakerName($makerId)
     {
         $maker = DB::table('makers')
-        ->select('maker_name')
-        ->where('maker_id', '=', $makerId)
-        ->first();       
+            ->select('maker_name')
+            ->where('maker_id', '=', $makerId)
+            ->first();       
         
         return $maker->maker_name;
     }

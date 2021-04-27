@@ -9,7 +9,7 @@
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('site.site').': ' }}</label>
                 {{Form::text('site_name', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'placeholder' => __('site.siteName') ])}}
+                    'class' => 'form-control', 'required' => true, 'placeholder' => __('site.siteName') ])}}
             </div>
             <br><br>
             <div>
