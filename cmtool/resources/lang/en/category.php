@@ -16,6 +16,7 @@ return [
     'categories' => 'Categories',
     'placeholder' => 'Category Name',
     'add' => 'Add',
+    'create' => 'Create',
     'number' => 'Category Number',
     'name' => 'Category Name',
     'update' => 'Update',

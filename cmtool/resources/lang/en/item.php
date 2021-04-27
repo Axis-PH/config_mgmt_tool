@@ -14,7 +14,7 @@ return [
     */
 
     'items' => 'Items',
-    'add' => 'Add',
+    'create' => 'Create',
     'name' => 'Item Name',
     'category' => 'Category',
     'customer' => 'Customer Name',

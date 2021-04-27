@@ -31,8 +31,7 @@
             {{ Form::hidden('_method', 'PUT')}}
             {{ Form::close() }} 
 
-            <a style="margin-left:5px" href={{ '/sites' }} 
-                class="btn btn-secondary">{{ __('site.back') }}</a>
+            <a style="margin-left:5px" href={{ '/sites' }} class="btn btn-secondary">{{ __('site.back') }}</a>
         </div>
     </div>
 

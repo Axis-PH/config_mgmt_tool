@@ -55,8 +55,7 @@
             {{ Form::hidden('_method', 'PUT')}}
             {{ Form::close() }} 
 
-            <a style="margin-left:5px" href={{ redirect()->getUrlGenerator()->previous() }} 
-                class="btn btn-secondary">{{ __('maker.back') }}</a>
+            <a style="margin-left:5px" href={{ '/makers' }} class="btn btn-secondary">{{ __('maker.back') }}</a>
         </div>
     </div>
 

@@ -2,7 +2,7 @@
 
 @section('content')
     @include('includes.messages')
-    <div style="display: inline-block; width: 800px; border:1px solid black;">
+    <div style="display: inline-block; padding: 0px 10px; border:1px solid black;">
         <h1 style="margin-top:20px; ">{{ __('maker.maker') }}</h1>
         {{-- <h1 style="margin-top:20px; ">保守先一覧</h1> --}}
         <div style="float:left; padding:5px">

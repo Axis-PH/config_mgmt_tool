@@ -6,7 +6,7 @@
         <h1 style="margin-top:20px; ">{{ __('item.items') }}</h1>
         <div style="float:left; padding:5px">
             <a href="{{ url("/items/create") . '/' . $siteId . '/' . $customerId }}" class="btn btn-success" 
-                style="font-size:15px; width:100px; height: 100%">{{ __('item.add') }}</a>
+                style="font-size:15px; width:100px; height: 100%">{{ __('item.create') }}</a>
         </div>
         <table class="table table-bordered table-striped table-responsive">
             <thead class="thead-dark">
@@ -25,10 +25,10 @@
                     <td>{{ $item->categoryName }}</td>
                     <td>{{ $item->customerName }}</td>
                     <td>{{ $item->makerName }}</td>
-                    <td><a href="{{ url('/items' . '/' . $item->itemId . '/' . 'info') }}" class="btn btn-primary" 
+                    <td><a href="{{ url('/items' . '/' . $item->itemId . '/' . 'info') }}" class="btn btn-dark" 
                         style="font-size:15px; width:100%; height: 100%">{{ __('item.display') }}</a></td>
                     <td>
-                        <a href="{{ url('/items/edit' . '/' . $siteId . '/' . $customerId  . '/' . $item->itemId) }}" class="btn btn-success" 
+                        <a href="{{ url('/items/edit' . '/' . $siteId . '/' . $customerId  . '/' . $item->itemId) }}" class="btn btn-primary" 
                             style="font-size:15px; width:100%; height: 100%">{{ __('item.update') }}</a>
                     </td>
                 </tr> 

@@ -86,11 +86,11 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->addSite($request);
 
-        if ($status)
+        if ($status == 'true')
             return redirect('/sites')->with('success', __('site.siteAdded'));
 
         else 
-            return redirect('/sites')->with('error', __('site.siteAddFailed'));
+            return redirect('/sites')->with('error', $status);
     }
 
     public function addMaker(Request $request)
@@ -98,11 +98,11 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->addMaker($request);
 
-        if ($status)
+        if ($status == 'true')
             return redirect('/makers')->with('success', __('maker.makerAdded'));
 
         else 
-            return redirect('/makers')->with('error', __('maker.makerAddFailed'));
+            return redirect('/makers')->with('error', $status);
     }
 
     public function updateSite(Request $request)
@@ -110,11 +110,11 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->updateSite($request);
 
-        if ($status)
+        if ($status == 'true')
             return redirect('/sites')->with('success', __('site.siteUpdated'));
 
         else 
-            return redirect('/sites')->with('error', __('site.siteUpdateFailed'));
+            return redirect('/sites')->with('error', $status);
     }
 
     public function updateMaker(Request $request)
@@ -122,11 +122,11 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->updateMaker($request);
 
-        if ($status)
+        if ($status == 'true')
             return redirect('/makers')->with('success', __('maker.makerUpdated'));
 
         else 
-            return redirect('/makers')->with('error', __('maker.makerUpdateFailed'));
+            return redirect('/makers')->with('error', $status);
     }
 
     public function deleteSite(int $id)

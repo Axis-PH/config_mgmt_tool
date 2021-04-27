@@ -6,7 +6,7 @@
         <h1 style="margin-top:20px; ">{{ __('category.categories') }}</h1>
         <div style="float:left; padding:5px">
             <a href="{{ url("categories/create")}}" class="btn btn-success" 
-                style="font-size:15px; width:100px; height: 100%">{{ __('category.add') }}</a>
+                style="font-size:15px; width:100px; height: 100%">{{ __('category.create') }}</a>
         </div>
         <table class="table table-bordered table-striped table-responsive">
             <thead class="thead-dark">
@@ -21,7 +21,7 @@
                     <td>{{ $category->category_id }}</td>
                     <td>{{ $category->category_name }}</td>
                     <td>
-                        <a href="{{ url('/categories/edit' . '/' . $category->category_id) }}" class="btn btn-success" 
+                        <a href="{{ url('/categories/edit' . '/' . $category->category_id) }}" class="btn btn-primary" 
                             style="font-size:15px; width:50%; height: 100%">{{ __('category.update') }}</a>
                     </td>
                 </tr> 
