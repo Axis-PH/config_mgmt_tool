@@ -14,7 +14,7 @@ return [
     */
 
     'items' => '機器一覧',
-    'add' => '追加',
+    'create' => '追加',
     'name' => '機器名',
     'category' => '機器分類名',
     'customer' => '顧客名',

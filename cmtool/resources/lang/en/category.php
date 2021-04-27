@@ -14,7 +14,7 @@ return [
     */
 
     'categories' => 'Categories',
-    'add' => 'Add',
+    'create' => 'Create',
     'number' => 'Category Number',
     'name' => 'Category Name',
     'update' => 'Update',
