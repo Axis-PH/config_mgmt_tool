@@ -53,13 +53,13 @@
 
     .nameHeader {
         text-align:center; 
-        width:10%; 
+        width:350px; 
         border: 1px solid black
     }
 
     .buttonHeader {
         text-align:center; 
-        width:5%; 
+        width:150px; 
         border: 1px solid black
     }
 

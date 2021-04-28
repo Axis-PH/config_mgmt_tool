@@ -48,53 +48,58 @@
 
     .idHeader {
         text-align:center; 
-        width:10%; 
-        
+        border: 1px solid black;
     }
 
     .nameHeader {
         text-align:center; 
-        width:15%; 
-        
+         
+        border: 1px solid black;
     }
 
     .staffHeader {
         text-align:center; 
-        width:15%; 
-
+         
+        border: 1px solid black;
     }
 
     .telHeader {
         text-align:center; 
-        width:15%; 
-
+         
+        border: 1px solid black;
     }
 
     .mailHeader {
         text-align:center; 
-        width:18%; 
-       
+        
+        border: 1px solid black;
     }
 
     .memoHeader {
         text-align:center; 
-        width:20%; 
         
+        border: 1px solid black;
     }
 
     .buttonHeader {
         text-align:center; 
-        width:15%; 
-       
+         
+        border: 1px solid black;
     }
 
-    td {
+    th,td {
         text-align: center; 
+        border: 1px solid black;
+        width:400px;
+        
     }
 
-    th {
-        font-size: 15px;
+    table {
+        border: 1px solid black;
+        table-layout: fixed;
+        width: 100%;
     }
+
 
 </style>
 
