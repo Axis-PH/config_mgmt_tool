@@ -35,7 +35,6 @@ class PortalPageController extends Controller
     {
         $dataManager = new DataManager;
         $sites = $dataManager->getAllSites();
-        // dd($sites[0]->customer->customer_name);
 
         return view('pages/portal/sites')->with('sites', $sites);
     }
@@ -197,10 +196,6 @@ class PortalPageController extends Controller
         $dataManager = new DataManager;
         $status = $dataManager->addItem($request, $siteId, $customerId);
 
-        // if ($status)
-        //     return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success', __('item.itemAdded'));
-        // else
-        //     return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error', __('item.addItemFailed'));
         if ($status == 'true') {
             return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success', __('item.itemAdded'));
         }
@@ -225,17 +220,12 @@ class PortalPageController extends Controller
     {
         $dataManager = new DataManager;
         $status = $dataManager->updateItemDetails($request, $id, $siteId, $customerId);
-        //dd($status);
-
-        // if ($status)
-        //     return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success', __('item.itemUpdated'));
-        // else
-        //     return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error', __('item.updateItemFailed'));        
+               
         if ($status == 'true') {
-            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success', __('item.itemUpdated'));
+            return redirect('items/list/'.$siteId.'/'.$customerId)->with('success', __('item.itemUpdated'));
         }
         else {
-            return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('error', $status);
+            return redirect('items/list/'.$siteId.'/'.$customerId)->with('error', $status);
         }
     }
 

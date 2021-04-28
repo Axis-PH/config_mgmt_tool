@@ -137,7 +137,6 @@ class DataManager extends Controller
     {
         $itemsManager = new ItemsManager;
         $status = $itemsManager->addItem($request, $siteId, $customerId);
-        //dd($status);
 
         if ($status != 'true')
         {

@@ -68,7 +68,7 @@
             {{Form::submit(__('item.update'), ['class' => 'btn btn-primary'])}}
             <a href="{{ url('/items/delete' . '/' . $item->item_id) }}" class="btn btn-danger"
                 onclick="return confirm('<?php echo(__('item.deleteMessage'));?>')">{{ __('item.delete') }}</a>
-                <a href={{ '/sites' }} class="btn btn-secondary">{{ __('item.cancel') }}</a>
+                <a href={{ '/items/list' . '/' . $siteId . '/' . $customerId  . '/' . $item->itemId }} class="btn btn-secondary">{{ __('item.cancel') }}</a>
                 {{ Form::hidden('_method', 'PUT')}}
                 {{ Form::close() }} 
         </div>

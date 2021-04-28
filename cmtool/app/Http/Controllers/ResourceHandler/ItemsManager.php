@@ -37,18 +37,6 @@ class ItemsManager
 
     public function checkItems($request)
     {
-        // if (FieldChecker::isNotBlankField($request->itemName) or 
-        //     FieldChecker::isNotBlankField($request->model) or
-        //     FieldChecker::isNotBlankField($request->ipAddress) or
-        //     FieldChecker::isNotBlankField($request->netmask) or
-        //     FieldChecker::isNotBlankField($request->gateway) or
-        //     FieldChecker::isNotBlankField($request->remarks))
-        // { 
-        //     return true;
-        // }
-        // else
-        //     return false;
-
         if (!FieldChecker::isNotBlankField($request->itemName))
             return __('item.errorMessageNameA');
 
@@ -85,18 +73,11 @@ class ItemsManager
         if (!FieldChecker::isNotBlankField($request->makerId))
             return __('item.errorMessageMaker');
 
-        if (!FieldChecker::isNotBlankField($request->remarks))
-            return __('item.errorMessageRemarks');
-
         return 'true';
     }
 
     private function saveItem(Item $items, Request $request, int $siteId, int $customerId)
     {
-        // if(!$this->checkItems($request))
-        // {
-        //     return false;
-        // }
         if($this->checkItems($request) != 'true')
         {
             return $this->checkItems($request);
