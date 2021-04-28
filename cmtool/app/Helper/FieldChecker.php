@@ -33,4 +33,21 @@ class FieldChecker
         
         return true;
     }
+
+    public function isValidIpAdd($field) {
+
+        $regex ="/[0-9.-]/";
+
+        if (!preg_match($regex, $field)) 
+           return false;
+
+        return true;
+    }
+
+    public function isNumericAndString($field) {
+        if (!preg_match('/[A-Za-z0-9]+/',$field))
+            return false;
+        
+        return true;
+    }
 }

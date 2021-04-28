@@ -50,19 +50,40 @@ class ItemsManager
         //     return false;
 
         if (!FieldChecker::isNotBlankField($request->itemName))
-            return __('item.errorMessageName');
+            return __('item.errorMessageNameA');
 
+        if (!FieldChecker::isNumericAndString($request->itemName))
+            return __('item.errorMessageNameB');
+        
+        if (!FieldChecker::isNotBlankField($request->itemCategory))
+            return __('item.errorMessageCategory');
+        
         if (!FieldChecker::isNotBlankField($request->model))
-            return __('item.errorMessageModel');
+            return __('item.errorMessageModelA');
+
+        if (!FieldChecker::isNumericAndString($request->model))
+            return __('item.errorMessageModelB');
 
         if (!FieldChecker::isNotBlankField($request->ipAddress))
-            return __('item.errorMessageIP');
+            return __('item.errorMessageIPA');
+
+        if (!FieldChecker::isValidIpAdd($request->ipAddress))
+            return __('item.errorMessageIPB');
 
         if (!FieldChecker::isNotBlankField($request->netmask))
-            return __('item.errorMessageNetmask');
+            return __('item.errorMessageNetmaskA');
+
+        if (!FieldChecker::isValidIpAdd($request->netmask))
+            return __('item.errorMessageNetmaskB');
             
         if (!FieldChecker::isNotBlankField($request->gateway))
-            return __('item.errorMessageGateway');
+            return __('item.errorMessageGatewayA');
+
+        if (!FieldChecker::isValidIpAdd($request->gateway))
+            return __('item.errorMessageGatewayB');
+
+        if (!FieldChecker::isNotBlankField($request->makerId))
+            return __('item.errorMessageMaker');
 
         if (!FieldChecker::isNotBlankField($request->remarks))
             return __('item.errorMessageRemarks');

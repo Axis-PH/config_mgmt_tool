@@ -225,6 +225,7 @@ class PortalPageController extends Controller
     {
         $dataManager = new DataManager;
         $status = $dataManager->updateItemDetails($request, $id, $siteId, $customerId);
+        //dd($status);
 
         // if ($status)
         //     return redirect('items/list/'.$siteId.'/'.$request->customerId)->with('success', __('item.itemUpdated'));
