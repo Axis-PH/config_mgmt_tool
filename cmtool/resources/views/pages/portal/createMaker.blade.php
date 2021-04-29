@@ -15,13 +15,13 @@
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('maker.staff') }}</label>
                 {{Form::text('maker_staff', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'required' => true, 'placeholder' => __('maker.staff')])}}
+                    'class' => 'form-control', 'placeholder' => __('maker.staff')])}}
             </div>
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('maker.tel') }}</label>
                 {{Form::text('maker_tel', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'required' => true, 'placeholder' => __('maker.tel')])}}
+                    'class' => 'form-control', 'placeholder' => __('maker.tel')])}}
             </div>
             <br><br>
             <div>
@@ -39,7 +39,7 @@
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('maker.memo') }}</label>
                 {{Form::text('maker_memo', '', ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'required' => true, 'placeholder' => __('maker.memo')])}}
+                    'class' => 'form-control', 'placeholder' => __('maker.memo')])}}
             </div>
             <br><br><br>
         {{Form::submit( __('maker.create') , ['class' => 'btn btn-primary'])}}

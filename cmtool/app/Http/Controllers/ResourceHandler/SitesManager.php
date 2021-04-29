@@ -30,7 +30,7 @@ class SitesManager extends Controller
 
     private function saveSite(Site $site, Request $request)
     {
-        if (!FieldChecker::isValidName($request->site_name))
+        if (!FieldChecker::isNotBlankField($request->site_name))
             return 'Invalid Name';
 
         try {
