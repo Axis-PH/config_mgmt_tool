@@ -37,8 +37,9 @@ return [
     'errorMessageEmail' => 'これは有効なEメールではありません。例：example@gmail.com ',
     'createTitle' => '顧客を作成する',
     'updateTitle' => '顧客の更新',
-    'addedCustomer' => 'Successfully added the customer.',
-    'updatedCustomer' => 'Successfully updated the customer.',
+    'addedCustomer' => '顧客を正常に追加しました。',
+    'updatedCustomer' => '顧客を正常に更新しました。',
+    'delCustomer' => '顧客を正常に削除しました。',
 
 
 ];

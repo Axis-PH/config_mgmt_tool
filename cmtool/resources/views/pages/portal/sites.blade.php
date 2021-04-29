@@ -26,7 +26,7 @@
                         if (!empty($site->customer->customer_name)) 
                             $customer_name = $site->customer->customer_name;
                         else 
-                            $customer_name = '';
+                            $customer_name = __('site.missing');
                     ?>
                         <td>{{ $customer_name }}</td>
                         

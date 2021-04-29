@@ -61,7 +61,7 @@
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.memo') }}</label>
-                {{Form::text('remarks', $item->maker_id, ['style' => 'float:right; width:500px; margin-right: 120px', 
+                {{Form::text('remarks', $item->memo, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Remarks')])}}            
             </div>
             <br><br><br>

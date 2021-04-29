@@ -74,12 +74,12 @@
             <br><br>
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.memo') }}</label>
-                {{Form::text('remarks', $item->maker_id, ['style' => 'float:right; width:500px; margin-right: 120px', 
+                {{Form::text('remarks', $item->memo, ['style' => 'float:right; width:500px; margin-right: 120px', 
                     'class' => 'form-control', 'placeholder' => __('Remarks'), 'readonly' => 'true'])}}            
             </div>
             <br><br><br>
             
-            <a href={{ redirect()->getUrlGenerator()->previous() }} class="btn btn-primary">{{ __('item.back') }}</a>
+            <a href="{{ url('/items/list' . '/' . $item->site_id . '/' . $item->customer_id) }}" class="btn btn-primary">{{ __('item.back') }}</a>
             {{ Form::hidden('_method', 'PUT')}}
             {{ Form::close() }} 
         </div>

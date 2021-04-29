@@ -278,7 +278,7 @@ class PortalPageController extends Controller
         
         if ($status)
         {
-            return redirect('/customers')->with('success');
+            return redirect('/customers')->with('success', __('customer.delCustomer'));
         }
 
     }

@@ -31,7 +31,10 @@ class SitesManager extends Controller
     private function saveSite(Site $site, Request $request)
     {
         if (!FieldChecker::isValidName($request->site_name))
-            return 'Invalid Name';
+            return __('site.errorMessageSite');
+
+        if (!FieldChecker::isNotBlankField($request->customer_id))
+            return __('site.errorMessageCustomer');
 
         try {
             $site->site_name = $request->site_name;

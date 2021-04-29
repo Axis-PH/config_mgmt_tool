@@ -26,5 +26,7 @@ return [
     'siteDeleteFailed' => 'サイトの削除に失敗しました',
     'siteAddFailed' => 'サイトの追加に失敗しました',
     'siteUpdateFailed' => 'サイトの更新に失敗しました',
-    
+    'errorMessageSite' => '無効な名前。',
+    'errorMessageCustomer' => '顧客を選択してください。',
+    'missing' => '*行方不明の顧客',
 ];

@@ -26,4 +26,7 @@ return [
     'siteDeleteFailed' => 'Site Delete Failed',
     'siteAddFailed' => 'Site Add Failed',
     'siteUpdateFailed' => 'Site Update Failed',
+    'errorMessageSite' => 'Invalid Name.',
+    'errorMessageCustomer' => 'Please select a customer.',
+    'missing' => '*Missing Customer',
 ];

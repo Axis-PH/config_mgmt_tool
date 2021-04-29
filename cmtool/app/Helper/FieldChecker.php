@@ -50,4 +50,14 @@ class FieldChecker
         
         return true;
     }
+
+    public function isSpecialCharacter($name) {
+
+        $pattern = '/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/';
+
+        if (preg_match($pattern, $name))
+            return false;
+
+        return true; 
+    }
 }

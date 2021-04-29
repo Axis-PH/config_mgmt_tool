@@ -151,11 +151,14 @@ class CustomersManager extends Controller
         if (!FieldChecker::isValidName($request->customer_name))
             return __('customer.errorMessageName');
 
-        if (!FieldChecker::isValidName($request->customer_staff))
-            return __('customer.errorMessageStaff');
+        if (!FieldChecker::isSpecialCharacter($request->customer_name))
+            return __('customer.errorMessageName');
+
+        // if (!FieldChecker::isValidName($request->customer_staff))
+        //     return __('customer.errorMessageStaff');
     
-        if (!FieldChecker::isValidTel($request->customer_tel))
-            return __('customer.errorMessageTel');
+        // if (!FieldChecker::isValidTel($request->customer_tel))
+        //     return __('customer.errorMessageTel');
 
         if (!FieldChecker::isValidEmail($request->customer_mail))
             return __('customer.errorMessageEmail');

@@ -40,6 +40,7 @@ return [
     'blank' => '',
     'addedCustomer' => 'Successfully added the customer.',
     'updatedCustomer' => 'Successfully updated the customer.',
+    'delCustomer' => 'Successfully deleted the customer.',
 
 
 ];
