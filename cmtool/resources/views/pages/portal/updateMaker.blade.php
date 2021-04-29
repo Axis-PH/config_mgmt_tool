@@ -33,7 +33,7 @@
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('maker.hpAddress') }}</label>
                 {{Form::text('hp_address', $maker->hp_address, ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'placeholder' => __('hp address')])}}
+                    'class' => 'form-control', 'required' => true, 'placeholder' => __('hp address')])}}
             </div>
             <br><br>
             <div>
