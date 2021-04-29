@@ -20,7 +20,7 @@ return [
     'update' => '編集',
     'back' => '戻る',
     'delete' => '削除',
-    'createMaker' => 'トメーカを作成する',
+    'createMaker' => 'メーカを作成する',
     'updateMaker' => 'アップデートメーカー',
     'deleteMessage' => 'このメーカーを削除してもよろしいですか？',
     'makerDeleted' => 'メーカー削除',

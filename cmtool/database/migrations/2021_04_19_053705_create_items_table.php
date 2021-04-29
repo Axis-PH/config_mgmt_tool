@@ -18,15 +18,15 @@ class CreateItemsTable extends Migration
             $table->string('item_name');
             $table->integer('category');
             $table->string('model');
-            $table->string('serial');
+            $table->string('serial')->nullable();
             $table->string('ip');
             $table->string('netmask');
             $table->string('gateway');
             $table->integer('customer_id');
             $table->integer('site_id');
-            $table->string('place');
+            $table->string('place')->nullable();
             $table->integer('maker_id');
-            $table->string('memo');
+            $table->string('memo')->nullable();
             $table->timestamps();
         });
     }

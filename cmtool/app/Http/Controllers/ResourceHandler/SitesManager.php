@@ -33,6 +33,9 @@ class SitesManager extends Controller
         if (!FieldChecker::isValidName($request->site_name))
             return __('site.errorMessageSite');
 
+        if (!FieldChecker::isNotBlankField($request->site_name))
+            return __('site.errorMessageSite');
+
         if (!FieldChecker::isNotBlankField($request->customer_id))
             return __('site.errorMessageCustomer');
 

@@ -16,11 +16,11 @@ class CreateMakersTable extends Migration
         Schema::create('makers', function (Blueprint $table) {
             $table->id('maker_id');
             $table->string('maker_name');
-            $table->string('maker_staff');
-            $table->string('maker_tel');
+            $table->string('maker_staff')->nullable();
+            $table->string('maker_tel')->nullable();
             $table->string('maker_mail');
             $table->string('hp_address');
-            $table->string('maker_memo');
+            $table->string('maker_memo')->nullable();
             $table->timestamps();
         });
     }

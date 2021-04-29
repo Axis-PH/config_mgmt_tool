@@ -68,7 +68,6 @@ class MakersManager extends Controller
 
         catch (\Exception $exception)
         {
-            dd($exception->getMessage());
             return false;
         }
     }
@@ -77,12 +76,6 @@ class MakersManager extends Controller
     {
         if (!FieldChecker::isValidName($request->maker_name))
             return 'Invalid Name';
-
-        if (!FieldChecker::isValidName($request->maker_staff))
-            return 'Invalid Staff Name';
-    
-        if (!FieldChecker::isValidTel($request->maker_tel))
-            return 'Invalid Tel';
     
         if (!FieldChecker::isValidEmail($request->maker_mail))
             return 'Invalid Mail';

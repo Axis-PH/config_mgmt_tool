@@ -14,7 +14,7 @@
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.category') }}</label>
                 {{Form::select('itemCategory', $categories, '', ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'placeholder' => __('item.category')])}}
+                    'class' => 'form-control'])}}
             </div>
             <br><br>
             <div>
@@ -56,7 +56,7 @@
             <div>
                 <label style="margin-left:50px; margin-top:5px; float:left;">{{ __('item.maker') }}</label>
                 {{Form::select('makerId', $makers, '', ['style' => 'float:right; width:500px; margin-right: 120px', 
-                    'class' => 'form-control', 'placeholder' => __('item.maker')])}}
+                    'class' => 'form-control'])}}
             </div>
             <br><br>
             <div>
@@ -71,7 +71,7 @@
             {{ Form::hidden('_method', 'PUT')}}
             {{ Form::close() }} 
 
-            <a style="margin-left:5px" href={{ '/sites' }}
+            <a style="margin-left:5px" href={{ '/items/list' . '/' . $siteId . '/' . $customerId }}
                 class="btn btn-secondary">{{ __('item.cancel') }}</a>
         </div>
     </div>
