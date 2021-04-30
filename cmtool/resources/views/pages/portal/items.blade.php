@@ -46,13 +46,13 @@
 
     .nameHeader {
         text-align:center; 
-        width:11%; 
+        width:5%; 
         border: 1px solid black
     }
 
     .dateTimeHeader {
         text-align:center; 
-        width:11%; 
+        width:5%; 
         border: 1px solid black
     }
 

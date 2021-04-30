@@ -74,7 +74,7 @@ class MakersManager extends Controller
 
     private function areFieldsValid(Request $request)
     {
-        if (!FieldChecker::isValidName($request->maker_name))
+        if (!FieldChecker::isNotBlankField($request->maker_name))
             return 'Invalid Name';
     
         if (!FieldChecker::isValidEmail($request->maker_mail))
